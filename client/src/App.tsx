@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import "./App.css";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import rtlPlugin from "stylis-plugin-rtl";
+import createCache from "@emotion/cache";
+import LandingPage from "./pages/UnitPage";
+import ShowByPage from "./pages/ShowByPage";
+import LoginPage from "./pages/LoginPage";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Box, CssBaseline, Grid, Typography } from "@mui/material";
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache";
-import LandingPage from "./components/LandingPage";
-import ShowByPage from "./components/ShowByPage";
-import { Box, CssBaseline, Grid, Typography } from "@mui/material";
-
+import "./App.css";
 const theme = createTheme({
   palette: {
     background: {
@@ -24,8 +24,9 @@ const cacheRtl = createCache({
 });
 
 function App() {
-  const [isLandingPage, setIsLandingPage] = useState(true);
+  const [isLandingPage, setIsLandingPage] = useState(false);
   const [isShowByPage, setIsShowByPage] = useState(false);
+  const [isLoginPage, setIsLoginPage] = useState(true);
 
   return (
     <CacheProvider value={cacheRtl}>
@@ -36,6 +37,9 @@ function App() {
             <Typography variant="h3" component="div">
               ויטלי מקמ''שים בע''מ
             </Typography>
+            <Grid item xs={3}>
+              {isLoginPage && <LoginPage />}
+            </Grid>
             <Grid item xs={3}>
               {isLandingPage && (
                 <LandingPage

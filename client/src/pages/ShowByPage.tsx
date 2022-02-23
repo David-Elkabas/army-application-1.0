@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Paper, Stack } from "@mui/material";
 import React from "react";
-import SelectCard from "./SelectCard";
+import SelectCard from "../components/SelectCard";
 import transceiver from "../images/transceiver.png";
 import monitor from "../images/monitor.png";
 import radio from "../images/radio.png";
