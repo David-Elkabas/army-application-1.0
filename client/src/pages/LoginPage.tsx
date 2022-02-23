@@ -1,41 +1,23 @@
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardMedia,
-  Typography,
-} from "@mui/material";
-import React from "react";
+import { Box, FormControl, Typography } from "@mui/material";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import login from "../images/login.png";
+import LoginLeftSide from "../components/LoginLeftSide";
+import Copyright from "../components/Copyright";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit">מדור לומ"ר</Link> {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import FormHelperText from "@mui/material/FormHelperText";
 
 type Props = {};
 
 const LoginPage = (props: Props) => {
-  const image = login;
-  const imageName = "image";
+  const [UsernameHelperText, setUsernameHelperText] = useState<
+    string | undefined
+  >("dfsdfG");
+  const [passwordHelperText, setPasswordHelperText] = useState<
+    string | undefined
+  >("sdga ");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -94,6 +76,10 @@ const LoginPage = (props: Props) => {
                 name="username"
                 autoFocus
               />
+              <FormControl error>
+                <FormHelperText>{UsernameHelperText}</FormHelperText>
+              </FormControl>
+
               <TextField
                 margin="normal"
                 required
@@ -104,6 +90,10 @@ const LoginPage = (props: Props) => {
                 id="password"
                 autoComplete="current-password"
               />
+              <FormControl error>
+                <FormHelperText>{passwordHelperText}</FormHelperText>
+              </FormControl>
+
               <Button
                 type="submit"
                 fullWidth
@@ -117,30 +107,7 @@ const LoginPage = (props: Props) => {
             </Box>
           </Box>
         </Grid>
-        <Grid
-          item
-          component={Paper}
-          elevation={0}
-          square
-          xs={6}
-          sx={{
-            backgroundColor: "white",
-
-            minHeight: 400,
-            maxHeight: 400,
-          }}
-        >
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                sx={{ width: 1, minHeight: 400, maxHeight: 400 }}
-                component="img"
-                image={image}
-                alt={imageName}
-              />
-            </CardActionArea>
-          </Card>
-        </Grid>
+        <LoginLeftSide />
       </Grid>
     </Box>
   );
