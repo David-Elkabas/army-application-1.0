@@ -6,27 +6,62 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import LoginLeftSide from "../components/LoginLeftSide";
 import Copyright from "../components/Copyright";
-
 import FormHelperText from "@mui/material/FormHelperText";
+import axios from "axios";
+interface IProps {
+  setIsLoginPage: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
+  setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-type Props = {};
-
-const LoginPage = (props: Props) => {
+const LoginPage = (props: IProps) => {
+  const { setIsLoginPage, setIsUnitPage, setUsername, setIsAdmin } = props;
   const [UsernameHelperText, setUsernameHelperText] = useState<
     string | undefined
-  >("dfsdfG");
+  >(" ");
   const [passwordHelperText, setPasswordHelperText] = useState<
     string | undefined
-  >("sdga ");
+  >(" ");
+
+  const SendLoginRequest = async (
+    username: string,
+    password: string
+  ): Promise<any> => {
+    try {
+      const res = await axios.post("http://localhost:5005/api/login", {
+        username,
+        password,
+      });
+      setUsername(res.data.username);
+      setIsAdmin(res.data.isAdmin);
+      console.log(res.data);
+      setIsLoginPage(false);
+      setIsUnitPage(true);
+    } catch (err) {
+      setPasswordHelperText("שם המשתמש או הסיסמה שגויים");
+    }
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
+    const username = String(data.get("username"));
+    const password = String(data.get("password"));
+
+    if (username.length < 5 || password.length < 5) {
+      if (username.length < 5)
+        setUsernameHelperText("שם משתמש חייב לכלול לפחות 5 תווים");
+      else setUsernameHelperText(" ");
+      if (password.length < 5)
+        setPasswordHelperText("סיסמה חייבת לכלול לפחות 5 תווים");
+      else setPasswordHelperText(" ");
+    } else {
+      setUsernameHelperText(" ");
+      setPasswordHelperText(" ");
+      const x = SendLoginRequest(username, password);
+    }
   };
 
   return (

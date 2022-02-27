@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
-import LandingPage from "./pages/UnitPage";
+import UnitPage from "./pages/UnitPage";
 import ShowByPage from "./pages/ShowByPage";
 import LoginPage from "./pages/LoginPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -24,9 +24,11 @@ const cacheRtl = createCache({
 });
 
 function App() {
-  const [isLandingPage, setIsLandingPage] = useState(false);
+  const [isUnitPage, setIsUnitPage] = useState(false);
   const [isShowByPage, setIsShowByPage] = useState(false);
   const [isLoginPage, setIsLoginPage] = useState(true);
+  const [username, setUsername] = useState(" ");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <CacheProvider value={cacheRtl}>
@@ -38,20 +40,29 @@ function App() {
               ויטלי מקמ''שים בע''מ
             </Typography>
             <Grid item xs={3}>
-              {isLoginPage && <LoginPage />}
+              {isLoginPage && (
+                <LoginPage
+                  setIsLoginPage={setIsLoginPage}
+                  setIsUnitPage={setIsUnitPage}
+                  setUsername={setUsername}
+                  setIsAdmin={setIsAdmin}
+                />
+              )}
             </Grid>
             <Grid item xs={3}>
-              {isLandingPage && (
-                <LandingPage
-                  setIsLandingPage={setIsLandingPage}
+              {isUnitPage && (
+                <UnitPage
+                  setIsUnitPage={setIsUnitPage}
                   setIsShowByPage={setIsShowByPage}
+                  username={username}
+                  isAdmin={isAdmin}
                 />
               )}
             </Grid>
             <Grid item xs={3}>
               {isShowByPage && (
                 <ShowByPage
-                  setIsLandingPage={setIsLandingPage}
+                  setIsUnitPage={setIsUnitPage}
                   setIsShowByPage={setIsShowByPage}
                 />
               )}

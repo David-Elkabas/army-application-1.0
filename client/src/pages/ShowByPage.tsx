@@ -7,7 +7,7 @@ import radio from "../images/radio.png";
 import all from "../images/all.png";
 
 interface IProps {
-  setIsLandingPage: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
   setIsShowByPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -43,10 +43,10 @@ const cardOptions = [
 ];
 
 const ShowByPage: React.FC<IProps> = (props) => {
-  const { setIsLandingPage, setIsShowByPage } = props;
+  const { setIsUnitPage, setIsShowByPage } = props;
 
   const handleClick = (): void => {
-    setIsLandingPage(true);
+    setIsUnitPage(true);
     setIsShowByPage(false);
   };
 

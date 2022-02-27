@@ -5,11 +5,13 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 interface IProps {
-  setIsLandingPage: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
   setIsShowByPage: React.Dispatch<React.SetStateAction<boolean>>;
+  username: string;
+  isAdmin: boolean;
 }
 
 const unitListWithServers = [
@@ -18,8 +20,8 @@ const unitListWithServers = [
   { name: "שדב לומר", value: "lomar", servers: "תקשי שרתים 158,159" },
 ];
 
-const LandingPage: React.FC<IProps> = (props) => {
-  const { setIsLandingPage, setIsShowByPage } = props;
+const UnitPage: React.FC<IProps> = (props) => {
+  const { setIsUnitPage, setIsShowByPage, username, isAdmin } = props;
   const [unit, setUnit] = useState("");
   const [helperText, setHelperText] = useState<string | undefined>("");
   const [isDisabled, setIsDisabled] = useState(true);
@@ -40,7 +42,7 @@ const LandingPage: React.FC<IProps> = (props) => {
     }
   };
   const handleClick = (): void => {
-    setIsLandingPage(false);
+    setIsUnitPage(false);
     setIsShowByPage(true);
   };
 
@@ -61,6 +63,12 @@ const LandingPage: React.FC<IProps> = (props) => {
         justifyContent="center"
         alignItems="center"
       >
+        <Grid item xs={12}>
+          <Typography variant="h5" component="div" sx={{ padding: 3 }}>
+            {`שלום ${username}  `}
+            סוג משתמש: {isAdmin ? "אדמין" : "סטנדרטי"}
+          </Typography>
+        </Grid>
         <Grid item xs={6}>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="unit-id">יחידה</InputLabel>
@@ -96,4 +104,4 @@ const LandingPage: React.FC<IProps> = (props) => {
   );
 };
 
-export default LandingPage;
+export default UnitPage;

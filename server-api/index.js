@@ -1,11 +1,13 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const { users } = require("./users/users");
 const JWT = require("jsonwebtoken");
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.post("/api/login", (req, res) => {
