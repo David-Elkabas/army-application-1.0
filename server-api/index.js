@@ -26,6 +26,7 @@ app.post("/api/login", (req, res) => {
     res.json({
       username: user.username,
       isAdmin: user.isAdmin,
+      unitAccess: user.unitAccess,
       accessToken,
     });
   } else res.status(400).json("Username or password incorrect");

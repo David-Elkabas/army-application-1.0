@@ -1,15 +1,17 @@
 const users = [
   {
     id: "1",
-    username: "john",
+    username: "sapir",
     password: "12345",
     isAdmin: false,
+    unitAccess: ["36"],
   },
   {
     id: "2",
     username: "mayan",
     password: "12345",
     isAdmin: false,
+    unitAccess: ["lomar", "36"],
   },
   {
     id: "3",

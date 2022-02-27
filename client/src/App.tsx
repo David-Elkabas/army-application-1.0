@@ -29,6 +29,7 @@ function App() {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const [username, setUsername] = useState(" ");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [unitAccess, setUnitAccess] = useState<Array<string>>([]);
 
   return (
     <CacheProvider value={cacheRtl}>
@@ -46,6 +47,7 @@ function App() {
                   setIsUnitPage={setIsUnitPage}
                   setUsername={setUsername}
                   setIsAdmin={setIsAdmin}
+                  setUnitAccess={setUnitAccess}
                 />
               )}
             </Grid>
@@ -56,6 +58,7 @@ function App() {
                   setIsShowByPage={setIsShowByPage}
                   username={username}
                   isAdmin={isAdmin}
+                  unitAccess={unitAccess}
                 />
               )}
             </Grid>

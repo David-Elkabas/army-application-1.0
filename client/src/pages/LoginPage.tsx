@@ -13,10 +13,17 @@ interface IProps {
   setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+  setUnitAccess: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const LoginPage = (props: IProps) => {
-  const { setIsLoginPage, setIsUnitPage, setUsername, setIsAdmin } = props;
+  const {
+    setIsLoginPage,
+    setIsUnitPage,
+    setUsername,
+    setIsAdmin,
+    setUnitAccess,
+  } = props;
   const [UsernameHelperText, setUsernameHelperText] = useState<
     string | undefined
   >(" ");
@@ -35,6 +42,7 @@ const LoginPage = (props: IProps) => {
       });
       setUsername(res.data.username);
       setIsAdmin(res.data.isAdmin);
+      setUnitAccess(res.data.unitAccess);
       console.log(res.data);
       setIsLoginPage(false);
       setIsUnitPage(true);

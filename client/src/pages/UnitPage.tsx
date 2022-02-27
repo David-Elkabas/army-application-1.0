@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -6,12 +6,14 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import { Box, Grid, Typography } from "@mui/material";
+import WelcomeLine from "../components/WelcomeLine";
 
 interface IProps {
   setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
   setIsShowByPage: React.Dispatch<React.SetStateAction<boolean>>;
   username: string;
   isAdmin: boolean;
+  unitAccess: string[] | undefined;
 }
 
 const unitListWithServers = [
@@ -21,25 +23,40 @@ const unitListWithServers = [
 ];
 
 const UnitPage: React.FC<IProps> = (props) => {
-  const { setIsUnitPage, setIsShowByPage, username, isAdmin } = props;
+  const { setIsUnitPage, setIsShowByPage, username, isAdmin, unitAccess } =
+    props;
   const [unit, setUnit] = useState("");
   const [helperText, setHelperText] = useState<string | undefined>("");
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const handleChange = (event: SelectChangeEvent): void => {
-    setUnit(event.target.value);
+  const testSelectedValue = (selectedValue: string): void => {
+    setUnit(selectedValue);
     let item = unitListWithServers.find((unit) => {
-      if (unit.value === event.target.value) return unit.servers;
+      if (unit.value === selectedValue) return unit.servers;
       return undefined;
     });
-    // console.log(item);
     if (item !== undefined) {
-      setHelperText(item.servers);
-      setIsDisabled(false);
+      if (isAdmin || unitAccess?.includes(item.value)) {
+        setHelperText(item.servers);
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+        setHelperText(undefined);
+      }
     } else {
       setIsDisabled(true);
       setHelperText(undefined);
     }
+  };
+  useEffect(() => {
+    if (unitAccess) {
+      testSelectedValue(unitAccess[0]);
+      // console.log(unitAccess[0]);
+    }
+  }, []);
+
+  const handleChange = (event: SelectChangeEvent): void => {
+    testSelectedValue(event.target.value);
   };
   const handleClick = (): void => {
     setIsUnitPage(false);
@@ -64,10 +81,7 @@ const UnitPage: React.FC<IProps> = (props) => {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <Typography variant="h5" component="div" sx={{ padding: 3 }}>
-            {`שלום ${username}  `}
-            סוג משתמש: {isAdmin ? "אדמין" : "סטנדרטי"}
-          </Typography>
+          <WelcomeLine username={username} isAdmin={isAdmin} />
         </Grid>
         <Grid item xs={6}>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -82,9 +96,55 @@ const UnitPage: React.FC<IProps> = (props) => {
               <MenuItem value="">
                 <em>נקה</em>
               </MenuItem>
-              <MenuItem value={"36"}>36</MenuItem>
-              <MenuItem value={"98"}>98</MenuItem>
-              <MenuItem value={"lomar"}>שדב לומר</MenuItem>
+              {unitListWithServers.map((unit) => {
+                return (
+                  <MenuItem
+                    key={unit.value}
+                    value={unit.value}
+                    sx={{
+                      backgroundColor:
+                        isAdmin || unitAccess?.includes(unit.value)
+                          ? "lightgreen"
+                          : "grey",
+                    }}
+                  >
+                    {unit.value}
+                  </MenuItem>
+                );
+              })}
+              {/* <MenuItem
+                value={"36"}
+                sx={{
+                  backgroundColor:
+                    isAdmin || unitAccess?.includes("36")
+                      ? "lightgreen"
+                      : "grey",
+                }}
+              >
+                36
+              </MenuItem>
+              <MenuItem
+                value={"98"}
+                sx={{
+                  backgroundColor:
+                    isAdmin || unitAccess?.includes("98")
+                      ? "lightgreen"
+                      : "grey",
+                }}
+              >
+                98
+              </MenuItem>
+              <MenuItem
+                value={"lomar"}
+                sx={{
+                  backgroundColor:
+                    isAdmin || unitAccess?.includes("lomar")
+                      ? "lightgreen"
+                      : "grey",
+                }}
+              >
+                שדב לומר
+              </MenuItem> */}
             </Select>
             <FormHelperText>{helperText}</FormHelperText>
           </FormControl>
