@@ -8,13 +8,19 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Box, CssBaseline, Grid, Typography } from "@mui/material";
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
+
+import "@fontsource/suez-one";
 import "./App.css";
+
 const theme = createTheme({
   palette: {
     background: {
       default: " #fbfbfb",
     },
   },
+  // typography: {
+  //   fontFamily: ["suez-one"].join(","),
+  // },
   direction: "rtl", // Both here and <body dir="rtl">
 });
 // Create rtl cache

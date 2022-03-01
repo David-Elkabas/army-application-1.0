@@ -76,7 +76,12 @@ const ShowByPage: React.FC<IProps> = (props) => {
         </Grid>
 
         <Stack direction="row" spacing={5} justifyContent="center">
-          <Button variant="contained" onClick={handleClick} size="large">
+          <Button
+            variant="contained"
+            onClick={handleClick}
+            size="large"
+            sx={{ margin: 5 }}
+          >
             חזור חזרה{" "}
           </Button>
         </Stack>

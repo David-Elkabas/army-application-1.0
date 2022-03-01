@@ -5,7 +5,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import WelcomeLine from "../components/WelcomeLine";
 
 interface IProps {
@@ -27,7 +27,7 @@ const UnitPage: React.FC<IProps> = (props) => {
     props;
   const [unit, setUnit] = useState("");
   const [helperText, setHelperText] = useState<string | undefined>("");
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const testSelectedValue = (selectedValue: string): void => {
     setUnit(selectedValue);
@@ -38,27 +38,26 @@ const UnitPage: React.FC<IProps> = (props) => {
     if (item !== undefined) {
       if (isAdmin || unitAccess?.includes(item.value)) {
         setHelperText(item.servers);
-        setIsDisabled(false);
+        setIsButtonDisabled(false);
       } else {
-        setIsDisabled(true);
-        setHelperText(undefined);
+        setHelperText(item.servers);
+        setIsButtonDisabled(true);
       }
     } else {
-      setIsDisabled(true);
+      setIsButtonDisabled(true);
       setHelperText(undefined);
     }
   };
   useEffect(() => {
     if (unitAccess) {
       testSelectedValue(unitAccess[0]);
-      // console.log(unitAccess[0]);
     }
   }, []);
 
   const handleChange = (event: SelectChangeEvent): void => {
     testSelectedValue(event.target.value);
   };
-  const handleClick = (): void => {
+  const handleButtonClick = (): void => {
     setIsUnitPage(false);
     setIsShowByPage(true);
   };
@@ -112,39 +111,6 @@ const UnitPage: React.FC<IProps> = (props) => {
                   </MenuItem>
                 );
               })}
-              {/* <MenuItem
-                value={"36"}
-                sx={{
-                  backgroundColor:
-                    isAdmin || unitAccess?.includes("36")
-                      ? "lightgreen"
-                      : "grey",
-                }}
-              >
-                36
-              </MenuItem>
-              <MenuItem
-                value={"98"}
-                sx={{
-                  backgroundColor:
-                    isAdmin || unitAccess?.includes("98")
-                      ? "lightgreen"
-                      : "grey",
-                }}
-              >
-                98
-              </MenuItem>
-              <MenuItem
-                value={"lomar"}
-                sx={{
-                  backgroundColor:
-                    isAdmin || unitAccess?.includes("lomar")
-                      ? "lightgreen"
-                      : "grey",
-                }}
-              >
-                שדב לומר
-              </MenuItem> */}
             </Select>
             <FormHelperText>{helperText}</FormHelperText>
           </FormControl>
@@ -152,8 +118,8 @@ const UnitPage: React.FC<IProps> = (props) => {
         <Grid item xs={4}>
           <Button
             variant="contained"
-            disabled={isDisabled}
-            onClick={handleClick}
+            disabled={isButtonDisabled}
+            onClick={handleButtonClick}
             size="large"
           >
             בחר אתר זה
