@@ -36,6 +36,7 @@ function App() {
   const [username, setUsername] = useState(" ");
   const [isAdmin, setIsAdmin] = useState(false);
   const [unitAccess, setUnitAccess] = useState<Array<string>>([]);
+  const [selectedUnit, setSelectedUnit] = useState(" ");
 
   return (
     <CacheProvider value={cacheRtl}>
@@ -43,7 +44,11 @@ function App() {
         <CssBaseline />
         <Box dir="rtl">
           <Grid container spacing={0} direction="column" alignItems="center">
-            <Typography variant="h3" component="div">
+            <Typography
+              variant="h3"
+              component="div"
+              sx={{ m: 1, fontWeight: 700 }}
+            >
               ויטלי מקמ''שים בע''מ
             </Typography>
             <Grid item xs={3}>
@@ -60,11 +65,13 @@ function App() {
             <Grid item xs={3}>
               {isUnitPage && (
                 <UnitPage
+                  setIsLoginPage={setIsLoginPage}
                   setIsUnitPage={setIsUnitPage}
                   setIsShowByPage={setIsShowByPage}
                   username={username}
                   isAdmin={isAdmin}
                   unitAccess={unitAccess}
+                  setSelectedUnit={setSelectedUnit}
                 />
               )}
             </Grid>
@@ -73,6 +80,9 @@ function App() {
                 <ShowByPage
                   setIsUnitPage={setIsUnitPage}
                   setIsShowByPage={setIsShowByPage}
+                  username={username}
+                  isAdmin={isAdmin}
+                  selectedUnit={selectedUnit}
                 />
               )}
             </Grid>

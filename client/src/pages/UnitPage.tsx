@@ -5,26 +5,35 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import WelcomeLine from "../components/WelcomeLine";
 
 interface IProps {
+  setIsLoginPage: React.Dispatch<React.SetStateAction<boolean>>;
   setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
   setIsShowByPage: React.Dispatch<React.SetStateAction<boolean>>;
   username: string;
   isAdmin: boolean;
   unitAccess: string[] | undefined;
+  setSelectedUnit: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const unitListWithServers = [
-  { name: "36", value: "36", servers: "תקשי שרתים 178,179" },
-  { name: "98", value: "98", servers: "תקשי שרתים 183,184" },
-  { name: "שדב לומר", value: "lomar", servers: "תקשי שרתים 158,159" },
+  { name: "36", value: "36", servers: "תק''שי שרתים 178,179" },
+  { name: "98", value: "98", servers: "תק''שי שרתים 183,184" },
+  { name: "שדב לומר", value: "lomar", servers: "תק''שי שרתים 158,159" },
 ];
 
 const UnitPage: React.FC<IProps> = (props) => {
-  const { setIsUnitPage, setIsShowByPage, username, isAdmin, unitAccess } =
-    props;
+  const {
+    setIsLoginPage,
+    setIsUnitPage,
+    setIsShowByPage,
+    username,
+    isAdmin,
+    unitAccess,
+    setSelectedUnit,
+  } = props;
   const [unit, setUnit] = useState("");
   const [helperText, setHelperText] = useState<string | undefined>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -60,6 +69,12 @@ const UnitPage: React.FC<IProps> = (props) => {
   const handleButtonClick = (): void => {
     setIsUnitPage(false);
     setIsShowByPage(true);
+    setSelectedUnit(unit);
+  };
+
+  const handleReturnButtonClick = (): void => {
+    setIsUnitPage(false);
+    setIsLoginPage(true);
   };
 
   return (
@@ -70,7 +85,6 @@ const UnitPage: React.FC<IProps> = (props) => {
         minHeight: 350,
         boxShadow: 2,
         borderRadius: 2,
-        marginTop: 5,
       }}
     >
       <Grid
@@ -82,6 +96,7 @@ const UnitPage: React.FC<IProps> = (props) => {
         <Grid item xs={12}>
           <WelcomeLine username={username} isAdmin={isAdmin} />
         </Grid>
+
         <Grid item xs={6}>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="unit-id">יחידה</InputLabel>
@@ -123,6 +138,16 @@ const UnitPage: React.FC<IProps> = (props) => {
             size="large"
           >
             בחר אתר זה
+          </Button>
+        </Grid>
+        <Grid item xs={3}>
+          <Button
+            variant="contained"
+            onClick={handleReturnButtonClick}
+            size="large"
+            sx={{ mt: 15, mb: 5 }}
+          >
+            חזור חזרה
           </Button>
         </Grid>
       </Grid>

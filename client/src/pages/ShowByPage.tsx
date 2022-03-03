@@ -5,10 +5,14 @@ import transceiver from "../images/transceiver.png";
 import monitor from "../images/monitor.png";
 import radio from "../images/radio.png";
 import all from "../images/all.png";
+import UserInfo from "../components/UserInfo";
 
 interface IProps {
   setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
   setIsShowByPage: React.Dispatch<React.SetStateAction<boolean>>;
+  username: string;
+  isAdmin: boolean;
+  selectedUnit: string;
 }
 
 const cardOptions = [
@@ -43,7 +47,8 @@ const cardOptions = [
 ];
 
 const ShowByPage: React.FC<IProps> = (props) => {
-  const { setIsUnitPage, setIsShowByPage } = props;
+  const { setIsUnitPage, setIsShowByPage, username, isAdmin, selectedUnit } =
+    props;
 
   const handleClick = (): void => {
     setIsUnitPage(true);
@@ -51,19 +56,25 @@ const ShowByPage: React.FC<IProps> = (props) => {
   };
 
   return (
-    <Paper sx={{ bgcolor: "#f3f3f3", padding: 2 }}>
+    <Paper sx={{ bgcolor: "#f3f3f3", padding: 5 }}>
+      <UserInfo
+        username={username}
+        isAdmin={isAdmin}
+        selectedUnit={selectedUnit}
+      />
       <Box sx={{ mx: "auto", width: 1 }}>
         <Grid
           container
           direction="row"
           rowSpacing={2}
-          sx={{ width: 800, marginTop: 1 }}
+          sx={{ width: 600, marginTop: 1 }}
         >
           {cardOptions &&
             cardOptions.map((card, index) => {
               return (
                 <Grid item xs={6} key={index}>
                   <SelectCard
+                    index={index}
                     key={card.value}
                     value={card.value}
                     header={card.header}
@@ -74,7 +85,6 @@ const ShowByPage: React.FC<IProps> = (props) => {
               );
             })}
         </Grid>
-
         <Stack direction="row" spacing={5} justifyContent="center">
           <Button
             variant="contained"
