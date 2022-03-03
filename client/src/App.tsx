@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import UnitPage from "./pages/UnitPage";
-import ShowByPage from "./pages/ShowByPage";
-import LoginPage from "./pages/LoginPage";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Box, CssBaseline, Grid, Typography } from "@mui/material";
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import "@fontsource/suez-one";
 import "./App.css";
+import LoginPage from "./pages/LoginPage";
+import ShowByPage from "./pages/ShowByPage";
+import Transceiver from "./pages/Transceiver";
 
 const theme = createTheme({
   palette: {
@@ -30,9 +33,6 @@ const cacheRtl = createCache({
 });
 
 function App() {
-  const [isUnitPage, setIsUnitPage] = useState(false);
-  const [isShowByPage, setIsShowByPage] = useState(false);
-  const [isLoginPage, setIsLoginPage] = useState(true);
   const [username, setUsername] = useState(" ");
   const [isAdmin, setIsAdmin] = useState(false);
   const [unitAccess, setUnitAccess] = useState<Array<string>>([]);
@@ -51,7 +51,45 @@ function App() {
             >
               ויטלי מקמ''שים בע''מ
             </Typography>
-            <Grid item xs={3}>
+            <BrowserRouter>
+              <Routes>
+                <Route
+                  path="/login-page"
+                  element={
+                    <LoginPage
+                      setUsername={setUsername}
+                      setIsAdmin={setIsAdmin}
+                      setUnitAccess={setUnitAccess}
+                    />
+                  }
+                />
+                <Route
+                  path="/show-by-page"
+                  element={
+                    <ShowByPage
+                      username={username}
+                      isAdmin={isAdmin}
+                      selectedUnit={selectedUnit}
+                    />
+                  }
+                />
+                <Route
+                  path="/unit-page"
+                  element={
+                    <UnitPage
+                      username={username}
+                      isAdmin={isAdmin}
+                      unitAccess={unitAccess}
+                      setSelectedUnit={setSelectedUnit}
+                    />
+                  }
+                />
+                <Route path="/transceiver" element={<Transceiver />} />
+
+                <Route path="*" element={<Navigate to="/login-page" />} />
+              </Routes>
+            </BrowserRouter>
+            {/* <Grid item xs={3}>
               {isLoginPage && (
                 <LoginPage
                   setIsLoginPage={setIsLoginPage}
@@ -85,7 +123,7 @@ function App() {
                   selectedUnit={selectedUnit}
                 />
               )}
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
       </ThemeProvider>

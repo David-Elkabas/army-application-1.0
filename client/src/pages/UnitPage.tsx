@@ -5,13 +5,11 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import WelcomeLine from "../components/WelcomeLine";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
-  setIsLoginPage: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsShowByPage: React.Dispatch<React.SetStateAction<boolean>>;
   username: string;
   isAdmin: boolean;
   unitAccess: string[] | undefined;
@@ -25,18 +23,12 @@ const unitListWithServers = [
 ];
 
 const UnitPage: React.FC<IProps> = (props) => {
-  const {
-    setIsLoginPage,
-    setIsUnitPage,
-    setIsShowByPage,
-    username,
-    isAdmin,
-    unitAccess,
-    setSelectedUnit,
-  } = props;
+  const { username, isAdmin, unitAccess, setSelectedUnit } = props;
   const [unit, setUnit] = useState("");
   const [helperText, setHelperText] = useState<string | undefined>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const navigate = useNavigate();
 
   const testSelectedValue = (selectedValue: string): void => {
     setUnit(selectedValue);
@@ -67,14 +59,13 @@ const UnitPage: React.FC<IProps> = (props) => {
     testSelectedValue(event.target.value);
   };
   const handleButtonClick = (): void => {
-    setIsUnitPage(false);
-    setIsShowByPage(true);
+    navigate("/show-by-page");
+
     setSelectedUnit(unit);
   };
 
   const handleReturnButtonClick = (): void => {
-    setIsUnitPage(false);
-    setIsLoginPage(true);
+    navigate("/login-page");
   };
 
   return (

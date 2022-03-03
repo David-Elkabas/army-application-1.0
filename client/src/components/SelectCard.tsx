@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import Tooltip from "@mui/material/Tooltip";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   index: number;
@@ -16,6 +17,13 @@ interface IProps {
 }
 const SelectCard: React.FC<IProps> = (props) => {
   const { index, value, header, description, image } = props;
+
+  const navigate = useNavigate();
+
+  const handleClick = (): void => {
+    navigate(`/${value}`);
+    console.log(value);
+  };
   return (
     <Box>
       <Grid container justifyContent="center">
@@ -31,6 +39,7 @@ const SelectCard: React.FC<IProps> = (props) => {
           sx={{ fontSize: 10 }}
         >
           <Card
+            onClick={handleClick}
             sx={{
               maxWidth: 260,
               minHeight: 220,

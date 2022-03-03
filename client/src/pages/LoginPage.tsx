@@ -7,29 +7,24 @@ import Grid from "@mui/material/Grid";
 import LoginLeftSide from "../components/LoginLeftSide";
 import Copyright from "../components/Copyright";
 import FormHelperText from "@mui/material/FormHelperText";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 interface IProps {
-  setIsLoginPage: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
   setUnitAccess: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const LoginPage = (props: IProps) => {
-  const {
-    setIsLoginPage,
-    setIsUnitPage,
-    setUsername,
-    setIsAdmin,
-    setUnitAccess,
-  } = props;
+  const { setUsername, setIsAdmin, setUnitAccess } = props;
   const [UsernameHelperText, setUsernameHelperText] = useState<
     string | undefined
   >(" ");
   const [passwordHelperText, setPasswordHelperText] = useState<
     string | undefined
   >(" ");
+
+  const navigate = useNavigate();
 
   const SendLoginRequest = async (
     username: string,
@@ -44,8 +39,9 @@ const LoginPage = (props: IProps) => {
       setIsAdmin(res.data.isAdmin);
       setUnitAccess(res.data.unitAccess);
       console.log(res.data);
-      setIsLoginPage(false);
-      setIsUnitPage(true);
+      navigate("/unit-page");
+      // setIsLoginPage(false);
+      // setIsUnitPage(true);
     } catch (err) {
       setPasswordHelperText("שם המשתמש או הסיסמה שגויים");
     }

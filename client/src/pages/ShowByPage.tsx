@@ -6,10 +6,9 @@ import monitor from "../images/monitor.png";
 import radio from "../images/radio.png";
 import all from "../images/all.png";
 import UserInfo from "../components/UserInfo";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
-  setIsUnitPage: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsShowByPage: React.Dispatch<React.SetStateAction<boolean>>;
   username: string;
   isAdmin: boolean;
   selectedUnit: string;
@@ -47,12 +46,12 @@ const cardOptions = [
 ];
 
 const ShowByPage: React.FC<IProps> = (props) => {
-  const { setIsUnitPage, setIsShowByPage, username, isAdmin, selectedUnit } =
-    props;
+  const { username, isAdmin, selectedUnit } = props;
+
+  const navigate = useNavigate();
 
   const handleClick = (): void => {
-    setIsUnitPage(true);
-    setIsShowByPage(false);
+    navigate("/unit-page");
   };
 
   return (
