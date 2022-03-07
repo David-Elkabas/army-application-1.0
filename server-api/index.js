@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const { users } = require("./users/users");
 const JWT = require("jsonwebtoken");
+const fs = require("fs");
 
 dotenv.config();
 
@@ -53,7 +54,31 @@ app.get("/api/users", verifyJWT, (req, res) => {
   res.status(200).json("good by here");
 });
 
+app.get("/radioStates", (req, res) => {
+  // To read as a text file, you have to specify the correct
+  // encoding.
+  fs.readFile("./RCGW/json files/communication0.json", "utf8", (err, data) => {
+    // You should always specify the content type header,
+    // when you don't use 'res.json' for sending JSON.
+    res.set("Content-Type", "application/json");
+    res.send(JSON.parse(data));
+  });
+});
+
+app.get("/headerList", (req, res) => {
+  // To read as a text file, you have to specify the correct
+  // encoding.
+  fs.readFile("././RCGW/json files/headerList.json", "utf8", (err, data) => {
+    // You should always specify the content type header,
+    // when you don't use 'res.json' for sending JSON.
+    res.set("Content-Type", "application/json");
+    res.send(JSON.parse(data));
+  });
+});
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`server is running on http://localhost:${PORT}/`)
-);
+app.listen(PORT, () => {
+  console.log(`server is running on http://localhost:${PORT}/`);
+  console.log(`get headerList from http://localhost:${PORT}/headerList`);
+  console.log(`get radioStates from http://localhost:${PORT}/radioStates`);
+});

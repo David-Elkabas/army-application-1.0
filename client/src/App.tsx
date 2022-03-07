@@ -15,10 +15,13 @@ import LoginPage from "./pages/LoginPage";
 import ShowByPage from "./pages/ShowByPage";
 import Transceiver from "./pages/Transceiver";
 
+import Particles from "react-tsparticles";
+import particlesConfig from "./config/configParticles";
+
 const theme = createTheme({
   palette: {
     background: {
-      default: " #fbfbfb",
+      default: " #0d292a",
     },
   },
   // typography: {
@@ -42,53 +45,70 @@ function App() {
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box dir="rtl">
+
+        <Box
+          dir="rtl"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              zIndex: 0,
+            }}
+          >
+            <Particles options={particlesConfig} />
+          </div>
           <Grid container spacing={0} direction="column" alignItems="center">
             <Typography
               variant="h3"
               component="div"
-              sx={{ m: 1, fontWeight: 700 }}
+              sx={{ m: 1, fontWeight: 700, color: "white" }}
             >
               ויטלי מקמ''שים בע''מ
             </Typography>
-            <BrowserRouter>
-              <Routes>
-                <Route
-                  path="/login-page"
-                  element={
-                    <LoginPage
-                      setUsername={setUsername}
-                      setIsAdmin={setIsAdmin}
-                      setUnitAccess={setUnitAccess}
-                    />
-                  }
-                />
-                <Route
-                  path="/show-by-page"
-                  element={
-                    <ShowByPage
-                      username={username}
-                      isAdmin={isAdmin}
-                      selectedUnit={selectedUnit}
-                    />
-                  }
-                />
-                <Route
-                  path="/unit-page"
-                  element={
-                    <UnitPage
-                      username={username}
-                      isAdmin={isAdmin}
-                      unitAccess={unitAccess}
-                      setSelectedUnit={setSelectedUnit}
-                    />
-                  }
-                />
-                <Route path="/transceiver" element={<Transceiver />} />
+            <Box sx={{ zIndex: 1 }}>
+              <BrowserRouter>
+                <Routes>
+                  <Route
+                    path="/login-page"
+                    element={
+                      <LoginPage
+                        setUsername={setUsername}
+                        setIsAdmin={setIsAdmin}
+                        setUnitAccess={setUnitAccess}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/show-by-page"
+                    element={
+                      <ShowByPage
+                        username={username}
+                        isAdmin={isAdmin}
+                        selectedUnit={selectedUnit}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/unit-page"
+                    element={
+                      <UnitPage
+                        username={username}
+                        isAdmin={isAdmin}
+                        unitAccess={unitAccess}
+                        setSelectedUnit={setSelectedUnit}
+                      />
+                    }
+                  />
+                  <Route path="/transceiver" element={<Transceiver />} />
 
-                <Route path="*" element={<Navigate to="/login-page" />} />
-              </Routes>
-            </BrowserRouter>
+                  <Route path="*" element={<Navigate to="/login-page" />} />
+                </Routes>
+              </BrowserRouter>
+            </Box>
             {/* <Grid item xs={3}>
               {isLoginPage && (
                 <LoginPage

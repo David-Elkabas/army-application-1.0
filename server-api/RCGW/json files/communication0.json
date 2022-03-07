@@ -1,0 +1,40 @@
+{
+  "radioStates": [
+    {
+      "deviceId": "W321",
+      "state": "OK",
+      "params": {
+        "name": "David",
+        "last_name": "EEE",
+        "city": "mizra",
+        "street": "62",
+        "unit": "hatal",
+        "deviceId": "W321"
+      }
+    },
+    {
+      "deviceId": "W322",
+      "state": "OK",
+      "params": {
+        "name": "JON",
+        "last_name": "E1E2E3",
+        "city": "Afula",
+        "street": "22",
+        "unit": "hatal",
+        "deviceId": "W322"
+      }
+    },
+    {
+      "deviceId": "W323",
+      "state": "ERROR",
+      "params": {
+        "name": "RoniRon",
+        "last_name": "cohen",
+        "city": "USA",
+        "street": "11",
+        "unit": "mama",
+        "deviceId": "W323"
+      }
+    }
+  ]
+}
