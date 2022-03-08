@@ -1,11 +1,11 @@
 {
   "param_headers": ["deviceId", "name", "last_name", "city", "street", "unit"],
   "radio_state_headers": [
-    "deviceId",
-    "name",
-    "last_name",
-    "city",
-    "street",
-    "unit"
+    "מזהה מקמ\"ש",
+    "שם",
+    "שם משפחה",
+    "עיר",
+    "רחוב",
+    "יחידה"
   ]
 }

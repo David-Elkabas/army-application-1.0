@@ -103,7 +103,10 @@ function App() {
                       />
                     }
                   />
-                  <Route path="/transceiver" element={<Transceiver />} />
+                  <Route
+                    path="/transceiver"
+                    element={<Transceiver unitAccess={unitAccess} />}
+                  />
 
                   <Route path="*" element={<Navigate to="/login-page" />} />
                 </Routes>
