@@ -21,7 +21,7 @@ import particlesConfig from "./config/configParticles";
 const theme = createTheme({
   palette: {
     background: {
-      default: " #0d292a",
+      default: "#0d292a",
     },
   },
   // typography: {
@@ -112,41 +112,6 @@ function App() {
                 </Routes>
               </BrowserRouter>
             </Box>
-            {/* <Grid item xs={3}>
-              {isLoginPage && (
-                <LoginPage
-                  setIsLoginPage={setIsLoginPage}
-                  setIsUnitPage={setIsUnitPage}
-                  setUsername={setUsername}
-                  setIsAdmin={setIsAdmin}
-                  setUnitAccess={setUnitAccess}
-                />
-              )}
-            </Grid>
-            <Grid item xs={3}>
-              {isUnitPage && (
-                <UnitPage
-                  setIsLoginPage={setIsLoginPage}
-                  setIsUnitPage={setIsUnitPage}
-                  setIsShowByPage={setIsShowByPage}
-                  username={username}
-                  isAdmin={isAdmin}
-                  unitAccess={unitAccess}
-                  setSelectedUnit={setSelectedUnit}
-                />
-              )}
-            </Grid>
-            <Grid item xs={3}>
-              {isShowByPage && (
-                <ShowByPage
-                  setIsUnitPage={setIsUnitPage}
-                  setIsShowByPage={setIsShowByPage}
-                  username={username}
-                  isAdmin={isAdmin}
-                  selectedUnit={selectedUnit}
-                />
-              )}
-            </Grid> */}
           </Grid>
         </Box>
       </ThemeProvider>

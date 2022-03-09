@@ -1,12 +1,4 @@
-import {
-  DataGrid,
-  GridToolbarContainer,
-  GridToolbarExport,
-  gridClasses,
-  GridToolbarColumnsButton,
-  GridToolbarFilterButton,
-  GridToolbarDensitySelector,
-} from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 type RadioParams = {
   שם?: string;
@@ -24,17 +16,6 @@ type IProps = {
   columns: string[];
 };
 
-function CustomToolbar() {
-  return (
-    <GridToolbarContainer className={gridClasses.toolbarContainer}>
-      <GridToolbarColumnsButton />
-      <GridToolbarFilterButton />
-      <GridToolbarDensitySelector />
-      <GridToolbarExport />
-    </GridToolbarContainer>
-  );
-}
-
 const PureTable = (props: IProps) => {
   const { rows, columns } = props;
   console.log(rows);
@@ -49,14 +30,14 @@ const PureTable = (props: IProps) => {
 
   return (
     // <div>
-    <div style={{ height: 400, width: 800, padding: 20 }}>
+    <div style={{ height: 400, width: 1000, padding: 20 }}>
       <DataGrid
         rows={editRows}
         columns={editColumns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         components={{
-          Toolbar: CustomToolbar,
+          Toolbar: GridToolbar,
         }}
       />
     </div>
