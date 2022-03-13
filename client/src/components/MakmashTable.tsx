@@ -49,6 +49,7 @@ const MakmashTable = (props: IProps) => {
   const { accessToken } = props;
   const [tableData, setTableData] = useState<RadioParams[]>([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
+  const [errorText, setErrorText] = useState(" ");
 
   const fetchRadioStates = async (): Promise<Data> => {
     console.log(accessToken);
@@ -58,6 +59,9 @@ const MakmashTable = (props: IProps) => {
     });
     if (!res.ok) {
       console.log("error at fetching radioStates");
+      setErrorText(
+        `status code: ${res.status} status text: ${res.statusText} url: ${res.url}`
+      );
       throw new Error("Problem fetching data");
     }
     return res.json();
@@ -69,6 +73,10 @@ const MakmashTable = (props: IProps) => {
     });
     if (!res.ok) {
       console.log("error at fetching headerList");
+      setErrorText(
+        `status code: ${res.status} status text: ${res.statusText} url: ${res.url}`
+      );
+      // console.log(res.status, res.statusText, res.url);
 
       throw new Error("Problem fetching data");
     }
@@ -118,7 +126,8 @@ const MakmashTable = (props: IProps) => {
 
   if (isLoadingData || isLoadingHeader) return <>"Loading..."</>;
 
-  if (isErrorHeader || isErrorData) return <>"An error has occurred: "</>;
+  if (isErrorHeader || isErrorData)
+    return <>"An error has occurred: " {errorText}</>;
 
   return (
     <div>
