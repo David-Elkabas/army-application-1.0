@@ -41,9 +41,9 @@ const SelectCard: React.FC<IProps> = (props) => {
           <Card
             onClick={handleClick}
             sx={{
-              maxWidth: 260,
-              minHeight: 220,
-              maxHeight: 220,
+              maxWidth: "17vw",
+              minHeight: "30vh",
+              maxHeight: "30vh",
             }}
           >
             <CardActionArea>

@@ -55,19 +55,14 @@ const ShowByPage: React.FC<IProps> = (props) => {
   };
 
   return (
-    <Paper sx={{ bgcolor: "#f3f3f3", padding: 5 }}>
+    <Paper sx={{ bgcolor: "#f3f3f3", pb: 5, px: 5 }}>
       <UserInfo
         username={username}
         isAdmin={isAdmin}
         selectedUnit={selectedUnit}
       />
       <Box sx={{ mx: "auto", width: 1 }}>
-        <Grid
-          container
-          direction="row"
-          rowSpacing={2}
-          sx={{ width: 600, marginTop: 1 }}
-        >
+        <Grid container direction="row" rowSpacing={2} sx={{ width: "42vw" }}>
           {cardOptions &&
             cardOptions.map((card, index) => {
               return (
@@ -89,7 +84,7 @@ const ShowByPage: React.FC<IProps> = (props) => {
             variant="contained"
             onClick={handleClick}
             size="large"
-            sx={{ margin: 5 }}
+            sx={{ mt: 5 }}
           >
             חזור חזרה{" "}
           </Button>

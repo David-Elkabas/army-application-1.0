@@ -39,6 +39,7 @@ function App() {
   const [username, setUsername] = useState(" ");
   const [isAdmin, setIsAdmin] = useState(false);
   const [unitAccess, setUnitAccess] = useState<Array<string>>([]);
+  const [accessToken, setAccessToken] = useState<string>("");
   const [selectedUnit, setSelectedUnit] = useState(" ");
 
   return (
@@ -79,6 +80,7 @@ function App() {
                         setUsername={setUsername}
                         setIsAdmin={setIsAdmin}
                         setUnitAccess={setUnitAccess}
+                        setAccessToken={setAccessToken}
                       />
                     }
                   />
@@ -105,7 +107,12 @@ function App() {
                   />
                   <Route
                     path="/transceiver"
-                    element={<Transceiver unitAccess={unitAccess} />}
+                    element={
+                      <Transceiver
+                        unitAccess={unitAccess}
+                        accessToken={accessToken}
+                      />
+                    }
                   />
 
                   <Route path="*" element={<Navigate to="/login-page" />} />

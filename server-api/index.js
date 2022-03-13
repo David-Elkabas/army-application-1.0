@@ -54,7 +54,7 @@ app.get("/api/users", verifyJWT, (req, res) => {
   res.status(200).json("good by here");
 });
 
-app.get("/radioStates", (req, res) => {
+app.get("/radioStates", verifyJWT, (req, res) => {
   // To read as a text file, you have to specify the correct
   // encoding.
   fs.readFile("./RCGW/json files/communication0.json", "utf8", (err, data) => {
@@ -65,7 +65,7 @@ app.get("/radioStates", (req, res) => {
   });
 });
 
-app.get("/headerList", (req, res) => {
+app.get("/headerList", verifyJWT, (req, res) => {
   // To read as a text file, you have to specify the correct
   // encoding.
   fs.readFile("././RCGW/json files/headerList.json", "utf8", (err, data) => {
@@ -78,7 +78,7 @@ app.get("/headerList", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`server is running on http://localhost:${PORT}/`);
+  console.log(`server is running on http://localhost:${PORT}/api/users`);
   console.log(`get headerList from http://localhost:${PORT}/headerList`);
   console.log(`get radioStates from http://localhost:${PORT}/radioStates`);
 });

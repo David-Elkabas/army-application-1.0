@@ -1,9 +1,12 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useQuery, UseQueryResult } from "react-query";
 import PureComponent from "./PureTable";
 
-type Props = {};
+interface IProps {
+  accessToken: string;
+}
 
 type Headers = {
   param_headers: Array<string>;
@@ -42,28 +45,35 @@ type RCGW = {
 };
 type Data = any;
 
-const fetchRadioStates = async (): Promise<Data> => {
-  const res = await fetch("http://localhost:5005/radioStates");
-  if (!res.ok) {
-    console.log("error at fetching radioStates");
-    throw new Error("Problem fetching data");
-  }
-  return res.json();
-};
-
-const fetchHeaderList = async (): Promise<Headers> => {
-  const res = await fetch("http://localhost:5005/headerList");
-  if (!res.ok) {
-    console.log("error at fetching headerList");
-    throw new Error("Problem fetching data");
-  }
-  return res.json();
-};
-
-const MakmashTable = (props: Props) => {
+const MakmashTable = (props: IProps) => {
+  const { accessToken } = props;
   const [tableData, setTableData] = useState<RadioParams[]>([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
 
+  const fetchRadioStates = async (): Promise<Data> => {
+    console.log(accessToken);
+
+    const res = await fetch("http://localhost:5005/radioStates", {
+      headers: { authorization: "Bearer " + accessToken },
+    });
+    if (!res.ok) {
+      console.log("error at fetching radioStates");
+      throw new Error("Problem fetching data");
+    }
+    return res.json();
+  };
+
+  const fetchHeaderList = async (): Promise<Headers> => {
+    const res = await fetch("http://localhost:5005/headerList", {
+      headers: { authorization: "Bearer " + accessToken },
+    });
+    if (!res.ok) {
+      console.log("error at fetching headerList");
+
+      throw new Error("Problem fetching data");
+    }
+    return res.json();
+  };
   const {
     data,
     isLoading: isLoadingData,
@@ -94,24 +104,17 @@ const MakmashTable = (props: Props) => {
     },
   });
 
-  const {
-    // data: { param_headers, radio_state_headers },
-    // headerData,
-    isLoading: isLoadingHeader,
-    isError: isErrorHeader,
-  } = useQuery<Headers>("FileHeader", fetchHeaderList, {
-    onSuccess: (headerData) => {
-      const { param_headers, radio_state_headers } = headerData ?? {
-        param_headers: [],
-        radio_state_headers: [],
-      };
-      // headerData, isHeaderLoading, headerError;
-      console.log(headerData);
-
-      setTableHeader(radio_state_headers);
-      // console.log(data.radio_state_headers);
-    },
-  });
+  const { isLoading: isLoadingHeader, isError: isErrorHeader } =
+    useQuery<Headers>("FileHeader", fetchHeaderList, {
+      onSuccess: (headerData) => {
+        const { param_headers, radio_state_headers } = headerData ?? {
+          param_headers: [],
+          radio_state_headers: [],
+        };
+        //   console.log(headerData);
+        setTableHeader(radio_state_headers);
+      },
+    });
 
   if (isLoadingData || isLoadingHeader) return <>"Loading..."</>;
 

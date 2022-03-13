@@ -4,23 +4,41 @@ import { useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MakmashTable from "../components/MakmashTable";
+import axios from "axios";
 
 interface IProps {
   unitAccess: string[] | undefined;
+  accessToken: string;
 }
 const queryClient = new QueryClient();
 
 const Transceiver = (props: IProps) => {
+  const { unitAccess, accessToken } = props;
   const navigate = useNavigate();
+
+  const TestGetData = async (): Promise<any> => {
+    try {
+      const res = await axios.get("http://localhost:5005/api/users", {
+        headers: { authorization: "Bearer " + accessToken },
+      });
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  TestGetData();
 
   const handleClick = (): void => {
     navigate("/show-by-page");
   };
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <Paper sx={{ bgcolor: "#f3f3f3", padding: 5 }}>
           <Box>
+            {/* {accessToken} */}
             <Typography
               component="h3"
               variant="h3"
@@ -42,7 +60,7 @@ const Transceiver = (props: IProps) => {
                 justifyContent: "center",
               }}
             >
-              <MakmashTable />
+              <MakmashTable accessToken={accessToken} />
             </Box>
             <ReactQueryDevtools initialIsOpen={false} />
             <Stack direction="row" spacing={5} justifyContent="center">
