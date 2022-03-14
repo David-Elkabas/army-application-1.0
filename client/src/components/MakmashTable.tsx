@@ -52,8 +52,7 @@ const MakmashTable = (props: IProps) => {
   const [errorText, setErrorText] = useState(" ");
 
   const fetchRadioStates = async (): Promise<Data> => {
-    console.log(accessToken);
-
+    // console.log(accessToken);
     const res = await fetch("http://localhost:5005/radioStates", {
       headers: { authorization: "Bearer " + accessToken },
     });

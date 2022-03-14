@@ -76,6 +76,18 @@ app.get("/headerList", verifyJWT, (req, res) => {
   });
 });
 
+app.get("/api/charts/rcgw-chart-data", verifyJWT, (req, res) => {
+  // To read as a text file, you have to specify the correct
+  // encoding.
+  fs.readFile("./RCGW/json files/charts.json", "utf8", (err, data) => {
+    // You should always specify the content type header,
+    // when you don't use 'res.json' for sending JSON.
+    res.set("Content-Type", "application/json");
+    console.log(data);
+    res.send(JSON.parse(data));
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`server is running on http://localhost:${PORT}/api/users`);

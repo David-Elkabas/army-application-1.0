@@ -1,10 +1,11 @@
-import { Box, Button, Paper, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MakmashTable from "../components/MakmashTable";
 import axios from "axios";
+import PieCharts from "../components/PieCharts";
 
 interface IProps {
   unitAccess: string[] | undefined;
@@ -15,19 +16,6 @@ const queryClient = new QueryClient();
 const Transceiver = (props: IProps) => {
   const { unitAccess, accessToken } = props;
   const navigate = useNavigate();
-
-  const TestGetData = async (): Promise<any> => {
-    try {
-      const res = await axios.get("http://localhost:5005/api/users", {
-        headers: { authorization: "Bearer " + accessToken },
-      });
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  TestGetData();
 
   const handleClick = (): void => {
     navigate("/show-by-page");
@@ -54,14 +42,25 @@ const Transceiver = (props: IProps) => {
               הצגת ניטור עבור כלל המקמ''שים המחוברים ומוגדרים בקובץ הפק''ל כולל
               ניתוח סטאטוס
             </Typography>
-            <Box
+            <Grid
+              container
               sx={{
                 display: "flex",
                 justifyContent: "center",
               }}
             >
-              <MakmashTable accessToken={accessToken} />
-            </Box>
+              <Grid item xs={12}>
+                <Box>
+                  <MakmashTable accessToken={accessToken} />
+                </Box>
+              </Grid>
+              <Grid item xs={3}>
+                <PieCharts accessToken={accessToken} />
+              </Grid>
+              <Grid item xs={3}>
+                hello2
+              </Grid>
+            </Grid>
             <ReactQueryDevtools initialIsOpen={false} />
             <Stack direction="row" spacing={5} justifyContent="center">
               <Button
