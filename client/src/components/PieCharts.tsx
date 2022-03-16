@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import { useQuery, UseQueryResult } from "react-query";
@@ -15,12 +16,26 @@ type arrayOfDataParam = {
   RCGWChartData: Array<dataParam>;
   MakmashimChartData: Array<dataParam>;
 };
+type RcgwDataObject = {
+  dataStateArray: Array<string>;
+  dataNumberArray: Array<number>;
+  chartTitle: string;
+};
 
 const PieCharts = (props: IProps) => {
   const { accessToken } = props;
   const [errorText, setErrorText] = useState(" ");
-  const [dataStateArray, setDataStateArray] = useState<string[]>([]);
-  const [dataNumberArray, setDataNumberArray] = useState<number[]>([]);
+  const [RcgwDataArrays, setRcgwDataStateArray] = useState<RcgwDataObject>({
+    dataStateArray: [],
+    dataNumberArray: [],
+    chartTitle: " ",
+  });
+  const [MakmashimDataArrays, setMakmashimDataStateArray] =
+    useState<RcgwDataObject>({
+      dataStateArray: [],
+      dataNumberArray: [],
+      chartTitle: " ",
+    });
 
   const fetchChartsData = async (): Promise<arrayOfDataParam> => {
     const res = await fetch(
@@ -44,10 +59,8 @@ const PieCharts = (props: IProps) => {
     fetchChartsData,
     {
       onSuccess: (data) => {
-        // console.log(`the data is ${data.RCGWChartData}`);
         const statesArray: Array<string> = data?.RCGWChartData.map(
           (machine: dataParam) => {
-            // console.log(machine);
             if (data) {
               return machine.status;
             } else return "";
@@ -55,34 +68,68 @@ const PieCharts = (props: IProps) => {
         );
         const numbersArray: Array<number> = data?.RCGWChartData.map(
           (machine: dataParam) => {
-            // console.log(machine);
             if (data) {
               return machine.number;
             } else return 0;
           }
         );
-        setDataStateArray(statesArray);
-        setDataNumberArray(numbersArray);
+        setRcgwDataStateArray({
+          dataStateArray: statesArray,
+          dataNumberArray: numbersArray,
+          chartTitle: `ישלק"ים`,
+        });
+        const MakmashimStatesArray: Array<string> =
+          data?.MakmashimChartData.map((machine: dataParam) => {
+            if (data) {
+              return machine.status;
+            } else return "";
+          });
+        const MakmashimNumbersArray: Array<number> =
+          data?.MakmashimChartData.map((machine: dataParam) => {
+            if (data) {
+              return machine.number;
+            } else return 0;
+          });
+        setMakmashimDataStateArray({
+          dataStateArray: MakmashimStatesArray,
+          dataNumberArray: MakmashimNumbersArray,
+          chartTitle: `מקמ"שים`,
+        });
       },
     }
   );
-
-  //   const { RCGWChartData } = data ?? {
-  //     RCGWChartData: [],
-  //   };
-
-  //   const numbersArray: Array<string> = data?.RCGWChartData.map(
-  //     (machine: dataParam) => {
-  //       console.log(machine);
-  //       return {};
-  //       // return { [...statesArray, machine.status], [...numbersArray, machine.number] };
-  //     }
-  //   );
+  const {
+    dataStateArray: RcgwDataStateArray,
+    dataNumberArray: RcgwDataNumberArray,
+    chartTitle: RcgwChartTitle,
+  } = RcgwDataArrays;
+  const {
+    dataStateArray: MakmashimDataArray,
+    dataNumberArray: MakmashimNumberArray,
+    chartTitle: MakmashimChartTitle,
+  } = MakmashimDataArrays;
   if (isLoading) return <>"Loading..."</>;
 
   if (isError) return <>"An error has occurred: " {errorText}</>;
 
-  return <PieChart labels={dataStateArray} data={dataNumberArray} />;
+  return (
+    <>
+      <Grid item xs={6} sx={{ width: "14vw" }}>
+        <PieChart
+          labels={RcgwDataStateArray}
+          data={RcgwDataNumberArray}
+          chartTitle={RcgwChartTitle}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ width: "14vw" }}>
+        <PieChart
+          labels={MakmashimDataArray}
+          data={MakmashimNumberArray}
+          chartTitle={MakmashimChartTitle}
+        />
+      </Grid>
+    </>
+  );
 };
 
 export default PieCharts;

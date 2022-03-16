@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import MakmashTable from "../components/MakmashTable";
 import axios from "axios";
 import PieCharts from "../components/PieCharts";
+import NetworkChart from "../components/NetworkChart";
 
 interface IProps {
   unitAccess: string[] | undefined;
@@ -44,21 +45,28 @@ const Transceiver = (props: IProps) => {
             </Typography>
             <Grid
               container
+              direction="row"
               sx={{
                 display: "flex",
-                justifyContent: "center",
+                width: "60vw",
               }}
             >
-              <Grid item xs={12}>
+              <Grid
+                item
+                xs={12}
+                sx={{ justifyContent: "center", width: "50vw" }}
+              >
                 <Box>
                   <MakmashTable accessToken={accessToken} />
                 </Box>
               </Grid>
-              <Grid item xs={3}>
-                <PieCharts accessToken={accessToken} />
-              </Grid>
-              <Grid item xs={3}>
-                hello2
+              <Grid container direction="row" xs={12}>
+                <Grid container xs={6}>
+                  <PieCharts accessToken={accessToken} />
+                </Grid>
+                <Grid item xs={6}>
+                  <NetworkChart accessToken={accessToken} />
+                </Grid>
               </Grid>
             </Grid>
             <ReactQueryDevtools initialIsOpen={false} />

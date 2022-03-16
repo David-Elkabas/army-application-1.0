@@ -25,12 +25,12 @@ const PureTable = (props: IProps) => {
   const editColumns = columns.map((column) => ({
     field: column,
     headerName: column,
-    width: 150,
+    width: 120,
   }));
 
   return (
     // <div>
-    <div style={{ height: 400, width: 1000, padding: 20 }}>
+    <div style={{ height: 400, padding: 20 }}>
       <DataGrid
         rows={editRows}
         columns={editColumns}

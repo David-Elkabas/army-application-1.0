@@ -118,7 +118,6 @@ const MakmashTable = (props: IProps) => {
           param_headers: [],
           radio_state_headers: [],
         };
-        //   console.log(headerData);
         setTableHeader(radio_state_headers);
       },
     });
