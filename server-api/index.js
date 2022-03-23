@@ -95,10 +95,33 @@ app.get("/api/charts/rcgw-chart-data/:id", verifyJWT, (req, res) => {
       // You should always specify the content type header,
       // when you don't use 'res.json' for sending JSON.
       res.set("Content-Type", "application/json");
-      console.log(data);
+      // console.log(data);
       res.send(JSON.parse(data));
     }
   );
+});
+
+app.get("/api/last-modified-date/:id", verifyJWT, (req, res) => {
+  const { id } = req.params;
+
+  fs.stat(`./RCGW/json files/${id}/communication 0.json`, (err, stats) => {
+    if (err) {
+      console.log(err);
+      res.status(403).json(err);
+    } else {
+      let lastModifiedTime = JSON.stringify(stats.mtime);
+      lastModifiedTime = lastModifiedTime
+        .split(".")[0]
+        .replaceAll('"', "")
+        .split("T");
+      let date = lastModifiedTime[0].split("-");
+      let day = date.pop();
+      let month = date.pop();
+      let year = date;
+      lastModifiedTime[0] = `${day}:${month}:${year}`;
+      res.status(200).json(lastModifiedTime);
+    }
+  });
 });
 
 const PORT = process.env.PORT || 5000;

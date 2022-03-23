@@ -6,15 +6,19 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import MakmashTable from "../components/MakmashTable";
 import PieCharts from "../components/PieCharts";
 import NetworkChart from "../components/NetworkChart";
+import UserInfo from "../components/UserInfo";
+import LastModifiedDate from "../components/LastModifiedDate";
 
 interface IProps {
+  username: string;
+  isAdmin: boolean;
   selectedUnit: string;
   accessToken: string;
 }
 const queryClient = new QueryClient();
 
 const Transceiver = (props: IProps) => {
-  const { selectedUnit, accessToken } = props;
+  const { username, isAdmin, selectedUnit, accessToken } = props;
 
   const navigate = useNavigate();
 
@@ -25,8 +29,25 @@ const Transceiver = (props: IProps) => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Paper sx={{ bgcolor: "#f3f3f3", padding: 5 }}>
+        <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
           <Box>
+            <Box>
+              <Grid container direction="row">
+                <Grid item>
+                  <UserInfo
+                    username={username}
+                    isAdmin={isAdmin}
+                    selectedUnit={selectedUnit}
+                  />
+                </Grid>
+                <Grid item sx={{ padding: 3 }}>
+                  <LastModifiedDate
+                    accessToken={accessToken}
+                    selectedUnit={selectedUnit}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
             <Typography
               component="h3"
               variant="h3"
@@ -42,6 +63,7 @@ const Transceiver = (props: IProps) => {
               הצגת ניטור עבור כלל המקמ''שים המחוברים ומוגדרים בקובץ הפק''ל כולל
               ניתוח סטאטוס
             </Typography>
+
             <Grid
               container
               direction="row"

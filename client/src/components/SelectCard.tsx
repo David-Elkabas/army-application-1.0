@@ -22,7 +22,7 @@ const SelectCard: React.FC<IProps> = (props) => {
 
   const handleClick = (): void => {
     navigate(`/${value}`);
-    console.log(value);
+    // console.log(value);
   };
   return (
     <Box>

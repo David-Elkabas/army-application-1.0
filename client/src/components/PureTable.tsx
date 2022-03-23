@@ -1,4 +1,34 @@
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridToolbar,
+  GridToolbarContainer,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  GridToolbarDensitySelector,
+  GridToolbarExport,
+} from "@mui/x-data-grid";
+
+function CustomToolbar() {
+  return (
+    <GridToolbarContainer>
+      <GridToolbarColumnsButton />
+      <GridToolbarFilterButton />
+      <GridToolbarDensitySelector />
+      <GridToolbarExport
+        csvOptions={{
+          fileName: "ויטלי מקמשים בעמ",
+          utf8WithBom: true,
+        }}
+        printOptions={{
+          hideFooter: true,
+          hideToolbar: true,
+          // allColumns: true,
+          fileName: "ויטלי מקמשים בעמ",
+        }}
+      />
+    </GridToolbarContainer>
+  );
+}
 
 type RadioParams = {
   שם?: string;
@@ -37,7 +67,7 @@ const PureTable = (props: IProps) => {
         pageSize={5}
         rowsPerPageOptions={[5]}
         components={{
-          Toolbar: GridToolbar,
+          Toolbar: CustomToolbar,
         }}
       />
     </div>
