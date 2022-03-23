@@ -4,18 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MakmashTable from "../components/MakmashTable";
-import axios from "axios";
 import PieCharts from "../components/PieCharts";
 import NetworkChart from "../components/NetworkChart";
 
 interface IProps {
-  unitAccess: string[] | undefined;
+  selectedUnit: string;
   accessToken: string;
 }
 const queryClient = new QueryClient();
 
 const Transceiver = (props: IProps) => {
-  const { unitAccess, accessToken } = props;
+  const { selectedUnit, accessToken } = props;
+
   const navigate = useNavigate();
 
   const handleClick = (): void => {
@@ -27,7 +27,6 @@ const Transceiver = (props: IProps) => {
       <QueryClientProvider client={queryClient}>
         <Paper sx={{ bgcolor: "#f3f3f3", padding: 5 }}>
           <Box>
-            {/* {accessToken} */}
             <Typography
               component="h3"
               variant="h3"
@@ -57,15 +56,24 @@ const Transceiver = (props: IProps) => {
                 sx={{ justifyContent: "center", width: "50vw" }}
               >
                 <Box>
-                  <MakmashTable accessToken={accessToken} />
+                  <MakmashTable
+                    accessToken={accessToken}
+                    selectedUnit={selectedUnit}
+                  />
                 </Box>
               </Grid>
               <Grid container direction="row" xs={12}>
                 <Grid container xs={6}>
-                  <PieCharts accessToken={accessToken} />
+                  <PieCharts
+                    accessToken={accessToken}
+                    selectedUnit={selectedUnit}
+                  />
                 </Grid>
                 <Grid item xs={6}>
-                  <NetworkChart accessToken={accessToken} />
+                  <NetworkChart
+                    accessToken={accessToken}
+                    selectedUnit={selectedUnit}
+                  />
                 </Grid>
               </Grid>
             </Grid>

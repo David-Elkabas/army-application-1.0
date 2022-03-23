@@ -18,7 +18,7 @@ type IProps = {
 
 const PureTable = (props: IProps) => {
   const { rows, columns } = props;
-  console.log(rows);
+  // console.log(rows);
 
   const editRows = rows.map((row) => Object.assign(row, { id: row.id }));
 

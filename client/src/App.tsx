@@ -109,8 +109,9 @@ function App() {
                     path="/transceiver"
                     element={
                       <Transceiver
-                        unitAccess={unitAccess}
+                        // unitAccess={unitAccess}
                         accessToken={accessToken}
+                        selectedUnit={selectedUnit}
                       />
                     }
                   />

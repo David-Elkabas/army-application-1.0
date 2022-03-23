@@ -40,7 +40,7 @@ const LoginPage = (props: IProps) => {
       setIsAdmin(res.data.isAdmin);
       setUnitAccess(res.data.unitAccess);
       setAccessToken(res.data.accessToken);
-      console.log(res.data);
+      // console.log(res.data);
       navigate("/unit-page");
       // setIsLoginPage(false);
       // setIsUnitPage(true);

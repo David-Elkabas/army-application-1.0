@@ -6,6 +6,7 @@ import PureComponent from "./PureTable";
 
 interface IProps {
   accessToken: string;
+  selectedUnit: string;
 }
 
 type Headers = {
@@ -46,24 +47,32 @@ type RCGW = {
 type Data = any;
 
 const MakmashTable = (props: IProps) => {
-  const { accessToken } = props;
+  const { accessToken, selectedUnit } = props;
   const [tableData, setTableData] = useState<RadioParams[]>([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
   const [errorText, setErrorText] = useState(" ");
 
   const fetchRadioStates = async (): Promise<Data> => {
     // console.log(accessToken);
-    const res = await fetch("http://localhost:5005/radioStates", {
-      headers: { authorization: "Bearer " + accessToken },
-    });
-    if (!res.ok) {
-      console.log("error at fetching radioStates");
-      setErrorText(
-        `status code: ${res.status} status text: ${res.statusText} url: ${res.url}`
+    try {
+      const res = await fetch(
+        `http://localhost:5005/radioStates/${selectedUnit}`,
+        {
+          headers: { authorization: "Bearer " + accessToken },
+          // unit,
+        }
       );
-      throw new Error("Problem fetching data");
+      if (!res.ok) {
+        console.log("error at fetching radioStates");
+        setErrorText(
+          `status code: ${res.status} status text: ${res.statusText} url: ${res.url}`
+        );
+        throw new Error("Problem fetching data");
+      }
+      return res.json();
+    } catch (err) {
+      console.log(err);
     }
-    return res.json();
   };
 
   const fetchHeaderList = async (): Promise<Headers> => {

@@ -6,6 +6,7 @@ import PieChart from "./PieChart";
 
 type IProps = {
   accessToken: string;
+  selectedUnit: string;
 };
 type dataParam = {
   id: number;
@@ -23,7 +24,7 @@ type RcgwDataObject = {
 };
 
 const PieCharts = (props: IProps) => {
-  const { accessToken } = props;
+  const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
   const [RcgwDataArrays, setRcgwDataStateArray] = useState<RcgwDataObject>({
     dataStateArray: [],
@@ -39,7 +40,7 @@ const PieCharts = (props: IProps) => {
 
   const fetchChartsData = async (): Promise<arrayOfDataParam> => {
     const res = await fetch(
-      "http://localhost:5005/api/charts/rcgw-chart-data",
+      `http://localhost:5005/api/charts/rcgw-chart-data/${selectedUnit}`,
       {
         headers: { authorization: "Bearer " + accessToken },
       }

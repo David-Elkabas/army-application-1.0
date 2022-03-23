@@ -41,7 +41,6 @@ const verifyJWT = (req, res, next) => {
     const token = authHeader.split(" ")[1]; // authHeader = "bearer AUTH_KEY"
     JWT.verify(token, process.env.ACCESS_TOKEN_SECRET_KEY, (err, payload) => {
       if (err) return res.status(403).json("Token is not valid!");
-
       //   req.user = payload;
       next();
     });
@@ -54,15 +53,24 @@ app.get("/api/users", verifyJWT, (req, res) => {
   res.status(200).json("good by here");
 });
 
-app.get("/radioStates", verifyJWT, (req, res) => {
+app.get("/radioStates/:id", verifyJWT, (req, res) => {
+  const { id } = req.params;
   // To read as a text file, you have to specify the correct
   // encoding.
-  fs.readFile("./RCGW/json files/communication0.json", "utf8", (err, data) => {
-    // You should always specify the content type header,
-    // when you don't use 'res.json' for sending JSON.
-    res.set("Content-Type", "application/json");
-    res.send(JSON.parse(data));
-  });
+  try {
+    fs.readFile(
+      `./RCGW/json files/${id}/communication 0.json`,
+      "utf8",
+      (err, data) => {
+        // You should always specify the content type header,
+        // when you don't use 'res.json' for sending JSON.
+        res.set("Content-Type", "application/json");
+        res.send(JSON.parse(data));
+      }
+    );
+  } catch (err) {
+    res.send(JSON.parse(err));
+  }
 });
 
 app.get("/headerList", verifyJWT, (req, res) => {
@@ -76,16 +84,21 @@ app.get("/headerList", verifyJWT, (req, res) => {
   });
 });
 
-app.get("/api/charts/rcgw-chart-data", verifyJWT, (req, res) => {
+app.get("/api/charts/rcgw-chart-data/:id", verifyJWT, (req, res) => {
+  const { id } = req.params;
   // To read as a text file, you have to specify the correct
   // encoding.
-  fs.readFile("./RCGW/json files/charts.json", "utf8", (err, data) => {
-    // You should always specify the content type header,
-    // when you don't use 'res.json' for sending JSON.
-    res.set("Content-Type", "application/json");
-    console.log(data);
-    res.send(JSON.parse(data));
-  });
+  fs.readFile(
+    `./RCGW/json files/statistics/${id}.json`,
+    "utf8",
+    (err, data) => {
+      // You should always specify the content type header,
+      // when you don't use 'res.json' for sending JSON.
+      res.set("Content-Type", "application/json");
+      console.log(data);
+      res.send(JSON.parse(data));
+    }
+  );
 });
 
 const PORT = process.env.PORT || 5000;

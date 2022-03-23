@@ -18,6 +18,7 @@ const users = [
     username: "david",
     password: "12345",
     isAdmin: true,
+    unitAccess: ["lomar", "36", "98"],
   },
 ];
 
