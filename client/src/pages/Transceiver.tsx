@@ -57,14 +57,14 @@ const Transceiver = (props: IProps) => {
                   width: "90vw",
                 }}
               >
-                <Grid item xs={7}>
+                <Grid item xs={10}>
                   <UserInfo
                     username={username}
                     isAdmin={isAdmin}
                     selectedUnit={selectedUnit}
                   />
                 </Grid>
-                <Grid item xs={5} sx={{ padding: 3 }}>
+                <Grid item xs={2}>
                   <LastModifiedDate
                     accessToken={accessToken}
                     selectedUnit={selectedUnit}
