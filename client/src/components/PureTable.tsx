@@ -60,12 +60,12 @@ const PureTable = (props: IProps) => {
 
   return (
     // <div>
-    <Box sx={{ height: 400 }}>
+    <Box sx={{ height: 700 }}>
       <DataGrid
         rows={editRows}
         columns={editColumns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
         components={{
           Toolbar: CustomToolbar,
         }}

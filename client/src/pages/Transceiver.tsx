@@ -88,33 +88,23 @@ const Transceiver = (props: IProps) => {
               ניתוח סטאטוס
             </Typography>
 
-            <Grid
-              container
-              direction="row"
-              sx={{
-                display: "flex",
-                width: "60vw",
-                height: "40hw",
-              }}
-            >
-              <Grid item xs={12} sx={{ justifyContent: "center" }}>
-                <ThemeProvider theme={theme}>
-                  <Box>
-                    <MakmashTable
-                      accessToken={accessToken}
-                      selectedUnit={selectedUnit}
-                    />
-                  </Box>
-                </ThemeProvider>
+            <Grid container direction="row">
+              <Grid item xs={7} sx={{ justifyContent: "center" }}>
+                <Box>
+                  <MakmashTable
+                    accessToken={accessToken}
+                    selectedUnit={selectedUnit}
+                  />
+                </Box>
               </Grid>
-              <Grid container direction="row" xs={12}>
-                <Grid container xs={6}>
+              <Grid container direction="row" xs={5}>
+                <Grid container xs={12}>
                   <PieCharts
                     accessToken={accessToken}
                     selectedUnit={selectedUnit}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                   <NetworkChart
                     accessToken={accessToken}
                     selectedUnit={selectedUnit}
