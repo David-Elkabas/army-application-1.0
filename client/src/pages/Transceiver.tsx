@@ -1,4 +1,12 @@
-import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+  CssBaseline,
+} from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -8,7 +16,16 @@ import PieCharts from "../components/PieCharts";
 import NetworkChart from "../components/NetworkChart";
 import UserInfo from "../components/UserInfo";
 import LastModifiedDate from "../components/LastModifiedDate";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+const theme = createTheme({
+  direction: "rtl", // Both here and <body dir="rtl">
+  palette: {
+    background: {
+      default: "#0d292a",
+    },
+  },
+});
 interface IProps {
   username: string;
   isAdmin: boolean;
@@ -32,15 +49,22 @@ const Transceiver = (props: IProps) => {
         <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
           <Box>
             <Box>
-              <Grid container direction="row">
-                <Grid item>
+              <Grid
+                container
+                direction="row"
+                sx={{
+                  display: "flex",
+                  width: "90vw",
+                }}
+              >
+                <Grid item xs={7}>
                   <UserInfo
                     username={username}
                     isAdmin={isAdmin}
                     selectedUnit={selectedUnit}
                   />
                 </Grid>
-                <Grid item sx={{ padding: 3 }}>
+                <Grid item xs={5} sx={{ padding: 3 }}>
                   <LastModifiedDate
                     accessToken={accessToken}
                     selectedUnit={selectedUnit}
@@ -70,19 +94,18 @@ const Transceiver = (props: IProps) => {
               sx={{
                 display: "flex",
                 width: "60vw",
+                height: "40hw",
               }}
             >
-              <Grid
-                item
-                xs={12}
-                sx={{ justifyContent: "center", width: "50vw" }}
-              >
-                <Box>
-                  <MakmashTable
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  />
-                </Box>
+              <Grid item xs={12} sx={{ justifyContent: "center" }}>
+                <ThemeProvider theme={theme}>
+                  <Box>
+                    <MakmashTable
+                      accessToken={accessToken}
+                      selectedUnit={selectedUnit}
+                    />
+                  </Box>
+                </ThemeProvider>
               </Grid>
               <Grid container direction="row" xs={12}>
                 <Grid container xs={6}>

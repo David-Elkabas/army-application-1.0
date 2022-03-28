@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
@@ -50,16 +50,24 @@ const LastModifiedDate = (props: IProps) => {
 
   return (
     <Box sx={{ justifyContent: "center", alignItems: "center" }}>
-      <Typography variant="h5" component="div">
-        <Box display="inline"> תאריך אחרון לעדכון: </Box>
-        <Box sx={{ fontWeight: "bold" }} display="inline">
-          {dateArray[0]}
-        </Box>
-        <Box display="inline"> בשעה: </Box>
-        <Box sx={{ fontWeight: "bold" }} display="inline">
-          {dateArray[1]}
-        </Box>
-      </Typography>
+      <Grid container>
+        <Grid item xs={12}>
+          <Typography variant="h6" component="div">
+            <Box display="inline"> תאריך עדכון אחרון: </Box>
+            <Box sx={{ fontWeight: "bold" }} display="inline">
+              {dateArray[0]}
+            </Box>
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h6" component="div">
+            <Box display="inline"> בשעה: </Box>
+            <Box sx={{ fontWeight: "bold" }} display="inline">
+              {dateArray[1]}
+            </Box>
+          </Typography>
+        </Grid>
+      </Grid>
     </Box>
   );
   //   return <>

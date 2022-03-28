@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import {
   DataGrid,
   GridToolbar,
@@ -55,12 +56,11 @@ const PureTable = (props: IProps) => {
   const editColumns = columns.map((column) => ({
     field: column,
     headerName: column,
-    width: 120,
   }));
 
   return (
     // <div>
-    <div style={{ height: 400, padding: 20 }}>
+    <Box sx={{ height: 400 }}>
       <DataGrid
         rows={editRows}
         columns={editColumns}
@@ -69,9 +69,50 @@ const PureTable = (props: IProps) => {
         components={{
           Toolbar: CustomToolbar,
         }}
+        localeText={{
+          //for change titles for Hebrew
+          // columns panel
+          toolbarColumns: "סינון עמודות",
+          columnsPanelTextFieldLabel: "הכנס שם עמודה",
+          columnsPanelTextFieldPlaceholder: "חיפוש לפי שם עמודה",
+          columnsPanelShowAllButton: "הצג את כולם",
+          columnsPanelHideAllButton: "בטל את כולם",
+          // filters panel
+          toolbarFilters: "סינון טקסט",
+          filterPanelOperators: "סינון בעזרת",
+          filterPanelColumns: "עמודה לסינון",
+          filterPanelInputLabel: "ערך לסינון",
+          filterPanelInputPlaceholder: "הכנס ערך",
+          // Filter operators text
+          filterOperatorContains: "מכיל",
+          filterOperatorEquals: "שווה",
+          filterOperatorStartsWith: "מתחיל ב",
+          filterOperatorEndsWith: "מסתיים ב",
+          filterOperatorIsEmpty: "תוכן ריק",
+          filterOperatorIsNotEmpty: "תוכן לא ריק",
+          filterOperatorIsAnyOf: "חלק מ",
+
+          // density panel
+          toolbarDensity: "צפיפות",
+          toolbarDensityCompact: "קטן",
+          toolbarDensityStandard: "רגיל",
+          toolbarDensityComfortable: "גדול",
+
+          // export panel
+          toolbarExport: "ייצוא קובץ",
+          toolbarExportCSV: "הורדת קובץ אקסל",
+          toolbarExportPrint: "PDF הדפסת קובץ",
+
+          // Column menu text
+          columnMenuShowColumns: "סינון עמודות",
+          columnMenuFilter: "סינון טקסט",
+          columnMenuHideColumn: "הסתר",
+          columnMenuUnsort: "ביטול מיון",
+          columnMenuSortAsc: "מיון לפי א-ב",
+          columnMenuSortDesc: "מיון מילון הפוך",
+        }}
       />
-    </div>
+    </Box>
   );
 };
-
 export default PureTable;

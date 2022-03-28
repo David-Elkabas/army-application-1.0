@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
@@ -137,9 +138,9 @@ const MakmashTable = (props: IProps) => {
     return <>"An error has occurred: " {errorText}</>;
 
   return (
-    <div>
+    <Box>
       <PureComponent rows={tableData} columns={tableHeader} />{" "}
-    </div>
+    </Box>
   );
 };
 export default MakmashTable;
