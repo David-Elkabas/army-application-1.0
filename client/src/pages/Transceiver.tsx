@@ -17,6 +17,7 @@ import NetworkChart from "../components/NetworkChart";
 import UserInfo from "../components/UserInfo";
 import LastModifiedDate from "../components/LastModifiedDate";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import PageHeader from "../components/PageHeader";
 
 const theme = createTheme({
   direction: "rtl", // Both here and <body dir="rtl">
@@ -49,28 +50,12 @@ const Transceiver = (props: IProps) => {
         <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
           <Box>
             <Box>
-              <Grid
-                container
-                direction="row"
-                sx={{
-                  display: "flex",
-                  width: "90vw",
-                }}
-              >
-                <Grid item xs={10}>
-                  <UserInfo
-                    username={username}
-                    isAdmin={isAdmin}
-                    selectedUnit={selectedUnit}
-                  />
-                </Grid>
-                <Grid item xs={2}>
-                  <LastModifiedDate
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  />
-                </Grid>
-              </Grid>
+              <PageHeader
+                username={username}
+                isAdmin={isAdmin}
+                selectedUnit={selectedUnit}
+                accessToken={accessToken}
+              />
             </Box>
             <Typography
               component="h3"
