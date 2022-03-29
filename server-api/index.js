@@ -118,7 +118,7 @@ app.get("/api/last-modified-date/:id", verifyJWT, (req, res) => {
       let day = date.pop();
       let month = date.pop();
       let year = date;
-      lastModifiedTime[0] = `${day}:${month}:${year}`;
+      lastModifiedTime[0] = `${day}/${month}/${year}`;
       res.status(200).json(lastModifiedTime);
     }
   });

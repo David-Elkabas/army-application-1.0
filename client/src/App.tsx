@@ -17,6 +17,8 @@ import Transceiver from "./pages/Transceiver";
 
 import Particles from "react-tsparticles";
 import particlesConfig from "./config/configParticles";
+import RcgwPage from "./pages/RcgwPage";
+import UvtPage from "./pages/UvtPage";
 
 const theme = createTheme({
   palette: {
@@ -113,6 +115,28 @@ function App() {
                         isAdmin={isAdmin}
                         accessToken={accessToken}
                         selectedUnit={selectedUnit}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/rcgw"
+                    element={
+                      <RcgwPage
+                        username={username}
+                        isAdmin={isAdmin}
+                        selectedUnit={selectedUnit}
+                        accessToken={accessToken}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/uvt"
+                    element={
+                      <UvtPage
+                        username={username}
+                        isAdmin={isAdmin}
+                        selectedUnit={selectedUnit}
+                        accessToken={accessToken}
                       />
                     }
                   />

@@ -56,6 +56,8 @@ const PureTable = (props: IProps) => {
   const editColumns = columns.map((column) => ({
     field: column,
     headerName: column,
+    width: 75,
+    flex: 1,
   }));
 
   return (
@@ -66,6 +68,7 @@ const PureTable = (props: IProps) => {
         columns={editColumns}
         pageSize={10}
         rowsPerPageOptions={[10]}
+        disableSelectionOnClick
         components={{
           Toolbar: CustomToolbar,
         }}

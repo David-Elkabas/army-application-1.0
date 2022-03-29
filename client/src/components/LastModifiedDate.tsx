@@ -38,7 +38,7 @@ const LastModifiedDate = (props: IProps) => {
     fetchFileLastModifiedDate,
     {
       onSuccess: (data) => {
-        console.log(data);
+        // console.log(data);
 
         setDateArray(data);
       },
