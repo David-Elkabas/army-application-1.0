@@ -1,3 +1,4 @@
+import { Chip } from "@mui/material";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import StackedBarChart from "./StackedBarChart";
@@ -30,10 +31,18 @@ type RcgwDataObject = {
   errorNumberArray: Array<number>;
   chartTitle: string;
 };
+type ChipSelector = {
+  labelArray: Array<string>;
+  selectedlArray: Array<string>;
+};
 
 const NetWorkChart = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
+  const [chipSelector, setChipSelector] = useState<ChipSelector>({
+    labelArray: [],
+    selectedlArray: [],
+  });
   const [BarDataArrays, setBarDataStateArray] = useState<RcgwDataObject>({
     dataStateArray: [],
     okNumberArray: [],
@@ -92,6 +101,15 @@ const NetWorkChart = (props: IProps) => {
             } else return 0;
           }
         );
+        // console.log(`statesArray: ${statesArray}`);
+        // console.log(`okNumberArray: ${okNumberArray}`);
+        // console.log(`failedNumberArray: ${failedNumberArray}`);
+        // console.log(`errorNumberArray: ${errorNumberArray}`);
+
+        setChipSelector({
+          labelArray: statesArray,
+          selectedlArray: [],
+        });
         setBarDataStateArray({
           dataStateArray: statesArray,
           okNumberArray: okNumbersArray,
@@ -111,12 +129,64 @@ const NetWorkChart = (props: IProps) => {
     chartTitle,
   } = BarDataArrays;
 
+  const clickOnLabelArray = (label: string) => {
+    setChipSelector({
+      labelArray: chipSelector.labelArray.filter(
+        (labelInArray) => labelInArray !== label
+      ),
+      selectedlArray: [label, ...chipSelector.selectedlArray],
+    });
+  };
+
+  const clickOnSelectedArray = (label: string) => {
+    setChipSelector({
+      labelArray: [label, ...chipSelector.labelArray],
+      selectedlArray: chipSelector.selectedlArray.filter(
+        (labelInArray) => labelInArray !== label
+      ),
+    });
+
+    // setGenres({
+    //   genresArray: [genre, ...genres.genresArray],
+    //   selectedGenres: genres.selectedGenres.filter((g) => g.id !== genre.id),
+    // });
+    // setPage(1);
+  };
+
   if (isLoading) return <>"Loading..."</>;
 
   if (isError) return <>"An error has occurred: " {errorText}</>;
 
   return (
     <>
+      {chipSelector.labelArray &&
+        chipSelector.labelArray.map((data, index) => {
+          return (
+            <Chip
+              key={index}
+              label={data}
+              color="primary"
+              sx={{ margin: "3px" }}
+              clickable
+              onClick={() => clickOnLabelArray(data)}
+              // onDelete={() => clickOnSelectedGenres(data)}
+            />
+          );
+        })}
+      {chipSelector.selectedlArray &&
+        chipSelector.selectedlArray.map((data, index) => {
+          return (
+            <Chip
+              key={index}
+              label={data}
+              color="error"
+              sx={{ margin: "3px" }}
+              clickable
+              onClick={() => clickOnSelectedArray(data)}
+              // onDelete={() => clickOnSelectedGenres(data)}
+            />
+          );
+        })}
       <StackedBarChart
         labels={dataStateArray}
         dataOK={okNumberArray}

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "status": "OK",
-      "number": 5
+      "number": 12
     },
     {
       "id": 2,
@@ -34,7 +34,7 @@
     }
   ],
   "NetworkChartData": [
-    { "id": 1, "network": "בלה בלה 1", "OK": 1, "ERROR": 1, "FAILED": 0 },
+    { "id": 1, "network": "בלה בלה 1", "OK": 2, "ERROR": 1, "FAILED": 0 },
     { "id": 2, "network": "ראשון לציון", "OK": 1, "ERROR": 2, "FAILED": 1 },
     { "id": 3, "network": "פתח תקווה", "OK": 1, "ERROR": 1, "FAILED": 1 },
     { "id": 4, "network": "ישראל", "OK": 1, "ERROR": 0, "FAILED": 2 },
