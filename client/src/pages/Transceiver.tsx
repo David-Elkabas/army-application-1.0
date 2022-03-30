@@ -18,6 +18,7 @@ import UserInfo from "../components/UserInfo";
 import LastModifiedDate from "../components/LastModifiedDate";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PageHeader from "../components/PageHeader";
+import InfoText from "../components/InfoText";
 
 const theme = createTheme({
   direction: "rtl", // Both here and <body dir="rtl">
@@ -57,21 +58,7 @@ const Transceiver = (props: IProps) => {
                 accessToken={accessToken}
               />
             </Box>
-            <Typography
-              component="h3"
-              variant="h3"
-              sx={{ fontWeight: 700, fontSize: 21 }}
-            >
-              מסך מקמ''שים
-            </Typography>
-            <Typography
-              component="h5"
-              variant="h5"
-              sx={{ fontWeight: 300, fontSize: 21 }}
-            >
-              הצגת ניטור עבור כלל המקמ''שים המחוברים ומוגדרים בקובץ הפק''ל כולל
-              ניתוח סטאטוס
-            </Typography>
+            <InfoText name='מקמ"שים' />
 
             <Grid container direction="row">
               <Grid item xs={7} sx={{ justifyContent: "center" }}>

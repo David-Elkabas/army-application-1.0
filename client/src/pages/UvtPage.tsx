@@ -3,6 +3,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useNavigate } from "react-router-dom";
+import InfoText from "../components/InfoText";
 import PageHeader from "../components/PageHeader";
 
 interface IProps {
@@ -35,21 +36,7 @@ const UvtPage = (props: IProps) => {
                 accessToken={accessToken}
               />
             </Box>
-            <Typography
-              component="h3"
-              variant="h3"
-              sx={{ fontWeight: 700, fontSize: 21 }}
-            >
-              מסך ידב"רים
-            </Typography>
-            <Typography
-              component="h5"
-              variant="h5"
-              sx={{ fontWeight: 300, fontSize: 21 }}
-            >
-              הצגת ניטור עבור כלל הידב"רים המחוברים ומוגדרים בקובץ הפק''ל כולל
-              ניתוח סטאטוס
-            </Typography>
+            <InfoText name='ידב"רים' />
 
             <Grid container direction="row">
               <Grid item xs={7} sx={{ justifyContent: "center" }}>
