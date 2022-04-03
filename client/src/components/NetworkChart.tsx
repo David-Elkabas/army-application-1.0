@@ -25,7 +25,9 @@ type arrayOfDataParam = {
   NetworkChartData: Array<BarDataParam>;
 };
 type RcgwDataObject = {
-  dataStateArray: Array<string>;
+  // dataStateArray: Array<string>;
+  labelArray: Array<string>;
+  selectedlArray: Array<string>;
   okNumberArray: Array<number>;
   failedNumberArray: Array<number>;
   errorNumberArray: Array<number>;
@@ -44,7 +46,9 @@ const NetWorkChart = (props: IProps) => {
     selectedlArray: [],
   });
   const [BarDataArrays, setBarDataStateArray] = useState<RcgwDataObject>({
-    dataStateArray: [],
+    labelArray: [],
+    selectedlArray: [],
+    // dataStateArray: [],
     okNumberArray: [],
     failedNumberArray: [],
     errorNumberArray: [],
@@ -73,45 +77,41 @@ const NetWorkChart = (props: IProps) => {
     fetchChartsData,
     {
       onSuccess: (data) => {
-        const statesArray: Array<string> = data?.NetworkChartData.map(
+        const allData: any = data?.NetworkChartData.map(
           (machine: BarDataParam) => {
             if (data) {
-              return machine.network;
-            } else return "";
+              return [
+                machine.network,
+                machine.OK,
+                machine.FAILED,
+                machine.ERROR,
+              ];
+            } else return [" ", 0, 0, 0];
           }
         );
-        const okNumbersArray: Array<number> = data?.NetworkChartData.map(
-          (machine: BarDataParam) => {
-            if (data) {
-              return machine.OK;
-            } else return 0;
-          }
-        );
-        const failedNumbersArray: Array<number> = data?.NetworkChartData.map(
-          (machine: BarDataParam) => {
-            if (data) {
-              return machine.FAILED;
-            } else return 0;
-          }
-        );
-        const errorNumbersArray: Array<number> = data?.NetworkChartData.map(
-          (machine: BarDataParam) => {
-            if (data) {
-              return machine.ERROR;
-            } else return 0;
-          }
-        );
-        // console.log(`statesArray: ${statesArray}`);
-        // console.log(`okNumberArray: ${okNumberArray}`);
-        // console.log(`failedNumberArray: ${failedNumberArray}`);
-        // console.log(`errorNumberArray: ${errorNumberArray}`);
 
-        setChipSelector({
-          labelArray: statesArray,
-          selectedlArray: [],
+        const statesArray = allData.map((element: any) => {
+          return element[0];
         });
+        const okNumbersArray = allData.map((element: any) => {
+          return element[1];
+        });
+        const failedNumbersArray = allData.map((element: any) => {
+          return element[2];
+        });
+        const errorNumbersArray = allData.map((element: any) => {
+          return element[3];
+        });
+
+        // setChipSelector({
+        //   labelArray: statesArray,
+        //   selectedlArray: [...selectedlArray],
+        // });
+
         setBarDataStateArray({
-          dataStateArray: statesArray,
+          labelArray: statesArray,
+          selectedlArray: [...BarDataArrays.selectedlArray],
+          // dataStateArray: statesArray,
           okNumberArray: okNumbersArray,
           failedNumberArray: failedNumbersArray,
           errorNumberArray: errorNumbersArray,
@@ -122,7 +122,9 @@ const NetWorkChart = (props: IProps) => {
   );
 
   const {
-    dataStateArray,
+    labelArray,
+    selectedlArray,
+    // dataStateArray,
     okNumberArray,
     failedNumberArray,
     errorNumberArray,
@@ -130,27 +132,30 @@ const NetWorkChart = (props: IProps) => {
   } = BarDataArrays;
 
   const clickOnLabelArray = (label: string) => {
-    setChipSelector({
-      labelArray: chipSelector.labelArray.filter(
+    setBarDataStateArray({
+      labelArray: BarDataArrays.labelArray.filter(
         (labelInArray) => labelInArray !== label
       ),
-      selectedlArray: [label, ...chipSelector.selectedlArray],
+      selectedlArray: [label, ...BarDataArrays.selectedlArray],
+      okNumberArray: [...BarDataArrays.okNumberArray],
+      failedNumberArray: [...BarDataArrays.failedNumberArray],
+      errorNumberArray: [...BarDataArrays.errorNumberArray],
+      chartTitle: `רשתות מול מקמ"שים`,
     });
   };
 
   const clickOnSelectedArray = (label: string) => {
-    setChipSelector({
-      labelArray: [label, ...chipSelector.labelArray],
+    setBarDataStateArray({
+      labelArray: [label, ...BarDataArrays.labelArray],
       selectedlArray: chipSelector.selectedlArray.filter(
         (labelInArray) => labelInArray !== label
       ),
+      okNumberArray: [...BarDataArrays.okNumberArray],
+      failedNumberArray: [...BarDataArrays.failedNumberArray],
+      errorNumberArray: [...BarDataArrays.errorNumberArray],
+      chartTitle: `רשתות מול מקמ"שים`,
     });
-
-    // setGenres({
-    //   genresArray: [genre, ...genres.genresArray],
-    //   selectedGenres: genres.selectedGenres.filter((g) => g.id !== genre.id),
-    // });
-    // setPage(1);
+    // TODO ---- connect the Chips to CHARTBAR
   };
 
   if (isLoading) return <>"Loading..."</>;
@@ -159,8 +164,8 @@ const NetWorkChart = (props: IProps) => {
 
   return (
     <>
-      {chipSelector.labelArray &&
-        chipSelector.labelArray.map((data, index) => {
+      {labelArray &&
+        labelArray.map((data, index) => {
           return (
             <Chip
               key={index}
@@ -169,12 +174,11 @@ const NetWorkChart = (props: IProps) => {
               sx={{ margin: "3px" }}
               clickable
               onClick={() => clickOnLabelArray(data)}
-              // onDelete={() => clickOnSelectedGenres(data)}
             />
           );
         })}
-      {chipSelector.selectedlArray &&
-        chipSelector.selectedlArray.map((data, index) => {
+      {selectedlArray &&
+        selectedlArray.map((data, index) => {
           return (
             <Chip
               key={index}
@@ -183,12 +187,11 @@ const NetWorkChart = (props: IProps) => {
               sx={{ margin: "3px" }}
               clickable
               onClick={() => clickOnSelectedArray(data)}
-              // onDelete={() => clickOnSelectedGenres(data)}
             />
           );
         })}
       <StackedBarChart
-        labels={dataStateArray}
+        labels={labelArray}
         dataOK={okNumberArray}
         dataFAILED={failedNumberArray}
         dataERROR={errorNumberArray}
