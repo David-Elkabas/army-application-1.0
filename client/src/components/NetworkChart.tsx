@@ -27,7 +27,7 @@ type arrayOfDataParam = {
 type RcgwDataObject = {
   // dataStateArray: Array<string>;
   labelArray: Array<string>;
-  selectedlArray: Array<string>;
+  selectedArray: Array<string>;
   okNumberArray: Array<number>;
   failedNumberArray: Array<number>;
   errorNumberArray: Array<number>;
@@ -35,7 +35,7 @@ type RcgwDataObject = {
 };
 type ChipSelector = {
   labelArray: Array<string>;
-  selectedlArray: Array<string>;
+  selectedArray: Array<string>;
 };
 
 const NetWorkChart = (props: IProps) => {
@@ -43,11 +43,11 @@ const NetWorkChart = (props: IProps) => {
   const [errorText, setErrorText] = useState(" ");
   const [chipSelector, setChipSelector] = useState<ChipSelector>({
     labelArray: [],
-    selectedlArray: [],
+    selectedArray: [],
   });
   const [BarDataArrays, setBarDataStateArray] = useState<RcgwDataObject>({
     labelArray: [],
-    selectedlArray: [],
+    selectedArray: [],
     // dataStateArray: [],
     okNumberArray: [],
     failedNumberArray: [],
@@ -108,14 +108,35 @@ const NetWorkChart = (props: IProps) => {
         //   selectedlArray: [...selectedlArray],
         // });
 
-        setBarDataStateArray({
-          labelArray: statesArray,
-          selectedlArray: [...BarDataArrays.selectedlArray],
-          // dataStateArray: statesArray,
-          okNumberArray: okNumbersArray,
-          failedNumberArray: failedNumbersArray,
-          errorNumberArray: errorNumbersArray,
-          chartTitle: `רשתות מול מקמ"שים`,
+        setBarDataStateArray((prevState) => {
+          let labelArray: any = [],
+            selectedArray: any = [];
+          for (let state of statesArray) {
+            if (prevState.labelArray.find((label) => label == state))
+              labelArray.push(state);
+            else if (prevState.selectedArray.find((label) => label == state))
+              selectedArray.push(state);
+            else labelArray.push(state);
+          }
+          return {
+            // labelArray: prevState.labelArray.filter(
+            //   (label) => !prevState.selectedArray.some((l) => l === label)
+            // ),
+            // labelArray: prevState.labelArray.find(label => label==) ?? statesArray,
+            // labelArray: prevState.labelArray.map(
+            //   (labelItem) =>
+            //     prevState.labelArray.find(() =>
+            //       statesArray.some((label: any) => label == labelItem)
+            //     ) ?? labelItem
+            // ),
+            labelArray,
+            selectedArray,
+            // dataStateArray: statesArray,
+            okNumberArray: okNumbersArray,
+            failedNumberArray: failedNumbersArray,
+            errorNumberArray: errorNumbersArray,
+            chartTitle: `רשתות מול מקמ"שים`,
+          };
         });
       },
     }
@@ -123,7 +144,7 @@ const NetWorkChart = (props: IProps) => {
 
   const {
     labelArray,
-    selectedlArray,
+    selectedArray: selectedlArray,
     // dataStateArray,
     okNumberArray,
     failedNumberArray,
@@ -132,14 +153,18 @@ const NetWorkChart = (props: IProps) => {
   } = BarDataArrays;
 
   const clickOnLabelArray = (label: string) => {
+    let i = BarDataArrays.labelArray.indexOf(label);
+    BarDataArrays.labelArray.splice(i, 1);
+    BarDataArrays.selectedArray.splice(i, 1);
+    BarDataArrays.okNumberArray.splice(i, 1);
+    BarDataArrays.failedNumberArray.splice(i, 1);
+    BarDataArrays.errorNumberArray.splice(i, 1);
     setBarDataStateArray({
-      labelArray: BarDataArrays.labelArray.filter(
-        (labelInArray) => labelInArray !== label
-      ),
-      selectedlArray: [label, ...BarDataArrays.selectedlArray],
-      okNumberArray: [...BarDataArrays.okNumberArray],
-      failedNumberArray: [...BarDataArrays.failedNumberArray],
-      errorNumberArray: [...BarDataArrays.errorNumberArray],
+      labelArray: BarDataArrays.labelArray,
+      selectedArray: BarDataArrays.selectedArray,
+      okNumberArray: BarDataArrays.okNumberArray,
+      failedNumberArray: BarDataArrays.failedNumberArray,
+      errorNumberArray: BarDataArrays.errorNumberArray,
       chartTitle: `רשתות מול מקמ"שים`,
     });
   };
@@ -147,7 +172,7 @@ const NetWorkChart = (props: IProps) => {
   const clickOnSelectedArray = (label: string) => {
     setBarDataStateArray({
       labelArray: [label, ...BarDataArrays.labelArray],
-      selectedlArray: chipSelector.selectedlArray.filter(
+      selectedArray: BarDataArrays.selectedArray.filter(
         (labelInArray) => labelInArray !== label
       ),
       okNumberArray: [...BarDataArrays.okNumberArray],

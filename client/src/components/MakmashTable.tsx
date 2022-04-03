@@ -110,14 +110,12 @@ const MakmashTable = (props: IProps) => {
         }
         return {};
       });
-      //   console.log("sortData:", sortData);
       let oneArray: RadioParams[] = [];
       sortData.map((array: any) => {
-        oneArray = oneArray.concat(array);
+        return (oneArray = oneArray.concat(array));
       });
       oneArray.pop();
       setTableData(oneArray);
-      //   console.log(oneArray);
     },
   });
 
@@ -139,7 +137,7 @@ const MakmashTable = (props: IProps) => {
 
   return (
     <Box>
-      <PureComponent rows={tableData} columns={tableHeader} />{" "}
+      <PureComponent rows={tableData} columns={tableHeader} />
     </Box>
   );
 };
