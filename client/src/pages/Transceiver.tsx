@@ -26,6 +26,12 @@ const theme = createTheme({
     background: {
       default: "#0d292a",
     },
+    secondary: {
+      main: "rgba(75, 192, 192, 1)",
+    },
+    error: {
+      main: "rgba(255, 99, 132, 1)",
+    },
   },
 });
 interface IProps {
@@ -47,59 +53,61 @@ const Transceiver = (props: IProps) => {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
-          <Box>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
             <Box>
-              <PageHeader
-                username={username}
-                isAdmin={isAdmin}
-                selectedUnit={selectedUnit}
-                accessToken={accessToken}
-              />
-            </Box>
-            <InfoText name='מקמ"שים' />
+              <Box>
+                <PageHeader
+                  username={username}
+                  isAdmin={isAdmin}
+                  selectedUnit={selectedUnit}
+                  accessToken={accessToken}
+                />
+              </Box>
+              <InfoText name='מקמ"שים' />
 
-            <Grid container direction="row">
-              <Grid item xs={7} sx={{ justifyContent: "center" }}>
-                <Box>
-                  <MakmashTable
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={5}>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <PieCharts
+              <Grid container direction="row">
+                <Grid item xs={7} sx={{ justifyContent: "center" }}>
+                  <Box>
+                    <MakmashTable
+                      accessToken={accessToken}
+                      selectedUnit={selectedUnit}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={5}>
+                  <Grid item xs={12}>
+                    <Grid container>
+                      <PieCharts
+                        accessToken={accessToken}
+                        selectedUnit={selectedUnit}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <NetworkChart
                       accessToken={accessToken}
                       selectedUnit={selectedUnit}
                     />
                   </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <NetworkChart
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  />
-                </Grid>
               </Grid>
-            </Grid>
-            <ReactQueryDevtools initialIsOpen={false} />
-            <Stack direction="row" spacing={5} justifyContent="center">
-              <Button
-                variant="contained"
-                onClick={handleClick}
-                size="large"
-                sx={{ margin: 5 }}
-              >
-                חזור חזרה{" "}
-              </Button>
-            </Stack>
-          </Box>
-        </Paper>
-      </QueryClientProvider>
+              <ReactQueryDevtools initialIsOpen={false} />
+              <Stack direction="row" spacing={5} justifyContent="center">
+                <Button
+                  variant="contained"
+                  onClick={handleClick}
+                  size="large"
+                  sx={{ margin: 5 }}
+                >
+                  חזור חזרה{" "}
+                </Button>
+              </Stack>
+            </Box>
+          </Paper>
+        </QueryClientProvider>
+      </ThemeProvider>
     </>
   );
 };

@@ -33,18 +33,22 @@ type RcgwDataObject = {
   errorNumberArray: Array<number>;
   chartTitle: string;
 };
-type ChipSelector = {
-  labelArray: Array<string>;
-  selectedArray: Array<string>;
+type DeletedChartData = {
+  ok: number;
+  failed: number;
+  error: number;
 };
+type DeletedChartDataObj = {
+  [label: string]: DeletedChartData;
+};
+// type DictOfDeletedChartData = {
+//   label: DeletedChartData
+// }
 
 const NetWorkChart = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
-  const [chipSelector, setChipSelector] = useState<ChipSelector>({
-    labelArray: [],
-    selectedArray: [],
-  });
+  const [deletedData, setDeletedData] = useState<DeletedChartDataObj>({});
   const [BarDataArrays, setBarDataStateArray] = useState<RcgwDataObject>({
     labelArray: [],
     selectedArray: [],
@@ -110,31 +114,41 @@ const NetWorkChart = (props: IProps) => {
 
         setBarDataStateArray((prevState) => {
           let labelArray: any = [],
-            selectedArray: any = [];
+            selectedArray: any = [],
+            okNumberArray: any = [],
+            failedNumberArray: any = [],
+            errorNumberArray: any = [];
+
           for (let state of statesArray) {
-            if (prevState.labelArray.find((label) => label == state))
+            //running on the labels of the char
+            let index = statesArray.indexOf(state);
+            if (prevState.labelArray.find((label) => label === state)) {
+              let i = prevState.labelArray.indexOf(state);
+
               labelArray.push(state);
-            else if (prevState.selectedArray.find((label) => label == state))
+              okNumberArray.push(prevState.okNumberArray[i]);
+
+              failedNumberArray.push(prevState.failedNumberArray[i]);
+              errorNumberArray.push(prevState.errorNumberArray[i]);
+            } else if (
+              prevState.selectedArray.find((label) => label === state)
+            ) {
+              // let i = prevState.selectedArray.indexOf(state);
               selectedArray.push(state);
-            else labelArray.push(state);
+            } else {
+              labelArray.push(state);
+              okNumberArray.push(okNumbersArray[index]);
+              failedNumberArray.push(failedNumbersArray[index]);
+              errorNumberArray.push(errorNumbersArray[index]);
+              // console.log("gere");
+            }
           }
           return {
-            // labelArray: prevState.labelArray.filter(
-            //   (label) => !prevState.selectedArray.some((l) => l === label)
-            // ),
-            // labelArray: prevState.labelArray.find(label => label==) ?? statesArray,
-            // labelArray: prevState.labelArray.map(
-            //   (labelItem) =>
-            //     prevState.labelArray.find(() =>
-            //       statesArray.some((label: any) => label == labelItem)
-            //     ) ?? labelItem
-            // ),
-            labelArray,
-            selectedArray,
-            // dataStateArray: statesArray,
-            okNumberArray: okNumbersArray,
-            failedNumberArray: failedNumbersArray,
-            errorNumberArray: errorNumbersArray,
+            labelArray: labelArray,
+            selectedArray: selectedArray,
+            okNumberArray: okNumberArray,
+            failedNumberArray: failedNumberArray,
+            errorNumberArray: errorNumberArray,
             chartTitle: `רשתות מול מקמ"שים`,
           };
         });
@@ -144,8 +158,7 @@ const NetWorkChart = (props: IProps) => {
 
   const {
     labelArray,
-    selectedArray: selectedlArray,
-    // dataStateArray,
+    selectedArray,
     okNumberArray,
     failedNumberArray,
     errorNumberArray,
@@ -153,15 +166,33 @@ const NetWorkChart = (props: IProps) => {
   } = BarDataArrays;
 
   const clickOnLabelArray = (label: string) => {
-    let i = BarDataArrays.labelArray.indexOf(label);
-    BarDataArrays.labelArray.splice(i, 1);
-    BarDataArrays.selectedArray.splice(i, 1);
-    BarDataArrays.okNumberArray.splice(i, 1);
-    BarDataArrays.failedNumberArray.splice(i, 1);
-    BarDataArrays.errorNumberArray.splice(i, 1);
+    let index = BarDataArrays.labelArray.indexOf(label);
+    const deletedLabel = BarDataArrays.labelArray.splice(index, 1);
+    const deletedOk = BarDataArrays.okNumberArray.splice(index, 1);
+    const deletedFailed = BarDataArrays.failedNumberArray.splice(index, 1);
+    const deletedError = BarDataArrays.errorNumberArray.splice(index, 1);
+
+    let labelTemp = deletedLabel[0];
+    let okTemp = deletedOk[0];
+    let failedTemp = deletedFailed[0];
+    let deleteTemp = deletedError[0];
+
+    // i know i could wrote it without the above but for easy understanding i decided to write it like that
+    let selectedLabel = {
+      [labelTemp]: {
+        ok: okTemp,
+        failed: failedTemp,
+        error: deleteTemp,
+      },
+    };
+    let dictOfSelected = Object.assign(deletedData, selectedLabel);
+    setDeletedData(dictOfSelected);
+
+    // console.log(deletedData);
+
     setBarDataStateArray({
       labelArray: BarDataArrays.labelArray,
-      selectedArray: BarDataArrays.selectedArray,
+      selectedArray: [label, ...BarDataArrays.selectedArray],
       okNumberArray: BarDataArrays.okNumberArray,
       failedNumberArray: BarDataArrays.failedNumberArray,
       errorNumberArray: BarDataArrays.errorNumberArray,
@@ -170,14 +201,31 @@ const NetWorkChart = (props: IProps) => {
   };
 
   const clickOnSelectedArray = (label: string) => {
+    const ok = deletedData[label].ok;
+    const failed = deletedData[label].failed;
+    const error = deletedData[label].error;
+
+    //BarDataArrays.labelArray.filter(
+    //     (labelInArray) => labelInArray !== label
+    //   ),
+    const newDeletedObj = Object.keys(deletedData)
+      .filter((key) => key !== label)
+      .reduce((result, current) => {
+        result[current] = deletedData[current];
+        return result;
+      }, {});
+    // console.log(newDeletedObj);
+    setDeletedData(newDeletedObj);
+    // console.log(newDeletedObj);
+
     setBarDataStateArray({
       labelArray: [label, ...BarDataArrays.labelArray],
       selectedArray: BarDataArrays.selectedArray.filter(
         (labelInArray) => labelInArray !== label
       ),
-      okNumberArray: [...BarDataArrays.okNumberArray],
-      failedNumberArray: [...BarDataArrays.failedNumberArray],
-      errorNumberArray: [...BarDataArrays.errorNumberArray],
+      okNumberArray: [ok, ...BarDataArrays.okNumberArray],
+      failedNumberArray: [failed, ...BarDataArrays.failedNumberArray],
+      errorNumberArray: [error, ...BarDataArrays.errorNumberArray],
       chartTitle: `רשתות מול מקמ"שים`,
     });
     // TODO ---- connect the Chips to CHARTBAR
@@ -195,15 +243,16 @@ const NetWorkChart = (props: IProps) => {
             <Chip
               key={index}
               label={data}
-              color="primary"
+              color="secondary"
+              // variant="outlined"
               sx={{ margin: "3px" }}
               clickable
               onClick={() => clickOnLabelArray(data)}
             />
           );
         })}
-      {selectedlArray &&
-        selectedlArray.map((data, index) => {
+      {selectedArray &&
+        selectedArray.map((data, index) => {
           return (
             <Chip
               key={index}
