@@ -115,7 +115,11 @@ const MakmashTable = (props: IProps) => {
         return (oneArray = oneArray.concat(array));
       });
       oneArray.pop();
-      setTableData(oneArray);
+
+      let newArray = oneArray.filter(
+        (element) => Object.keys(element).length !== 0
+      );
+      setTableData(newArray);
     },
   });
 

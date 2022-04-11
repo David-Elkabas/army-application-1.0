@@ -10,11 +10,11 @@ type IProps = {
 };
 type dataParam = {
   id: number;
-  status: string;
+  state: string;
   number: number;
 };
 type arrayOfDataParam = {
-  RCGWChartData: Array<dataParam>;
+  RcgwChartData: Array<dataParam>;
   MakmashimChartData: Array<dataParam>;
 };
 type RcgwDataObject = {
@@ -60,14 +60,14 @@ const PieCharts = (props: IProps) => {
     fetchChartsData,
     {
       onSuccess: (data) => {
-        const statesArray: Array<string> = data?.RCGWChartData.map(
+        const statesArray: Array<string> = data?.RcgwChartData.map(
           (machine: dataParam) => {
             if (data) {
-              return machine.status;
+              return machine.state;
             } else return "";
           }
         );
-        const numbersArray: Array<number> = data?.RCGWChartData.map(
+        const numbersArray: Array<number> = data?.RcgwChartData.map(
           (machine: dataParam) => {
             if (data) {
               return machine.number;
@@ -82,7 +82,7 @@ const PieCharts = (props: IProps) => {
         const MakmashimStatesArray: Array<string> =
           data?.MakmashimChartData.map((machine: dataParam) => {
             if (data) {
-              return machine.status;
+              return machine.state;
             } else return "";
           });
         const MakmashimNumbersArray: Array<number> =

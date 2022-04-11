@@ -51,7 +51,9 @@ const PureTable = (props: IProps) => {
   const { rows, columns } = props;
   // console.log(rows);
 
-  const editRows = rows.map((row) => Object.assign(row, { id: row.id }));
+  const editRows = rows.map((row) =>
+    Object.assign(row, { id: row['מזהה מקמ"ש'] })
+  );
 
   const editColumns = columns.map((column) => ({
     field: column,

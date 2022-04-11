@@ -1,35 +1,35 @@
 {
-  "RCGWChartData": [
+  "RcgwChartData": [
     {
       "id": 1,
-      "status": "OK",
+      "state": "OK",
       "number": 12
     },
     {
       "id": 2,
-      "status": "FAILED",
+      "state": "FAILED",
       "number": 3
     },
     {
       "id": 3,
-      "status": "ERROR",
+      "state": "ERROR",
       "number": 2
     }
   ],
   "MakmashimChartData": [
     {
       "id": 1,
-      "status": "OK",
+      "state": "OK",
       "number": 9
     },
     {
       "id": 2,
-      "status": "FAILED",
+      "state": "FAILED",
       "number": 3
     },
     {
       "id": 3,
-      "status": "ERROR",
+      "state": "ERROR",
       "number": 11
     }
   ],
