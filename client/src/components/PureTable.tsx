@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 import {
   DataGrid,
   GridToolbar,
@@ -50,6 +50,7 @@ type IProps = {
 const PureTable = (props: IProps) => {
   const { rows, columns } = props;
   // console.log(rows);
+  const shortColumn = ["מיקום", "מספר פורט", "ממסור", "תדר", "ds", "adf"];
 
   const editRows = rows.map((row) =>
     Object.assign(row, { id: row['מזהה מקמ"ש'] })
@@ -58,9 +59,15 @@ const PureTable = (props: IProps) => {
   const editColumns = columns.map((column) => ({
     field: column,
     headerName: column,
-    width: 75,
-    flex: 1,
+    width: shortColumn.includes(column) ? 50 : 120,
+    // flex: 1,
+    renderCell: (params: any) => (
+      <Tooltip title={params.value}>
+        <span>{params.value}</span>
+      </Tooltip>
+    ),
   }));
+  // console.log(editColumns);
 
   return (
     // <div>
