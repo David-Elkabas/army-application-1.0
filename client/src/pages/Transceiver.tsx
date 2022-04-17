@@ -69,7 +69,7 @@ const Transceiver = (props: IProps) => {
 
               <Grid container direction="row">
                 <Grid item xs={7} sx={{ justifyContent: "center" }}>
-                  <Box>
+                  <Box dir="ltr">
                     <MakmashTable
                       accessToken={accessToken}
                       selectedUnit={selectedUnit}

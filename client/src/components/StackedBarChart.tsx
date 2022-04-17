@@ -48,6 +48,9 @@ const StackedBarChart = (props: IProps) => {
       },
       y: {
         stacked: true,
+        ticks: {
+          precision: 0,
+        },
       },
     },
   };

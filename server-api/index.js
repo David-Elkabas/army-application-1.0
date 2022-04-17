@@ -5,6 +5,7 @@ const { users } = require("./users/users");
 const JWT = require("jsonwebtoken");
 const fs = require("fs");
 
+const TIME_MODE = 3; // change to number 2 when working in winter
 dotenv.config();
 
 const app = express();
@@ -119,6 +120,13 @@ app.get("/api/last-modified-date/:id", verifyJWT, (req, res) => {
       let month = date.pop();
       let year = date;
       lastModifiedTime[0] = `${day}/${month}/${year}`;
+
+      let time = lastModifiedTime[1].split(":");
+      let hours = (parseInt(time[0].replace("0", "")) + TIME_MODE) % 24;
+      let minutes = time[1];
+      let seconds = time[2];
+      lastModifiedTime[1] = `${hours}/${minutes}/${seconds}`;
+      // console.log(lastModifiedTime[1]);
       res.status(200).json(lastModifiedTime);
     }
   });
