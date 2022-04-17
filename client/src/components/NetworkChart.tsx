@@ -107,11 +107,6 @@ const NetWorkChart = (props: IProps) => {
           return element[3];
         });
 
-        // setChipSelector({
-        //   labelArray: statesArray,
-        //   selectedlArray: [...selectedlArray],
-        // });
-
         setBarDataStateArray((prevState) => {
           let labelArray: any = [],
             selectedArray: any = [],

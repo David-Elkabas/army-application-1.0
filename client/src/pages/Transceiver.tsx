@@ -68,7 +68,7 @@ const Transceiver = (props: IProps) => {
               <InfoText name='מקמ"שים' />
 
               <Grid container direction="row">
-                <Grid item xs={7} sx={{ justifyContent: "center" }}>
+                <Grid item xs={7}>
                   <Box dir="ltr">
                     <MakmashTable
                       accessToken={accessToken}

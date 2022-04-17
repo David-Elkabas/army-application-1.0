@@ -125,8 +125,8 @@ app.get("/api/last-modified-date/:id", verifyJWT, (req, res) => {
       let hours = (parseInt(time[0].replace("0", "")) + TIME_MODE) % 24;
       let minutes = time[1];
       let seconds = time[2];
-      lastModifiedTime[1] = `${hours}/${minutes}/${seconds}`;
-      // console.log(lastModifiedTime[1]);
+      lastModifiedTime[1] = `${hours}:${minutes}:${seconds}`;
+      console.log(lastModifiedTime[1]);
       res.status(200).json(lastModifiedTime);
     }
   });

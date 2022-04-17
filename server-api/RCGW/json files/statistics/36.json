@@ -8,7 +8,7 @@
     {
       "id": 2,
       "state": "FAILED",
-      "number": 3
+      "number": 4
     },
     {
       "id": 3,
@@ -39,5 +39,115 @@
     { "id": 3, "network": "פתח תקווה", "OK": 1, "ERROR": 1, "FAILED": 1 },
     { "id": 4, "network": "ישראל", "OK": 1, "ERROR": 0, "FAILED": 2 },
     { "id": 5, "network": "קיבוץ מזרע", "OK": 2, "ERROR": 1, "FAILED": 1 }
+  ],
+  "WorkingStations": [
+    {
+      "id": 1,
+      "location": "184",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        },
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
+        },
+        {
+          "device": "Deploy",
+          "OK": 0,
+          "ERROR": 2,
+          "FAILED": 0
+        },
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "location": "199",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        },
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
+        },
+        {
+          "device": "Deploy",
+          "OK": 0,
+          "ERROR": 2,
+          "FAILED": 0
+        },
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "location": "201",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        },
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
+        },
+        {
+          "device": "Deploy",
+          "OK": 0,
+          "ERROR": 2,
+          "FAILED": 0
+        },
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    }
   ]
 }

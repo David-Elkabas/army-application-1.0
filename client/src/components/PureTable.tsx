@@ -50,7 +50,7 @@ type IProps = {
 const PureTable = (props: IProps) => {
   const { rows, columns } = props;
   // console.log(rows);
-  const shortColumn = ["מיקום", "מספר פורט", "ממסור", "תדר", "ds", "adf"];
+  const shortColumn = ["מושאל", "קוד הצפנה", "קידוד שמע", "תדר", "פורט", "adf"];
 
   const editRows = rows.map((row) =>
     Object.assign(row, { id: row['מזהה מקמ"ש'] })
@@ -62,7 +62,7 @@ const PureTable = (props: IProps) => {
     width: shortColumn.includes(column) ? 50 : 120,
     // flex: 1,
     renderCell: (params: any) => (
-      <Tooltip title={params.value}>
+      <Tooltip title={params.value ? params.value : "temp"}>
         <span>{params.value}</span>
       </Tooltip>
     ),

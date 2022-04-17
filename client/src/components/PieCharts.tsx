@@ -109,6 +109,7 @@ const PieCharts = (props: IProps) => {
     dataNumberArray: MakmashimNumberArray,
     chartTitle: MakmashimChartTitle,
   } = MakmashimDataArrays;
+
   if (isLoading) return <>"Loading..."</>;
 
   if (isError) return <>"An error has occurred: " {errorText}</>;

@@ -2,6 +2,7 @@ import { Box, Button, Grid, Paper, Stack } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useNavigate } from "react-router-dom";
+import GeneralBlock from "../components/GeneralBlock";
 import InfoText from "../components/InfoText";
 import PageHeader from "../components/PageHeader";
 
@@ -14,7 +15,7 @@ interface IProps {
 
 const queryClient = new QueryClient();
 
-const UvtPage = (props: IProps) => {
+const GeneralView = (props: IProps) => {
   const { username, isAdmin, selectedUnit, accessToken } = props;
 
   const navigate = useNavigate();
@@ -35,33 +36,16 @@ const UvtPage = (props: IProps) => {
                 accessToken={accessToken}
               />
             </Box>
-            <InfoText name='ידב"רים' />
 
             <Grid container direction="row">
-              <Grid item xs={7} sx={{ justifyContent: "center" }}>
+              <Grid item xs={7} sx={{ justifyCsontent: "center" }}>
                 <Box>
-                  {/* <MakmashTable
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  /> */}
-                </Box>
-              </Grid>
-              {/* <Grid item xs={5}>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <PieCharts
-                      accessToken={accessToken}
-                      selectedUnit={selectedUnit}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <NetworkChart
+                  <GeneralBlock
                     accessToken={accessToken}
                     selectedUnit={selectedUnit}
                   />
-                </Grid>
-              </Grid> */}
+                </Box>
+              </Grid>
             </Grid>
             <ReactQueryDevtools initialIsOpen={false} />
             <Stack direction="row" spacing={5} justifyContent="center">
@@ -81,4 +65,4 @@ const UvtPage = (props: IProps) => {
   );
 };
 
-export default UvtPage;
+export default GeneralView;

@@ -19,6 +19,7 @@ import Particles from "react-tsparticles";
 import particlesConfig from "./config/configParticles";
 import RcgwPage from "./pages/RcgwPage";
 import UvtPage from "./pages/UvtPage";
+import GeneralView from "./pages/GeneralView";
 
 const theme = createTheme({
   palette: {
@@ -129,6 +130,7 @@ function App() {
                       />
                     }
                   />
+
                   <Route
                     path="/uvt"
                     element={
@@ -140,7 +142,17 @@ function App() {
                       />
                     }
                   />
-
+                  <Route
+                    path="/general-view"
+                    element={
+                      <GeneralView
+                        username={username}
+                        isAdmin={isAdmin}
+                        selectedUnit={selectedUnit}
+                        accessToken={accessToken}
+                      />
+                    }
+                  />
                   <Route path="*" element={<Navigate to="/login-page" />} />
                 </Routes>
               </BrowserRouter>

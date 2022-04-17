@@ -37,10 +37,9 @@ const cardOptions = [
     image: radio,
   },
   {
-    value: "all",
-    header: "הצג הכל",
-    description:
-      "היתוך כלל המידע מקובץ הפק''ל כאשר התצוגה הינה לפי אבני הבניין",
+    value: "general-view",
+    header: "מבט על",
+    description: "הצגת מבט מלמעלה על כלל הכלים באוגדה",
     image: all,
   },
 ];
