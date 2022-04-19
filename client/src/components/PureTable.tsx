@@ -1,4 +1,4 @@
-import { Box, Tooltip } from "@mui/material";
+import { Box, Checkbox, Tooltip } from "@mui/material";
 import {
   DataGrid,
   GridToolbar,
@@ -7,6 +7,7 @@ import {
   GridToolbarFilterButton,
   GridToolbarDensitySelector,
   GridToolbarExport,
+  GridSlotsComponentsProps,
 } from "@mui/x-data-grid";
 
 function CustomToolbar() {
@@ -47,6 +48,14 @@ type IProps = {
   columns: string[];
 };
 
+const EliavColumnsPanel = () => {
+  return (
+    <>
+      <Checkbox checked />
+    </>
+  );
+};
+
 const PureTable = (props: IProps) => {
   const { rows, columns } = props;
   // console.log(rows);
@@ -59,7 +68,9 @@ const PureTable = (props: IProps) => {
   const editColumns = columns.map((column) => ({
     field: column,
     headerName: column,
-    width: shortColumn.includes(column) ? 50 : 120,
+    headerAlign: "center" as const,
+    align: "center" as const,
+    width: shortColumn.includes(column) ? 50 : 100,
     // flex: 1,
     renderCell: (params: any) => (
       <Tooltip title={params.value ? params.value : "temp"}>
@@ -67,7 +78,6 @@ const PureTable = (props: IProps) => {
       </Tooltip>
     ),
   }));
-  // console.log(editColumns);
 
   return (
     // <div>
@@ -80,7 +90,16 @@ const PureTable = (props: IProps) => {
         disableSelectionOnClick
         components={{
           Toolbar: CustomToolbar,
+          // ColumnMenu: () => <></>,
+          // ColumnFilteredIcon: () => <></>,
+          // ColumnsPanel: (props) => {
+          //   console.log(props);
+          //   return <EliavColumnsPanel />;
+          // },
+          // FilterPanel: () => <></>,
+          // FilterPanelColumns: () => <></>,
         }}
+        componentsProps={{ columnsPanel: {} }}
         localeText={{
           //for change titles for Hebrew
           // columns panel

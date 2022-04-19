@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MakmashTable from "../components/MakmashTable";
 import PieCharts from "../components/PieCharts";
@@ -40,7 +39,6 @@ interface IProps {
   selectedUnit: string;
   accessToken: string;
 }
-const queryClient = new QueryClient();
 
 const Transceiver = (props: IProps) => {
   const { username, isAdmin, selectedUnit, accessToken } = props;
@@ -54,59 +52,57 @@ const Transceiver = (props: IProps) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
-          <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
+        <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
+          <Box>
             <Box>
-              <Box>
-                <PageHeader
-                  username={username}
-                  isAdmin={isAdmin}
-                  selectedUnit={selectedUnit}
-                  accessToken={accessToken}
-                />
-              </Box>
-              <InfoText name='מקמ"שים' />
+              <PageHeader
+                username={username}
+                isAdmin={isAdmin}
+                selectedUnit={selectedUnit}
+                accessToken={accessToken}
+              />
+            </Box>
+            <InfoText name='מקמ"שים' />
 
-              <Grid container direction="row">
-                <Grid item xs={7}>
-                  <Box dir="ltr">
-                    <MakmashTable
+            <Grid container direction="row">
+              <Grid item xs={7}>
+                <Box dir="ltr">
+                  <MakmashTable
+                    accessToken={accessToken}
+                    selectedUnit={selectedUnit}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={5}>
+                <Grid item xs={12}>
+                  <Grid container>
+                    <PieCharts
                       accessToken={accessToken}
                       selectedUnit={selectedUnit}
                     />
-                  </Box>
+                  </Grid>
                 </Grid>
-                <Grid item xs={5}>
-                  <Grid item xs={12}>
-                    <Grid container>
-                      <PieCharts
-                        accessToken={accessToken}
-                        selectedUnit={selectedUnit}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <NetworkChart
-                      accessToken={accessToken}
-                      selectedUnit={selectedUnit}
-                    />
-                  </Grid>
+                <Grid item xs={12}>
+                  <NetworkChart
+                    accessToken={accessToken}
+                    selectedUnit={selectedUnit}
+                  />
                 </Grid>
               </Grid>
-              <ReactQueryDevtools initialIsOpen={false} />
-              <Stack direction="row" spacing={5} justifyContent="center">
-                <Button
-                  variant="contained"
-                  onClick={handleClick}
-                  size="large"
-                  sx={{ margin: 5 }}
-                >
-                  חזור חזרה{" "}
-                </Button>
-              </Stack>
-            </Box>
-          </Paper>
-        </QueryClientProvider>
+            </Grid>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <Stack direction="row" spacing={5} justifyContent="center">
+              <Button
+                variant="contained"
+                onClick={handleClick}
+                size="large"
+                sx={{ margin: 5 }}
+              >
+                חזור חזרה{" "}
+              </Button>
+            </Stack>
+          </Box>
+        </Paper>
       </ThemeProvider>
     </>
   );

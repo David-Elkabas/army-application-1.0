@@ -1,5 +1,7 @@
+import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import OneBlock from "./OneBlock";
 
 type IProps = {
   accessToken: string;
@@ -19,13 +21,13 @@ type oneBlock = {
 };
 
 type DataBlocks = {
-  stations: Array<oneBlock>;
+  WorkingStations: Array<oneBlock>;
 };
 
 const GeneralBlock = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
-  const [allStations, setAllStations] = useState<DataBlocks | undefined>();
+  const [allStations, setAllStations] = useState<Array<oneBlock>>();
 
   const fetchDataBlocks = async (): Promise<any> => {
     const res = await fetch(
@@ -49,25 +51,34 @@ const GeneralBlock = (props: IProps) => {
     fetchDataBlocks,
     {
       onSuccess: (data) => {
-        //  const statesArray: Array<string> = data?.stations.map(
-
+        // const dataIn = data.WorkingStations
         //  );
-        console.log(data);
-        // setAllStations(data.stations);
+        // console.log(data.WorkingStations);
+        setAllStations(data.WorkingStations);
       },
     }
   );
-  //    const {
-  //      dataStateArray: RcgwDataStateArray,
-  //      dataNumberArray: RcgwDataNumberArray,
-  //      chartTitle: RcgwChartTitle,
-  //    } = RcgwDataArrays;
 
   if (isLoading) return <>"Loading..."</>;
 
   if (isError) return <>"An error has occurred: " {errorText}</>;
 
-  return <>hello</>;
+  return (
+    <>
+      {allStations &&
+        allStations.map((data, index) => {
+          return (
+            <Grid item xs={3} key={index}>
+              <OneBlock
+                key={data.id}
+                location={data.location}
+                devices={data.devices}
+              />
+            </Grid>
+          );
+        })}
+    </>
+  );
 };
 
 export default GeneralBlock;
