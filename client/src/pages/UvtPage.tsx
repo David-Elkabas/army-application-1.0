@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Paper, Stack } from "@mui/material";
+import { ProgressBar } from "react-bootstrap";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useNavigate } from "react-router-dom";
 import InfoText from "../components/InfoText";
@@ -35,29 +36,14 @@ const UvtPage = (props: IProps) => {
 
           <Grid container direction="row">
             <Grid item xs={7} sx={{ justifyContent: "center" }}>
-              <Box>
-                {/* <MakmashTable
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  /> */}
+              <Box sx={{ maxWidth: 50 }}>
+                <ProgressBar>
+                  <ProgressBar variant="success" now={35} key={1} />
+                  <ProgressBar variant="warning" now={20} key={2} />
+                  <ProgressBar variant="danger" now={10} key={3} />
+                </ProgressBar>
               </Box>
             </Grid>
-            {/* <Grid item xs={5}>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <PieCharts
-                      accessToken={accessToken}
-                      selectedUnit={selectedUnit}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <NetworkChart
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  />
-                </Grid>
-              </Grid> */}
           </Grid>
           <ReactQueryDevtools initialIsOpen={false} />
           <Stack direction="row" spacing={5} justifyContent="center">

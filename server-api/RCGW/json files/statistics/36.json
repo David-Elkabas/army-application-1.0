@@ -148,6 +148,114 @@
           "FAILED": 1
         }
       ]
+    },
+    {
+      "id": 4,
+      "location": "888",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        },
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
+        },
+        {
+          "device": "Deploy",
+          "OK": 0,
+          "ERROR": 2,
+          "FAILED": 0
+        },
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "location": "333",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        },
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
+        },
+        {
+          "device": "Deploy",
+          "OK": 0,
+          "ERROR": 2,
+          "FAILED": 0
+        },
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "location": "123",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        },
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
+        },
+        {
+          "device": "Deploy",
+          "OK": 0,
+          "ERROR": 2,
+          "FAILED": 0
+        },
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
     }
   ]
 }

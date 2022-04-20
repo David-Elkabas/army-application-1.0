@@ -23,6 +23,8 @@ import GeneralView from "./pages/GeneralView";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/types/devtools";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const theme = createTheme({
   palette: {
     background: {

@@ -68,7 +68,7 @@ const GeneralBlock = (props: IProps) => {
       {allStations &&
         allStations.map((data, index) => {
           return (
-            <Grid item xs={3} key={index}>
+            <Grid item xs={4} key={data.id}>
               <OneBlock
                 key={data.id}
                 location={data.location}
