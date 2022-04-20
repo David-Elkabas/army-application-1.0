@@ -54,8 +54,8 @@
         {
           "device": "RCGW",
           "OK": 2,
-          "ERROR": 0,
-          "FAILED": 0
+          "ERROR": 5,
+          "FAILED": 1
         },
         {
           "device": "Yadbar",
@@ -66,13 +66,13 @@
         {
           "device": "Deploy",
           "OK": 0,
-          "ERROR": 2,
+          "ERROR": 1,
           "FAILED": 0
         },
         {
           "device": "CCU",
           "OK": 1,
-          "ERROR": 1,
+          "ERROR": 4,
           "FAILED": 1
         }
       ]
@@ -83,7 +83,7 @@
       "devices": [
         {
           "device": "CCT",
-          "OK": 1,
+          "OK": 2,
           "ERROR": 1,
           "FAILED": 0
         },
@@ -121,12 +121,12 @@
           "device": "CCT",
           "OK": 1,
           "ERROR": 1,
-          "FAILED": 0
+          "FAILED": 4
         },
         {
           "device": "RCGW",
           "OK": 2,
-          "ERROR": 0,
+          "ERROR": 1,
           "FAILED": 0
         },
         {
@@ -137,7 +137,7 @@
         },
         {
           "device": "Deploy",
-          "OK": 0,
+          "OK": 1,
           "ERROR": 2,
           "FAILED": 0
         },
@@ -156,7 +156,7 @@
         {
           "device": "CCT",
           "OK": 1,
-          "ERROR": 1,
+          "ERROR": 2,
           "FAILED": 0
         },
         {
@@ -169,7 +169,7 @@
           "device": "Yadbar",
           "OK": 0,
           "ERROR": 1,
-          "FAILED": 2
+          "FAILED": 4
         },
         {
           "device": "Deploy",

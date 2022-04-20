@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { ProgressBar } from "react-bootstrap";
 
@@ -34,29 +34,68 @@ const DevicesColumn = (props: IProps) => {
   );
   return (
     <>
-      <Box sx={{ maxWidth: 50 }}></Box>
-      <Grid container justifyContent="space-between">
-        <Grid item>
-          <Typography variant="h6" component="div" color="white">
-            {device}
-          </Typography>
-        </Grid>
-        <Grid item xs={5} sx={{ mt: 1, mr: 1 }}>
-          <ProgressBar>
-            <ProgressBar variant="success" now={okPercent} key={1} />
-            <ProgressBar variant="warning" now={errorPercent} key={2} />
-            <ProgressBar variant="danger" now={failPercent} key={3} />
-          </ProgressBar>
-          {/* <Typography variant="h6" component="div" color="white">
+      <Tooltip
+        followCursor
+        title={
+          <>
+            <Typography fontSize={20} align="left">
+              {device} :שם רכיב
+            </Typography>
+            <Typography fontSize={20} align="left">
+              {OK} :מספר רכיבים תקינים
+            </Typography>
+            <Typography fontSize={20} align="left">
+              {ERROR} :מספר רכיבים תקולים
+            </Typography>
+            <Typography fontSize={20} align="left">
+              {FAILED} :מספר רכיבים לא עובדים
+            </Typography>
+          </>
+          //   {ERROR} {FAILED}
+        }
+        arrow
+        //   placement={index % 2 === 0 ? "right" : "left"}
+        sx={{ fontSize: 10 }}
+      >
+        <Grid container justifyContent="space-between">
+          <Grid item xs={5} sx={{ ml: 1 }}>
+            <Typography variant="h6" component="div" color="white">
+              {device}
+            </Typography>
+          </Grid>
+          <Grid item xs={1} sx={{ mt: 0.6 }}>
+            <Typography variant="body1" component="div" color="white">
+              {OK + ERROR + FAILED}
+            </Typography>
+          </Grid>
+          <Grid item xs={5} sx={{ mt: 1, mr: 1, ml: -5 }}>
+            <ProgressBar>
+              <ProgressBar
+                variant="success"
+                now={okPercent}
+                label={OK}
+                key={1}
+              />
+              <ProgressBar
+                variant="warning"
+                now={errorPercent}
+                label={ERROR}
+                key={2}
+              />
+              <ProgressBar
+                variant="danger"
+                now={failPercent}
+                label={FAILED}
+                key={3}
+              />
+            </ProgressBar>
+            {/* <Typography variant="h6" component="div" color="white">
           {OK} {ERROR} {FAILED}
         </Typography> */}
+          </Grid>
         </Grid>
-      </Grid>
+      </Tooltip>
     </>
-    // <Typography variant="h6" component="div" color="white">
-
-    //   {device} {OK} {ERROR} {FAILED}
-    // </Typography>
   );
 };
 
