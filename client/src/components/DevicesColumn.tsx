@@ -32,6 +32,8 @@ const DevicesColumn = (props: IProps) => {
     ERROR,
     FAILED
   );
+  console.log(device);
+
   return (
     <>
       <Tooltip

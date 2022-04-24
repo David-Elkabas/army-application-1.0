@@ -21,7 +21,7 @@ const GeneralView = (props: IProps) => {
   };
   return (
     <>
-      <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
+      <Paper sx={{ bgcolor: "#f3f3f3", px: 5, width: "95vw" }}>
         <Box>
           <Box sx={{ mx: "auto", width: 1 }}>
             <PageHeader
@@ -49,7 +49,7 @@ const GeneralView = (props: IProps) => {
               variant="contained"
               onClick={handleClick}
               size="large"
-              sx={{ margin: 5 }}
+              sx={{ mb: 5 }}
             >
               חזור חזרה{" "}
             </Button>

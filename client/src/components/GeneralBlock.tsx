@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
+import Draggable from "react-draggable";
 import { useQuery } from "react-query";
 import OneBlock from "./OneBlock";
 

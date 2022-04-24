@@ -1,7 +1,6 @@
 import { Box, Checkbox, Tooltip } from "@mui/material";
 import {
   DataGrid,
-  GridToolbar,
   GridToolbarContainer,
   GridToolbarColumnsButton,
   GridToolbarFilterButton,
@@ -13,7 +12,6 @@ import {
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
-      <GridToolbarColumnsButton />
       <GridToolbarFilterButton />
       <GridToolbarDensitySelector />
       <GridToolbarExport
