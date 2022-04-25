@@ -1,12 +1,25 @@
-import { Box, Grid, Tooltip, Typography } from "@mui/material";
+import { Avatar, Box, Grid, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { ProgressBar } from "react-bootstrap";
+import CCTAvatar from "../images/images-generalBlock/computer-networking.png";
+import RCGWAvatar from "../images/images-generalBlock/RCGW.png";
+import YadbarAvatar from "../images/images-generalBlock/yadbar.png";
+import DeployAvatar from "../images/images-generalBlock/deploy.png";
+import CCUAvatar from "../images/images-generalBlock/CCU.png";
 
 type IProps = {
   device: string;
   OK: number;
   ERROR: number;
   FAILED: number;
+};
+
+const deviceToIcon = {
+  CCT: CCTAvatar,
+  RCGW: RCGWAvatar,
+  Yadbar: YadbarAvatar,
+  Deploy: DeployAvatar,
+  CCU: CCUAvatar,
 };
 
 const percentCalculator = (
@@ -32,7 +45,7 @@ const DevicesColumn = (props: IProps) => {
     ERROR,
     FAILED
   );
-  console.log(device);
+  // console.log(device);
 
   return (
     <>
@@ -61,9 +74,7 @@ const DevicesColumn = (props: IProps) => {
       >
         <Grid container justifyContent="space-between">
           <Grid item xs={5} sx={{ ml: 1 }}>
-            <Typography variant="h6" component="div" color="white">
-              {device}
-            </Typography>
+            <Avatar alt={device} src={deviceToIcon[device]} variant="rounded" />
           </Grid>
           <Grid item xs={1} sx={{ mt: 0.6 }}>
             <Typography variant="body1" component="div" color="white">

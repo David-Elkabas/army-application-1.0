@@ -1,9 +1,10 @@
-import { Box, Button, Grid, Paper, Stack } from "@mui/material";
+import { Avatar, Box, Button, Grid, Paper, Stack } from "@mui/material";
 import { ProgressBar } from "react-bootstrap";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useNavigate } from "react-router-dom";
 import InfoText from "../components/InfoText";
 import PageHeader from "../components/PageHeader";
+import avatar1 from "../images/images-generalBlock/CCU.png";
 
 interface IProps {
   username: string;
@@ -42,6 +43,9 @@ const UvtPage = (props: IProps) => {
                   <ProgressBar variant="warning" now={20} key={2} />
                   <ProgressBar variant="danger" now={10} key={3} />
                 </ProgressBar>
+              </Box>
+              <Box>
+                <Avatar alt="CCU" src={avatar1} variant="rounded" />
               </Box>
             </Grid>
           </Grid>
