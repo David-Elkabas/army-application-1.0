@@ -31,27 +31,24 @@ const GeneralView = (props: IProps) => {
               accessToken={accessToken}
             />
           </Box>
+          <Button variant="contained" onClick={handleClick} size="large">
+            חזור חזרה
+          </Button>
 
-          <Grid
-            container
-            sx={{ width: "100vw" }}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-          >
+          <Grid container sx={{ width: "90vw" }} direction="row">
             <GeneralBlock
               accessToken={accessToken}
               selectedUnit={selectedUnit}
             />
           </Grid>
-          <Stack direction="row" spacing={5} justifyContent="center">
+          <Stack direction="row" justifyContent="center">
             <Button
               variant="contained"
               onClick={handleClick}
               size="large"
               sx={{ mb: 5 }}
             >
-              חזור חזרה{" "}
+              חזור חזרה
             </Button>
           </Stack>
         </Box>

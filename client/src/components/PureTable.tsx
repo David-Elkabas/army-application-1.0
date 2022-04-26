@@ -81,6 +81,7 @@ const PureTable = (props: IProps) => {
     // <div>
     <Box sx={{ height: 700 }}>
       <DataGrid
+        sx={{ borderRadius: "12px", boxShadow: 1 }}
         rows={editRows}
         columns={editColumns}
         pageSize={10}

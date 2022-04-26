@@ -182,9 +182,6 @@ const NetWorkChart = (props: IProps) => {
     };
     let dictOfSelected = Object.assign(deletedData, selectedLabel);
     setDeletedData(dictOfSelected);
-
-    // console.log(deletedData);
-
     setBarDataStateArray({
       labelArray: BarDataArrays.labelArray,
       selectedArray: [label, ...BarDataArrays.selectedArray],
@@ -200,9 +197,6 @@ const NetWorkChart = (props: IProps) => {
     const failed = deletedData[label].failed;
     const error = deletedData[label].error;
 
-    //BarDataArrays.labelArray.filter(
-    //     (labelInArray) => labelInArray !== label
-    //   ),
     const newDeletedObj = Object.keys(deletedData)
       .filter((key) => key !== label)
       .reduce((result, current) => {

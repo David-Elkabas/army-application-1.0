@@ -23,20 +23,20 @@ const OneBlock = (props: IProps) => {
       <Card
         style={{ cursor: "move" }}
         sx={{
-          maxWidth: "20vw",
-          minHeight: "30vh",
           backgroundColor: "#0d292a",
-          my: 5,
+          my: 2,
+          mr: 2,
+          justifyContent: "top",
         }}
       >
         <CardContent>
           <Typography variant="h5" component="div" color="white">
-            מיקום: {location}
+            {location}
           </Typography>
           {devices &&
             devices.map((device, index) => {
               return (
-                <Paper sx={{ bgcolor: "#51bfe1", m: 1 }}>
+                <Paper sx={{ bgcolor: "#93B0B0", m: 1 }}>
                   <Grid item xs={12} key={index}>
                     <DevicesColumn
                       key={index}

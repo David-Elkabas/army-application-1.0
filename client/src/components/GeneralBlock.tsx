@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Chip, Grid } from "@mui/material";
 import React, { useState } from "react";
 import Draggable from "react-draggable";
 import { useQuery } from "react-query";
@@ -28,7 +28,9 @@ type DataBlocks = {
 const GeneralBlock = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
-  const [allStations, setAllStations] = useState<Array<oneBlock>>();
+  const [allStations, setAllStations] = useState<Array<oneBlock>>([]);
+  // const [stationsToShow, setStationsToShow] = useState<Array<oneBlock>>([]);
+  const [selectedStations, setSelectedStations] = useState<Array<oneBlock>>([]);
 
   const fetchDataBlocks = async (): Promise<any> => {
     const res = await fetch(
@@ -52,13 +54,41 @@ const GeneralBlock = (props: IProps) => {
     fetchDataBlocks,
     {
       onSuccess: (data) => {
-        // const dataIn = data.WorkingStations
-        //  );
-        // console.log(data.WorkingStations);
-        setAllStations(data.WorkingStations);
+        // setAllStations(data.WorkingStations);
+        setAllStations((prevState: Array<oneBlock>) => {
+          let tempStationsArray: Array<oneBlock> = [];
+          for (let station of data.WorkingStations) {
+            if (
+              prevState?.find((location: any) => location === station.location)
+            ) {
+              tempStationsArray.push(station);
+            } else if (
+              selectedStations?.find((loc) => loc.location === station.location)
+            ) {
+              console.log(selectedStations);
+            } else {
+              tempStationsArray.push(station);
+            }
+          }
+          return tempStationsArray;
+        });
       },
     }
   );
+
+  const clickOnShownStation = (station: oneBlock) => {
+    setSelectedStations([...selectedStations, station]);
+    setAllStations(
+      allStations.filter((loc) => loc.location !== station.location)
+    );
+  };
+
+  const clickOnSelectedStation = (station: oneBlock) => {
+    setAllStations([station, ...allStations]);
+    setSelectedStations(
+      selectedStations.filter((loc) => loc.location !== station.location)
+    );
+  };
 
   if (isLoading) return <>"Loading..."</>;
 
@@ -66,10 +96,51 @@ const GeneralBlock = (props: IProps) => {
 
   return (
     <>
+      <Grid item xs={12}>
+        <Box sx={{ m: 1 }}>
+          {allStations &&
+            allStations.map((station, index) => {
+              return (
+                <Chip
+                  key={index}
+                  label={station.location}
+                  // variant="outlined"
+                  sx={{
+                    my: 1,
+                    mr: 0.5,
+                    backgroundColor: "#93B0B0",
+                    fontWeight: "bold",
+                  }}
+                  clickable
+                  onClick={() => clickOnShownStation(station)}
+                />
+              );
+            })}
+          {selectedStations &&
+            selectedStations.map((station, index) => {
+              return (
+                <Chip
+                  key={index}
+                  label={station.location}
+                  sx={{
+                    my: 1,
+                    mr: 0.5,
+                    backgroundColor: "#0d292a",
+                    fontWeight: "bold",
+                    color: "white",
+                  }}
+                  clickable
+                  onClick={() => clickOnSelectedStation(station)}
+                />
+              );
+            })}
+        </Box>
+      </Grid>
+
       {allStations &&
         allStations.map((data, index) => {
           return (
-            <Grid item xs={4} key={data.id}>
+            <Grid item xs={2} key={data.id}>
               <OneBlock
                 key={data.id}
                 location={data.location}

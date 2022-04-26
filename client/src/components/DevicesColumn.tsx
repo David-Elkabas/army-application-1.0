@@ -1,10 +1,10 @@
 import { Avatar, Box, Grid, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { ProgressBar } from "react-bootstrap";
-import CCTAvatar from "../images/images-generalBlock/computer-networking.png";
+import CCTAvatar from "../images/images-generalBlock/CCT2.png";
 import RCGWAvatar from "../images/images-generalBlock/RCGW.png";
 import YadbarAvatar from "../images/images-generalBlock/yadbar.png";
-import DeployAvatar from "../images/images-generalBlock/deploy.png";
+import DeployAvatar from "../images/images-generalBlock/deploy2.png";
 import CCUAvatar from "../images/images-generalBlock/CCU.png";
 
 type IProps = {
@@ -66,37 +66,36 @@ const DevicesColumn = (props: IProps) => {
               {FAILED} :מספר רכיבים לא עובדים
             </Typography>
           </>
-          //   {ERROR} {FAILED}
         }
         arrow
-        //   placement={index % 2 === 0 ? "right" : "left"}
         sx={{ fontSize: 10 }}
       >
         <Grid container justifyContent="space-between">
-          <Grid item xs={5} sx={{ ml: 1 }}>
+          <Grid item xs={3} sx={{ ml: 1 }}>
             <Avatar alt={device} src={deviceToIcon[device]} variant="rounded" />
           </Grid>
-          <Grid item xs={1} sx={{ mt: 0.6 }}>
+          {/* <Grid item xs={1} sx={{ mt: 0.6 }}>
             <Typography variant="body1" component="div" color="white">
               {OK + ERROR + FAILED}
             </Typography>
-          </Grid>
-          <Grid item xs={5} sx={{ mt: 1, mr: 1, ml: -5 }}>
+          </Grid> */}
+          <Grid item xs={8} sx={{ mt: 1, mr: 1 }}>
             <ProgressBar>
               <ProgressBar
-                variant="success"
+                style={{ backgroundColor: "rgba(75, 220, 192, 1)" }}
                 now={okPercent}
                 label={OK}
                 key={1}
               />
               <ProgressBar
-                variant="warning"
+                style={{ backgroundColor: "rgba(255, 159, 64, 1)" }}
                 now={errorPercent}
                 label={ERROR}
                 key={2}
               />
               <ProgressBar
-                variant="danger"
+                style={{ backgroundColor: "rgba(255, 99, 132, 1)" }}
+                // variant="danger"
                 now={failPercent}
                 label={FAILED}
                 key={3}

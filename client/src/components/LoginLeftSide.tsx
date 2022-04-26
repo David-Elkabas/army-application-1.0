@@ -17,7 +17,6 @@ const LoginLeftSide = (props: Props) => {
       xs={6}
       sx={{
         backgroundColor: "white",
-
         minHeight: 400,
         maxHeight: 400,
       }}

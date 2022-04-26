@@ -43,7 +43,7 @@
   "WorkingStations": [
     {
       "id": 1,
-      "location": "184",
+      "location": "אבד",
       "devices": [
         {
           "device": "CCT",
@@ -79,7 +79,7 @@
     },
     {
       "id": 2,
-      "location": "199",
+      "location": "יוסי",
       "devices": [
         {
           "device": "CCT",
@@ -93,18 +93,7 @@
           "ERROR": 0,
           "FAILED": 0
         },
-        {
-          "device": "Yadbar",
-          "OK": 0,
-          "ERROR": 1,
-          "FAILED": 2
-        },
-        {
-          "device": "Deploy",
-          "OK": 0,
-          "ERROR": 2,
-          "FAILED": 0
-        },
+
         {
           "device": "CCU",
           "OK": 1,
@@ -115,26 +104,8 @@
     },
     {
       "id": 3,
-      "location": "201",
+      "location": "דוד",
       "devices": [
-        {
-          "device": "CCT",
-          "OK": 1,
-          "ERROR": 1,
-          "FAILED": 4
-        },
-        {
-          "device": "RCGW",
-          "OK": 2,
-          "ERROR": 1,
-          "FAILED": 0
-        },
-        {
-          "device": "Yadbar",
-          "OK": 0,
-          "ERROR": 1,
-          "FAILED": 2
-        },
         {
           "device": "Deploy",
           "OK": 1,
@@ -151,68 +122,20 @@
     },
     {
       "id": 4,
-      "location": "888",
+      "location": "שאול",
       "devices": [
-        {
-          "device": "CCT",
-          "OK": 1,
-          "ERROR": 2,
-          "FAILED": 0
-        },
         {
           "device": "RCGW",
           "OK": 2,
           "ERROR": 0,
           "FAILED": 0
-        },
-        {
-          "device": "Yadbar",
-          "OK": 0,
-          "ERROR": 1,
-          "FAILED": 4
-        },
-        {
-          "device": "Deploy",
-          "OK": 0,
-          "ERROR": 2,
-          "FAILED": 0
-        },
-        {
-          "device": "CCU",
-          "OK": 1,
-          "ERROR": 1,
-          "FAILED": 1
         }
       ]
     },
     {
       "id": 5,
-      "location": "333",
+      "location": "יונתן",
       "devices": [
-        {
-          "device": "CCT",
-          "OK": 1,
-          "ERROR": 1,
-          "FAILED": 0
-        },
-        {
-          "device": "RCGW",
-          "OK": 2,
-          "ERROR": 0,
-          "FAILED": 0
-        },
-        {
-          "device": "Yadbar",
-          "OK": 0,
-          "ERROR": 1,
-          "FAILED": 2
-        },
-        {
-          "device": "Deploy",
-          "OK": 0,
-          "ERROR": 2,
-          "FAILED": 0
-        },
         {
           "device": "CCU",
           "OK": 1,
@@ -223,7 +146,7 @@
     },
     {
       "id": 6,
-      "location": "123",
+      "location": "עמית",
       "devices": [
         {
           "device": "CCT",
@@ -242,10 +165,77 @@
           "OK": 0,
           "ERROR": 1,
           "FAILED": 2
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "location": "מעיין",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 5,
+          "FAILED": 1
+        },
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
         },
         {
           "device": "Deploy",
           "OK": 0,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 4,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "location": "רוני",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 2,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        },
+
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "location": "פבל",
+      "devices": [
+        {
+          "device": "Deploy",
+          "OK": 1,
           "ERROR": 2,
           "FAILED": 0
         },
@@ -254,6 +244,156 @@
           "OK": 1,
           "ERROR": 1,
           "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "location": "דניאל",
+      "devices": [
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "location": "גדי",
+      "devices": [
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "location": "אברהם",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        },
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        },
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "location": "ויטלי",
+      "devices": [
+        {
+          "device": "Deploy",
+          "OK": 1,
+          "ERROR": 2,
+          "FAILED": 0
+        },
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 1212,
+      "location": "מנחם",
+      "devices": [
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "location": "רון",
+      "devices": [
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "location": "אלי",
+      "devices": [
+        {
+          "device": "Yadbar",
+          "OK": 0,
+          "ERROR": 1,
+          "FAILED": 2
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "location": "אליהו",
+      "devices": [
+        {
+          "device": "Deploy",
+          "OK": 1,
+          "ERROR": 2,
+          "FAILED": 0
+        }
+      ]
+    },
+    {
+      "id": 122,
+      "location": "דיויד",
+      "devices": [
+        {
+          "device": "RCGW",
+          "OK": 2,
+          "ERROR": 0,
+          "FAILED": 0
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "location": "אורון",
+      "devices": [
+        {
+          "device": "CCU",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 1
+        }
+      ]
+    },
+    {
+      "id": 142,
+      "location": "שופט",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
         }
       ]
     }
