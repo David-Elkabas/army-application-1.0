@@ -44,6 +44,7 @@
     {
       "id": 1,
       "location": "אבד",
+      "type": "שרתים",
       "devices": [
         {
           "device": "CCT",
@@ -80,6 +81,7 @@
     {
       "id": 2,
       "location": "יוסי",
+      "type": "שרתים",
       "devices": [
         {
           "device": "CCT",
@@ -105,6 +107,7 @@
     {
       "id": 3,
       "location": "דוד",
+      "type": "שרתים",
       "devices": [
         {
           "device": "Deploy",
@@ -122,6 +125,7 @@
     },
     {
       "id": 4,
+      "type": "שרתים",
       "location": "שאול",
       "devices": [
         {
@@ -134,6 +138,7 @@
     },
     {
       "id": 5,
+      "type": "אתרי תקשוב",
       "location": "יונתן",
       "devices": [
         {
@@ -146,6 +151,7 @@
     },
     {
       "id": 6,
+      "type": "אתרי תקשוב",
       "location": "עמית",
       "devices": [
         {
@@ -170,6 +176,7 @@
     },
     {
       "id": 7,
+      "type": "אתרי תקשוב",
       "location": "מעיין",
       "devices": [
         {
@@ -206,6 +213,7 @@
     },
     {
       "id": 9,
+      "type": "אתרי תקשוב",
       "location": "רוני",
       "devices": [
         {
@@ -231,6 +239,7 @@
     },
     {
       "id": 11,
+      "type": "אתרי תקשוב",
       "location": "פבל",
       "devices": [
         {
@@ -249,6 +258,7 @@
     },
     {
       "id": 12,
+      "type": "תק\"שי רדיו",
       "location": "דניאל",
       "devices": [
         {
@@ -261,6 +271,7 @@
     },
     {
       "id": 13,
+      "type": "תק\"שי רדיו",
       "location": "גדי",
       "devices": [
         {
@@ -273,6 +284,7 @@
     },
     {
       "id": 14,
+      "type": "תק\"שי רדיו",
       "location": "אברהם",
       "devices": [
         {
@@ -297,6 +309,7 @@
     },
     {
       "id": 121,
+      "type": "פת\"ל",
       "location": "ויטלי",
       "devices": [
         {
@@ -315,6 +328,7 @@
     },
     {
       "id": 1212,
+      "type": "פת\"ל",
       "location": "מנחם",
       "devices": [
         {
@@ -327,6 +341,7 @@
     },
     {
       "id": 123,
+      "type": "פת\"ל",
       "location": "רון",
       "devices": [
         {
@@ -339,6 +354,7 @@
     },
     {
       "id": 124,
+      "type": "פת\"ל",
       "location": "אלי",
       "devices": [
         {
@@ -351,6 +367,7 @@
     },
     {
       "id": 112,
+      "type": "קידמית",
       "location": "אליהו",
       "devices": [
         {
@@ -363,6 +380,7 @@
     },
     {
       "id": 122,
+      "type": "קידמית",
       "location": "דיויד",
       "devices": [
         {
@@ -375,6 +393,7 @@
     },
     {
       "id": 132,
+      "type": "קידמית",
       "location": "אורון",
       "devices": [
         {
@@ -387,7 +406,34 @@
     },
     {
       "id": 142,
+      "type": "קרונות",
       "location": "שופט",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        }
+      ]
+    },
+    {
+      "id": 1412,
+      "type": "קרונות",
+      "location": "שופטים",
+      "devices": [
+        {
+          "device": "CCT",
+          "OK": 1,
+          "ERROR": 1,
+          "FAILED": 0
+        }
+      ]
+    },
+    {
+      "id": 14112,
+      "type": "קרונות",
+      "location": "שופטים ב",
       "devices": [
         {
           "device": "CCT",

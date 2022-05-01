@@ -57,7 +57,7 @@ const MakmashTable = (props: IProps) => {
     // console.log(accessToken);
     try {
       const res = await fetch(
-        `http://localhost:5005/radioStates/${selectedUnit}`,
+        `${process.env.REACT_APP_SERVER_URL}/radioStates/${selectedUnit}`,
         {
           headers: { authorization: "Bearer " + accessToken },
           // unit,
@@ -77,7 +77,7 @@ const MakmashTable = (props: IProps) => {
   };
 
   const fetchHeaderList = async (): Promise<Headers> => {
-    const res = await fetch("http://localhost:5005/headerList", {
+    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/headerList`, {
       headers: { authorization: "Bearer " + accessToken },
     });
     if (!res.ok) {

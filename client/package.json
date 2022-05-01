@@ -59,6 +59,7 @@
     ]
   },
   "devDependencies": {
-    "@types/stylis": "^4.0.2"
+    "@types/stylis": "^4.0.2",
+    "dotenv": "^16.0.0"
   }
 }

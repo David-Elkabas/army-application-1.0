@@ -32,10 +32,13 @@ const LoginPage = (props: IProps) => {
     password: string
   ): Promise<any> => {
     try {
-      const res = await axios.post("http://localhost:5005/api/login", {
-        username,
-        password,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/api/login`,
+        {
+          username,
+          password,
+        }
+      );
       setUsername(res.data.username);
       setIsAdmin(res.data.isAdmin);
       setUnitAccess(res.data.unitAccess);

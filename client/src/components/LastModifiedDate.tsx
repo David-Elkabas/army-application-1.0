@@ -18,7 +18,7 @@ const LastModifiedDate = (props: IProps) => {
 
   const fetchFileLastModifiedDate = async (): Promise<LastModifiedDate> => {
     const res = await fetch(
-      `http://localhost:5005/api/last-modified-date/${selectedUnit}`,
+      `${process.env.REACT_APP_SERVER_URL}/api/last-modified-date/${selectedUnit}`,
       {
         headers: { authorization: "Bearer " + accessToken },
       }

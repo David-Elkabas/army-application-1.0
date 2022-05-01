@@ -18,6 +18,7 @@ type oneDevice = {
 type oneBlock = {
   id: number;
   location: string;
+  type: string;
   devices: Array<oneDevice>;
 };
 
@@ -28,13 +29,13 @@ type DataBlocks = {
 const GeneralBlock = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
+  const [stationType, setStationType] = useState<string[]>([]);
   const [allStations, setAllStations] = useState<Array<oneBlock>>([]);
-  // const [stationsToShow, setStationsToShow] = useState<Array<oneBlock>>([]);
   const [selectedStations, setSelectedStations] = useState<Array<oneBlock>>([]);
 
   const fetchDataBlocks = async (): Promise<any> => {
     const res = await fetch(
-      `http://localhost:5005/api/charts/rcgw-chart-data/${selectedUnit}`,
+      `${process.env.REACT_APP_SERVER_URL}/api/charts/rcgw-chart-data/${selectedUnit}`,
       {
         headers: { authorization: "Bearer " + accessToken },
       }
@@ -55,6 +56,18 @@ const GeneralBlock = (props: IProps) => {
     {
       onSuccess: (data) => {
         // setAllStations(data.WorkingStations);
+        // console.log(data.WorkingStations);
+        let tempArr = [""];
+        for (let i = 0; i < data.WorkingStations.length; i++) {
+          // console.log(data.WorkingStations[i].type);
+          if (!tempArr.includes(data.WorkingStations[i].type)) {
+            tempArr.push(data.WorkingStations[i].type);
+          }
+        }
+        tempArr.shift();
+        // console.log(tempArr);
+        setStationType(tempArr);
+
         setAllStations((prevState: Array<oneBlock>) => {
           let tempStationsArray: Array<oneBlock> = [];
           for (let station of data.WorkingStations) {
@@ -90,12 +103,39 @@ const GeneralBlock = (props: IProps) => {
     );
   };
 
+  const clickOnShownArea = (area: string) => {
+    console.log(area);
+  };
+
   if (isLoading) return <>"Loading..."</>;
 
   if (isError) return <>"An error has occurred: " {errorText}</>;
 
   return (
     <>
+      <Grid item xs={12}>
+        <Box sx={{ m: 1 }}>
+          {stationType &&
+            stationType.map((area, index) => {
+              return (
+                <Chip
+                  key={index}
+                  label={area}
+                  // variant="outlined"
+                  sx={{
+                    mt: 1,
+                    mr: 0.5,
+                    p: 2,
+                    backgroundColor: "#cb4154",
+                    fontWeight: "bold",
+                  }}
+                  clickable
+                  onClick={() => clickOnShownArea(area)}
+                />
+              );
+            })}
+        </Box>
+      </Grid>
       <Grid item xs={12}>
         <Box sx={{ m: 1 }}>
           {allStations &&
@@ -106,7 +146,7 @@ const GeneralBlock = (props: IProps) => {
                   label={station.location}
                   // variant="outlined"
                   sx={{
-                    my: 1,
+                    mb: 1,
                     mr: 0.5,
                     backgroundColor: "#93B0B0",
                     fontWeight: "bold",
@@ -123,7 +163,7 @@ const GeneralBlock = (props: IProps) => {
                   key={index}
                   label={station.location}
                   sx={{
-                    my: 1,
+                    mb: 1,
                     mr: 0.5,
                     backgroundColor: "#0d292a",
                     fontWeight: "bold",

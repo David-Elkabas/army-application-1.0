@@ -61,7 +61,7 @@ const NetWorkChart = (props: IProps) => {
 
   const fetchChartsData = async (): Promise<arrayOfDataParam> => {
     const res = await fetch(
-      `http://localhost:5005/api/charts/rcgw-chart-data/${selectedUnit}`,
+      `${process.env.REACT_APP_SERVER_URL}/api/charts/rcgw-chart-data/${selectedUnit}`,
       {
         headers: { authorization: "Bearer " + accessToken },
       }
