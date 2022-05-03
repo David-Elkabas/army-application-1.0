@@ -27,12 +27,12 @@ type DataBlocks = {
 };
 
 const colorToType = {
-  שרתים: "#65C18C",
-  "אתרי תקשוב": "#EFD345",
-  'תק"שי רדיו': "#D67D3E",
-  'פת"ל': "#D9534F",
-  קידמית: "#40DFEF",
-  קרונות: "#6E85B2",
+  שרתים: "#274e13",
+  "אתרי תקשוב": "#073763",
+  'תק"שי רדיו': "	#6f0000",
+  'פת"ל': "#7f6000",
+  קידמית: "#4c1130",
+  קרונות: "#20124d",
   אחר: "#F9E4D4",
 };
 
@@ -182,6 +182,7 @@ const GeneralBlock = (props: IProps) => {
                     p: 2,
                     backgroundColor: () => colorSelector(area),
                     fontWeight: "bold",
+                    color: "white",
                   }}
                   clickable
                   onClick={() => clickOnShownArea(area)}
@@ -199,7 +200,7 @@ const GeneralBlock = (props: IProps) => {
                     mt: 1,
                     mr: 0.5,
                     p: 2,
-                    backgroundColor: "#330000",
+                    backgroundColor: "black",
                     color: "white",
                     fontWeight: "bold",
                   }}
@@ -224,6 +225,7 @@ const GeneralBlock = (props: IProps) => {
                     mr: 0.5,
                     backgroundColor: () => colorSelector(station.type),
                     fontWeight: "bold",
+                    color: "white",
                   }}
                   clickable
                   onClick={() => clickOnShownStation(station)}
