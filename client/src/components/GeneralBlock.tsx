@@ -29,7 +29,10 @@ type DataBlocks = {
 const GeneralBlock = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
+
   const [stationType, setStationType] = useState<string[]>([]);
+  const [selectedStationType, setSelectedStationType] = useState<string[]>([]);
+
   const [allStations, setAllStations] = useState<Array<oneBlock>>([]);
   const [selectedStations, setSelectedStations] = useState<Array<oneBlock>>([]);
 
@@ -57,6 +60,7 @@ const GeneralBlock = (props: IProps) => {
       onSuccess: (data) => {
         // setAllStations(data.WorkingStations);
         // console.log(data.WorkingStations);
+
         let tempArr = [""];
         for (let i = 0; i < data.WorkingStations.length; i++) {
           // console.log(data.WorkingStations[i].type);
@@ -66,7 +70,21 @@ const GeneralBlock = (props: IProps) => {
         }
         tempArr.shift();
         // console.log(tempArr);
-        setStationType(tempArr);
+        // setStationType(tempArr);
+
+        setStationType((prevState: string[]) => {
+          let tempAreaArray: string[] = [];
+          for (let area of tempArr) {
+            if (prevState?.find((loc: any) => loc === area)) {
+              tempAreaArray.push(area);
+            } else if (selectedStationType?.find((loc) => loc === area)) {
+              // console.log(selectedStationType);
+            } else {
+              tempAreaArray.push(area);
+            }
+          }
+          return tempAreaArray;
+        });
 
         setAllStations((prevState: Array<oneBlock>) => {
           let tempStationsArray: Array<oneBlock> = [];
@@ -78,7 +96,7 @@ const GeneralBlock = (props: IProps) => {
             } else if (
               selectedStations?.find((loc) => loc.location === station.location)
             ) {
-              console.log(selectedStations);
+              // console.log(selectedStations);
             } else {
               tempStationsArray.push(station);
             }
@@ -104,7 +122,28 @@ const GeneralBlock = (props: IProps) => {
   };
 
   const clickOnShownArea = (area: string) => {
-    console.log(area);
+    setSelectedStationType([area, ...selectedStationType]);
+    setStationType(stationType.filter((loc) => loc !== area));
+    setAllStations(allStations.filter((loc) => loc.type !== area));
+
+    let tempArray: any = [];
+    tempArray = allStations.filter((loc) => loc.type === area);
+    console.log(tempArray);
+    setSelectedStations([...selectedStations, ...tempArray]);
+    // console.log(area);
+  };
+
+  const clickOnSelectedShownArea = (area: string) => {
+    setStationType([area, ...stationType]);
+
+    let tempArray: any = [];
+    tempArray = selectedStations.filter((loc) => loc.type === area);
+    setAllStations([...tempArray, ...allStations]);
+
+    setSelectedStationType(selectedStationType.filter((loc) => loc !== area));
+    setSelectedStations(selectedStations.filter((loc) => loc.type !== area));
+
+    // console.log(area);
   };
 
   if (isLoading) return <>"Loading..."</>;
@@ -131,6 +170,26 @@ const GeneralBlock = (props: IProps) => {
                   }}
                   clickable
                   onClick={() => clickOnShownArea(area)}
+                />
+              );
+            })}
+          {selectedStationType &&
+            selectedStationType.map((area, index) => {
+              return (
+                <Chip
+                  key={index}
+                  label={area}
+                  // variant="outlined"
+                  sx={{
+                    mt: 1,
+                    mr: 0.5,
+                    p: 2,
+                    backgroundColor: "#330000",
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                  clickable
+                  onClick={() => clickOnSelectedShownArea(area)}
                 />
               );
             })}

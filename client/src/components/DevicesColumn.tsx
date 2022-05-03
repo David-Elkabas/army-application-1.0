@@ -72,7 +72,11 @@ const DevicesColumn = (props: IProps) => {
       >
         <Grid container justifyContent="space-between">
           <Grid item xs={3} sx={{ ml: 1 }}>
-            <Avatar alt={device} src={deviceToIcon[device]} variant="rounded" />
+            <Avatar
+              alt={device}
+              src={deviceToIcon[device] ? deviceToIcon[device] : RCGWAvatar}
+              variant="rounded"
+            />
           </Grid>
           {/* <Grid item xs={1} sx={{ mt: 0.6 }}>
             <Typography variant="body1" component="div" color="white">
