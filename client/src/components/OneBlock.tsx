@@ -14,16 +14,17 @@ type oneDevice = {
 interface IProps {
   location: string;
   devices: Array<oneDevice>;
+  color: any;
 }
 const OneBlock = (props: IProps) => {
-  const { location, devices } = props;
+  const { location, devices, color } = props;
 
   return (
     <Draggable>
       <Card
         style={{ cursor: "move" }}
         sx={{
-          backgroundColor: "#0d292a",
+          backgroundColor: color,
           my: 2,
           mr: 2,
           justifyContent: "top",

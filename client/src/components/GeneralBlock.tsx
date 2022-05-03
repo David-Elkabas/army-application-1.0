@@ -26,6 +26,24 @@ type DataBlocks = {
   WorkingStations: Array<oneBlock>;
 };
 
+const colorToType = {
+  שרתים: "#65C18C",
+  "אתרי תקשוב": "#EFD345",
+  'תק"שי רדיו': "#D67D3E",
+  'פת"ל': "#D9534F",
+  קידמית: "#40DFEF",
+  קרונות: "#6E85B2",
+  אחר: "#F9E4D4",
+};
+
+const colorSelector = (area) => {
+  if (area in colorToType) {
+    return colorToType[area];
+  } else {
+    return "#464E2E";
+  }
+};
+
 const GeneralBlock = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
@@ -128,9 +146,8 @@ const GeneralBlock = (props: IProps) => {
 
     let tempArray: any = [];
     tempArray = allStations.filter((loc) => loc.type === area);
-    console.log(tempArray);
+    // console.log(tempArray);
     setSelectedStations([...selectedStations, ...tempArray]);
-    // console.log(area);
   };
 
   const clickOnSelectedShownArea = (area: string) => {
@@ -142,8 +159,6 @@ const GeneralBlock = (props: IProps) => {
 
     setSelectedStationType(selectedStationType.filter((loc) => loc !== area));
     setSelectedStations(selectedStations.filter((loc) => loc.type !== area));
-
-    // console.log(area);
   };
 
   if (isLoading) return <>"Loading..."</>;
@@ -165,7 +180,7 @@ const GeneralBlock = (props: IProps) => {
                     mt: 1,
                     mr: 0.5,
                     p: 2,
-                    backgroundColor: "#cb4154",
+                    backgroundColor: () => colorSelector(area),
                     fontWeight: "bold",
                   }}
                   clickable
@@ -207,7 +222,7 @@ const GeneralBlock = (props: IProps) => {
                   sx={{
                     mb: 1,
                     mr: 0.5,
-                    backgroundColor: "#93B0B0",
+                    backgroundColor: () => colorSelector(station.type),
                     fontWeight: "bold",
                   }}
                   clickable
@@ -244,6 +259,7 @@ const GeneralBlock = (props: IProps) => {
                 key={data.id}
                 location={data.location}
                 devices={data.devices}
+                color={() => colorSelector(data.type)}
               />
             </Grid>
           );
