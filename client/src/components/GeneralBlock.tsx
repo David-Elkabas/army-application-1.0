@@ -27,12 +27,12 @@ type DataBlocks = {
 };
 
 const colorToType = {
-  שרתים: "#274e13",
+  שרתים: "#172e0b",
   "אתרי תקשוב": "#073763",
-  'תק"שי רדיו': "	#6f0000",
+  'תק"שי רדיו': "	#5c1010",
   'פת"ל': "#7f6000",
-  קידמית: "#4c1130",
-  קרונות: "#20124d",
+  קידמית: "#5d2844",
+  קרונות: "#291762",
   אחר: "#F9E4D4",
 };
 
@@ -180,6 +180,8 @@ const GeneralBlock = (props: IProps) => {
                     mt: 1,
                     mr: 0.5,
                     p: 2,
+                    border: 2,
+                    borderColor: "black",
                     backgroundColor: () => colorSelector(area),
                     fontWeight: "bold",
                     color: "white",
@@ -195,13 +197,15 @@ const GeneralBlock = (props: IProps) => {
                 <Chip
                   key={index}
                   label={area}
-                  // variant="outlined"
+                  variant="outlined"
                   sx={{
                     mt: 1,
                     mr: 0.5,
                     p: 2,
-                    backgroundColor: "black",
-                    color: "white",
+                    border: 2,
+
+                    // backgroundColor: "black",
+                    // color: "white",
                     fontWeight: "bold",
                   }}
                   clickable
@@ -223,6 +227,7 @@ const GeneralBlock = (props: IProps) => {
                   sx={{
                     mb: 1,
                     mr: 0.5,
+
                     backgroundColor: () => colorSelector(station.type),
                     fontWeight: "bold",
                     color: "white",
@@ -238,12 +243,14 @@ const GeneralBlock = (props: IProps) => {
                 <Chip
                   key={index}
                   label={station.location}
+                  variant="outlined"
                   sx={{
                     mb: 1,
                     mr: 0.5,
-                    backgroundColor: "#0d292a",
+                    border: 2,
+                    // backgroundColor: "#0d292a",
                     fontWeight: "bold",
-                    color: "white",
+                    // color: "white",
                   }}
                   clickable
                   onClick={() => clickOnSelectedStation(station)}

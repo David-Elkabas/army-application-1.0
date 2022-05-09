@@ -24,6 +24,7 @@ const OneBlock = (props: IProps) => {
       <Card
         style={{ cursor: "move" }}
         sx={{
+          borderRadius: 3,
           backgroundColor: color,
           my: 2,
           mr: 2,

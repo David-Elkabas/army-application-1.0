@@ -1,8 +1,10 @@
-import { Box, Button, Grid, Paper, Stack } from "@mui/material";
+import { Box, Button, Card, Grid, Paper, Stack } from "@mui/material";
+import { Table } from "react-bootstrap";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useNavigate } from "react-router-dom";
 import GeneralBlock from "../components/GeneralBlock";
 import PageHeader from "../components/PageHeader";
+import TableOfContents from "../components/TableOfContents";
 
 interface IProps {
   username: string;
@@ -31,9 +33,16 @@ const GeneralView = (props: IProps) => {
               accessToken={accessToken}
             />
           </Box>
-          <Button variant="contained" onClick={handleClick} size="large">
-            חזור חזרה
-          </Button>
+          <Grid container justifyContent="space-between">
+            <Grid item xs={7}>
+              <Button variant="contained" onClick={handleClick} size="large">
+                חזור חזרה
+              </Button>
+            </Grid>
+            <Grid item xs={5}>
+              <TableOfContents />
+            </Grid>
+          </Grid>
 
           <Grid container sx={{ width: "90vw" }} direction="row">
             <GeneralBlock
