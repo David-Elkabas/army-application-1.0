@@ -25,7 +25,7 @@ const OneBlock = (props: IProps) => {
         style={{ cursor: "move" }}
         sx={{
           borderRadius: 3,
-          backgroundColor: color,
+          background: color,
           my: 2,
           mr: 2,
           justifyContent: "top",

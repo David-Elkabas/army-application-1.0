@@ -34,9 +34,11 @@ const TableOfContents = (props: Props) => {
       sx={{
         borderRadius: 3,
         backgroundColor: "#93B0B0",
-
+        width: "33vw",
         justifyContent: "center",
         display: "flex",
+        position: "fixed",
+        zIndex: 1000,
       }}
     >
       <CardContent>

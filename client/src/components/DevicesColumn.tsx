@@ -86,7 +86,7 @@ const DevicesColumn = (props: IProps) => {
           <Grid item xs={8} sx={{ mt: 1, mr: 1 }}>
             <ProgressBar>
               <ProgressBar
-                style={{ backgroundColor: "rgba(75, 220, 192, 1)" }}
+                style={{ backgroundColor: "#52c234" }}
                 now={okPercent}
                 label={OK}
                 key={1}

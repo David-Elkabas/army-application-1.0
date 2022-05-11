@@ -26,14 +26,24 @@ type DataBlocks = {
   WorkingStations: Array<oneBlock>;
 };
 
+// const colorToType = {
+//   שרתים: "#172e0b",
+//   "אתרי תקשוב": "#073763",
+//   'תק"שי רדיו': "	#5c1010",
+//   'פת"ל': "#7f6000",
+//   קידמית: "#5d2844",
+//   קרונות: "#291762",
+//   אחר: "#F9E4D4",
+// };
+
 const colorToType = {
-  שרתים: "#172e0b",
-  "אתרי תקשוב": "#073763",
-  'תק"שי רדיו': "	#5c1010",
-  'פת"ל': "#7f6000",
-  קידמית: "#5d2844",
-  קרונות: "#291762",
-  אחר: "#F9E4D4",
+  שרתים: "linear-gradient(to bottom right, #000600, #44a08d)",
+  "אתרי תקשוב": "linear-gradient(to bottom right, #000428, #004e92)",
+  'תק"שי רדיו': "linear-gradient(to bottom right, #200122, #6f0000);",
+  'פת"ל': "linear-gradient(to bottom right, #061700, #52c234)",
+  קידמית: "linear-gradient(to bottom right,#060600, #ff8008)",
+  קרונות: "linear-gradient(to bottom right, #000005, #6441a5)",
+  אחר: "linear-gradient(to right, #2b5876, #4e4376);",
 };
 
 const colorSelector = (area) => {
@@ -181,8 +191,11 @@ const GeneralBlock = (props: IProps) => {
                     mr: 0.5,
                     p: 2,
                     border: 2,
-                    borderColor: "black",
-                    backgroundColor: () => colorSelector(area),
+
+                    // background:
+                    //   "linear-gradient(to right bottom, #430089, #82ffa1)",
+                    // backgroundColor: () => colorSelector(area),
+                    background: () => colorSelector(area),
                     fontWeight: "bold",
                     color: "white",
                   }}
@@ -228,7 +241,7 @@ const GeneralBlock = (props: IProps) => {
                     mb: 1,
                     mr: 0.5,
 
-                    backgroundColor: () => colorSelector(station.type),
+                    background: () => colorSelector(station.type),
                     fontWeight: "bold",
                     color: "white",
                   }}
