@@ -177,7 +177,7 @@ const GeneralBlock = (props: IProps) => {
 
   return (
     <>
-      <Grid item xs={12}>
+      <Grid item>
         <Box sx={{ m: 1 }}>
           {stationType &&
             stationType.map((area, index) => {
@@ -191,10 +191,6 @@ const GeneralBlock = (props: IProps) => {
                     mr: 0.5,
                     p: 2,
                     border: 2,
-
-                    // background:
-                    //   "linear-gradient(to right bottom, #430089, #82ffa1)",
-                    // backgroundColor: () => colorSelector(area),
                     background: () => colorSelector(area),
                     fontWeight: "bold",
                     color: "white",
@@ -273,19 +269,21 @@ const GeneralBlock = (props: IProps) => {
         </Box>
       </Grid>
 
-      {allStations &&
-        allStations.map((data, index) => {
-          return (
-            <Grid item xs={2} key={data.id}>
-              <OneBlock
-                key={data.id}
-                location={data.location}
-                devices={data.devices}
-                color={() => colorSelector(data.type)}
-              />
-            </Grid>
-          );
-        })}
+      <Grid container direction="row">
+        {allStations &&
+          allStations.map((data, index) => {
+            return (
+              <Grid item xs={2.4} key={data.id}>
+                <OneBlock
+                  key={data.id}
+                  location={data.location}
+                  devices={data.devices}
+                  color={() => colorSelector(data.type)}
+                />
+              </Grid>
+            );
+          })}
+      </Grid>
     </>
   );
 };

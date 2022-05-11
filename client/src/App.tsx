@@ -93,7 +93,7 @@ const App = () => {
             component="div"
             sx={{ m: 1, fontWeight: 700, color: "white" }}
           >
-            ניטור ROIP גרסת חודש מלחמה
+            ניטור ROIP במתמרן גרסת חודש מלחמה
           </Typography>
           <Box sx={{ zIndex: 1 }}>
             <BrowserRouter>

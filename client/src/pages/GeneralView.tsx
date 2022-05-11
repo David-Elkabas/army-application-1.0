@@ -45,10 +45,18 @@ const GeneralView = (props: IProps) => {
           </Grid>
 
           <Grid container sx={{ width: "90vw" }} direction="row">
-            <GeneralBlock
-              accessToken={accessToken}
-              selectedUnit={selectedUnit}
-            />
+            <Grid item xs={10}>
+              <GeneralBlock
+                accessToken={accessToken}
+                selectedUnit={selectedUnit}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Box sx={{ marginTop: 15, borderColor: "black", border: 1 }}>
+                {" "}
+                hello
+              </Box>
+            </Grid>
           </Grid>
           <Stack direction="row" justifyContent="center">
             <Button

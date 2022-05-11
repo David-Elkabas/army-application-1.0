@@ -1,5 +1,6 @@
-import { Avatar, Box, Grid, Tooltip, Typography } from "@mui/material";
-import React from "react";
+import { Avatar, Box, Grid, Radio, Tooltip, Typography } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import React, { useState } from "react";
 import { ProgressBar } from "react-bootstrap";
 import CCTAvatar from "../images/images-generalBlock/CCT2.png";
 import RCGWAvatar from "../images/images-generalBlock/RCGW.png";
@@ -7,6 +8,8 @@ import YadbarAvatar from "../images/images-generalBlock/yadbar.png";
 import DeployAvatar from "../images/images-generalBlock/deploy2.png";
 import CCUAvatar from "../images/images-generalBlock/CCU.png";
 
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 type IProps = {
   device: string;
   OK: number;
@@ -39,14 +42,19 @@ const percentCalculator = (
 
 const DevicesColumn = (props: IProps) => {
   const { device, OK, ERROR, FAILED } = props;
-
+  const [isSelected, setIsSelected] = useState(false);
   const { okPercent, errorPercent, failPercent } = percentCalculator(
     OK,
     ERROR,
     FAILED
   );
-  // console.log(device);
 
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  // console.log(device);
+  const handleChange = () => {
+    setIsSelected(!isSelected);
+    console.log(isSelected);
+  };
   return (
     <>
       <Tooltip
@@ -70,20 +78,28 @@ const DevicesColumn = (props: IProps) => {
         arrow
         sx={{ fontSize: 10 }}
       >
-        <Grid container justifyContent="space-between">
-          <Grid item xs={3} sx={{ ml: 1 }}>
+        <Grid container justifyContent="center">
+          <Grid item xs={2}>
+            <Checkbox
+              {...label}
+              icon={<StarBorderIcon />}
+              checkedIcon={<StarIcon />}
+              sx={{
+                "&.Mui-checked": {
+                  color: "#f5c71a",
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={2.5}>
             <Avatar
               alt={device}
               src={deviceToIcon[device] ? deviceToIcon[device] : RCGWAvatar}
               variant="rounded"
             />
           </Grid>
-          {/* <Grid item xs={1} sx={{ mt: 0.6 }}>
-            <Typography variant="body1" component="div" color="white">
-              {OK + ERROR + FAILED}
-            </Typography>
-          </Grid> */}
-          <Grid item xs={8} sx={{ mt: 1, mr: 1 }}>
+
+          <Grid item xs={7} sx={{ mt: 1.5, mr: 1 }}>
             <ProgressBar>
               <ProgressBar
                 style={{ backgroundColor: "#52c234" }}
@@ -105,9 +121,6 @@ const DevicesColumn = (props: IProps) => {
                 key={3}
               />
             </ProgressBar>
-            {/* <Typography variant="h6" component="div" color="white">
-          {OK} {ERROR} {FAILED}
-        </Typography> */}
           </Grid>
         </Grid>
       </Tooltip>
