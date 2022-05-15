@@ -1,7 +1,17 @@
-import { Box, Button, Card, Grid, Paper, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
 import { Table } from "react-bootstrap";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useNavigate } from "react-router-dom";
+import DeviceColumnNoStar from "../components/DeviceColumnNoStar";
 import GeneralBlock from "../components/GeneralBlock";
 import PageHeader from "../components/PageHeader";
 import TableOfContents from "../components/TableOfContents";
@@ -13,9 +23,19 @@ interface IProps {
   accessToken: string;
 }
 
+type DevicePerems = {
+  location: string;
+  type: string;
+  device: string;
+  OK: number;
+  ERROR: number;
+  FAILED: number;
+};
+
 const GeneralView = (props: IProps) => {
   const { username, isAdmin, selectedUnit, accessToken } = props;
 
+  const [favoriteStations, setFavoriteStations] = useState<DevicePerems[]>([]);
   const navigate = useNavigate();
 
   const handleClick = (): void => {
@@ -44,17 +64,46 @@ const GeneralView = (props: IProps) => {
             </Grid>
           </Grid>
 
-          <Grid container sx={{ width: "90vw" }} direction="row">
+          <Grid container direction="row" sx={{ width: "90vw" }}>
             <Grid item xs={10}>
               <GeneralBlock
                 accessToken={accessToken}
                 selectedUnit={selectedUnit}
+                favoriteStations={favoriteStations}
+                setFavoriteStations={setFavoriteStations}
               />
             </Grid>
-            <Grid item xs={2}>
-              <Box sx={{ marginTop: 15, borderColor: "black", border: 1 }}>
-                {" "}
-                hello
+            <Grid item xs={2} justifyContent="center">
+              <Box
+                sx={{
+                  marginTop: 15,
+                  borderColor: "red",
+                  border: 5,
+                }}
+              >
+                <Typography
+                  component="h4"
+                  variant="h4"
+                  sx={{
+                    mt: 2,
+                    fontWeight: 700,
+                    fontSize: 35,
+                    color: "#f5c71a",
+                  }}
+                >
+                  מועדפים
+                </Typography>
+                {favoriteStations &&
+                  favoriteStations.map((ele) => {
+                    return (
+                      <DeviceColumnNoStar
+                        device={ele.device}
+                        OK={ele.OK}
+                        ERROR={ele.ERROR}
+                        FAILED={ele.FAILED}
+                      />
+                    );
+                  })}
               </Box>
             </Grid>
           </Grid>

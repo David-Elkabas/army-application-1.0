@@ -3,6 +3,22 @@ import React from "react";
 import { ProgressBar } from "react-bootstrap";
 import Draggable from "react-draggable";
 import DevicesColumn from "./DevicesColumn";
+interface IProps {
+  location: string;
+  devices: Array<oneDevice>;
+  color: any;
+  favoriteStations: Array<DevicePerems>;
+  setFavoriteStations: React.Dispatch<React.SetStateAction<DevicePerems[]>>;
+}
+
+type DevicePerems = {
+  location: string;
+  type: string;
+  device: string;
+  OK: number;
+  ERROR: number;
+  FAILED: number;
+};
 
 type oneDevice = {
   device: string;
@@ -11,13 +27,9 @@ type oneDevice = {
   FAILED: number;
 };
 
-interface IProps {
-  location: string;
-  devices: Array<oneDevice>;
-  color: any;
-}
 const OneBlock = (props: IProps) => {
-  const { location, devices, color } = props;
+  const { location, devices, color, favoriteStations, setFavoriteStations } =
+    props;
 
   return (
     <Draggable>
@@ -46,6 +58,8 @@ const OneBlock = (props: IProps) => {
                       OK={device.OK}
                       ERROR={device.ERROR}
                       FAILED={device.FAILED}
+                      favoriteStations={favoriteStations}
+                      setFavoriteStations={setFavoriteStations}
                     />
                   </Grid>
                 </Paper>

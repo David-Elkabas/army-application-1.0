@@ -12,24 +12,13 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import DeviceTooltip from "./DeviceTooltip";
 import CustomProgressBar from "./CustomProgressBar";
-
 type IProps = {
   device: string;
   OK: number;
   ERROR: number;
   FAILED: number;
-  favoriteStations: Array<DevicePerems>;
-  setFavoriteStations: React.Dispatch<React.SetStateAction<DevicePerems[]>>;
 };
 
-type DevicePerems = {
-  location: string;
-  type: string;
-  device: string;
-  OK: number;
-  ERROR: number;
-  FAILED: number;
-};
 const deviceToIcon = {
   CCT: CCTAvatar,
   RCGW: RCGWAvatar,
@@ -53,33 +42,17 @@ const percentCalculator = (
   return { okPercent, errorPercent, failPercent };
 };
 
-const DevicesColumn = (props: IProps) => {
-  const { device, OK, ERROR, FAILED, favoriteStations, setFavoriteStations } =
-    props;
+const DeviceColumnNoStar = (props: IProps) => {
+  const { device, OK, ERROR, FAILED } = props;
   const { okPercent, errorPercent, failPercent } = percentCalculator(
     OK,
     ERROR,
     FAILED
   );
+
   const arrayOfPercents = [okPercent, errorPercent, failPercent];
   const arrayOfLabel = [OK, ERROR, FAILED];
 
-  const DeviceData = {
-    location: "google",
-    type: "home",
-    device: device,
-    OK: OK,
-    ERROR: ERROR,
-    FAILED: FAILED,
-  };
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  // console.log(device);
-  const handleIconChange = (e) => {
-    if (e.target.checked) {
-      setFavoriteStations([DeviceData, ...favoriteStations]);
-      // console.log(favoriteStations);
-    }
-  };
   return (
     <>
       <Tooltip
@@ -96,19 +69,6 @@ const DevicesColumn = (props: IProps) => {
         sx={{ fontSize: 10 }}
       >
         <Grid container justifyContent="center">
-          <Grid item xs={2}>
-            <Checkbox
-              {...label}
-              icon={<StarBorderIcon />}
-              checkedIcon={<StarIcon />}
-              onChange={(e) => handleIconChange(e)}
-              sx={{
-                "&.Mui-checked": {
-                  color: "#f5c71a",
-                },
-              }}
-            />
-          </Grid>
           <Grid item xs={2.5}>
             <Avatar
               alt={device}
@@ -129,4 +89,4 @@ const DevicesColumn = (props: IProps) => {
   );
 };
 
-export default DevicesColumn;
+export default DeviceColumnNoStar;

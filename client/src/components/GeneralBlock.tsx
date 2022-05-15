@@ -7,6 +7,8 @@ import OneBlock from "./OneBlock";
 type IProps = {
   accessToken: string;
   selectedUnit: string;
+  favoriteStations: Array<DevicePerems>;
+  setFavoriteStations: React.Dispatch<React.SetStateAction<DevicePerems[]>>;
 };
 type oneDevice = {
   device: string;
@@ -24,6 +26,15 @@ type oneBlock = {
 
 type DataBlocks = {
   WorkingStations: Array<oneBlock>;
+};
+
+type DevicePerems = {
+  location: string;
+  type: string;
+  device: string;
+  OK: number;
+  ERROR: number;
+  FAILED: number;
 };
 
 // const colorToType = {
@@ -55,7 +66,8 @@ const colorSelector = (area) => {
 };
 
 const GeneralBlock = (props: IProps) => {
-  const { accessToken, selectedUnit } = props;
+  const { accessToken, selectedUnit, favoriteStations, setFavoriteStations } =
+    props;
   const [errorText, setErrorText] = useState(" ");
 
   const [stationType, setStationType] = useState<string[]>([]);
@@ -257,9 +269,7 @@ const GeneralBlock = (props: IProps) => {
                     mb: 1,
                     mr: 0.5,
                     border: 2,
-                    // backgroundColor: "#0d292a",
                     fontWeight: "bold",
-                    // color: "white",
                   }}
                   clickable
                   onClick={() => clickOnSelectedStation(station)}
@@ -279,6 +289,8 @@ const GeneralBlock = (props: IProps) => {
                   location={data.location}
                   devices={data.devices}
                   color={() => colorSelector(data.type)}
+                  favoriteStations={favoriteStations}
+                  setFavoriteStations={setFavoriteStations}
                 />
               </Grid>
             );
