@@ -18,6 +18,8 @@ type IProps = {
   OK: number;
   ERROR: number;
   FAILED: number;
+  deviceType: string;
+  location: string;
   favoriteStations: Array<DevicePerems>;
   setFavoriteStations: React.Dispatch<React.SetStateAction<DevicePerems[]>>;
 };
@@ -54,8 +56,16 @@ const percentCalculator = (
 };
 
 const DevicesColumn = (props: IProps) => {
-  const { device, OK, ERROR, FAILED, favoriteStations, setFavoriteStations } =
-    props;
+  const {
+    device,
+    OK,
+    ERROR,
+    FAILED,
+    deviceType,
+    location,
+    favoriteStations,
+    setFavoriteStations,
+  } = props;
   const { okPercent, errorPercent, failPercent } = percentCalculator(
     OK,
     ERROR,
@@ -65,19 +75,17 @@ const DevicesColumn = (props: IProps) => {
   const arrayOfLabel = [OK, ERROR, FAILED];
 
   const DeviceData = {
-    location: "google",
-    type: "home",
+    location: location,
+    type: deviceType,
     device: device,
     OK: OK,
     ERROR: ERROR,
     FAILED: FAILED,
   };
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  // console.log(device);
   const handleIconChange = (e) => {
     if (e.target.checked) {
       setFavoriteStations([DeviceData, ...favoriteStations]);
-      // console.log(favoriteStations);
     }
   };
   return (

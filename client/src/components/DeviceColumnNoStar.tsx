@@ -1,22 +1,48 @@
-import { Avatar, Box, Grid, Radio, Tooltip, Typography } from "@mui/material";
-import Checkbox from "@mui/material/Checkbox";
-import React, { useState } from "react";
-import { ProgressBar } from "react-bootstrap";
+import { Avatar, Grid, Paper, Tooltip, Typography } from "@mui/material";
 import CCTAvatar from "../images/images-generalBlock/CCT2.png";
 import RCGWAvatar from "../images/images-generalBlock/RCGW.png";
 import YadbarAvatar from "../images/images-generalBlock/yadbar.png";
 import DeployAvatar from "../images/images-generalBlock/deploy2.png";
 import CCUAvatar from "../images/images-generalBlock/CCU.png";
-
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
+import CloseIcon from "@mui/icons-material/Close";
 import DeviceTooltip from "./DeviceTooltip";
 import CustomProgressBar from "./CustomProgressBar";
+
 type IProps = {
   device: string;
   OK: number;
   ERROR: number;
   FAILED: number;
+  type: string;
+  location: string;
+  favoriteStations: Array<DevicePerems>;
+  setFavoriteStations: React.Dispatch<React.SetStateAction<DevicePerems[]>>;
+};
+type DevicePerems = {
+  location: string;
+  type: string;
+  device: string;
+  OK: number;
+  ERROR: number;
+  FAILED: number;
+};
+
+const colorToType = {
+  שרתים: "linear-gradient(to bottom , #000600, #44a08d)",
+  "אתרי תקשוב": "linear-gradient(to bottom , #000428, #004e92)",
+  'תק"שי רדיו': "linear-gradient(to bottom , #200122, #6f0000);",
+  'פת"ל': "linear-gradient(to bottom , #061700, #52c234)",
+  קידמית: "linear-gradient(to bottom ,#060600, #ff8008)",
+  קרונות: "linear-gradient(to bottom , #000005, #6441a5)",
+  אחר: "linear-gradient(to bottom, #2b5876, #4e4376);",
+};
+
+const colorSelector = (area) => {
+  if (area in colorToType) {
+    return colorToType[area];
+  } else {
+    return "#464E2E";
+  }
 };
 
 const deviceToIcon = {
@@ -43,7 +69,16 @@ const percentCalculator = (
 };
 
 const DeviceColumnNoStar = (props: IProps) => {
-  const { device, OK, ERROR, FAILED } = props;
+  const {
+    device,
+    OK,
+    ERROR,
+    FAILED,
+    type,
+    location,
+    favoriteStations,
+    setFavoriteStations,
+  } = props;
   const { okPercent, errorPercent, failPercent } = percentCalculator(
     OK,
     ERROR,
@@ -53,8 +88,20 @@ const DeviceColumnNoStar = (props: IProps) => {
   const arrayOfPercents = [okPercent, errorPercent, failPercent];
   const arrayOfLabel = [OK, ERROR, FAILED];
 
+  const handleDeleteClick = () => {
+    console.log(type, location, device);
+
+    setFavoriteStations(
+      favoriteStations.filter(
+        (ele) =>
+          ele.device !== device ||
+          ele.location !== location ||
+          ele.type !== type
+      )
+    );
+  };
   return (
-    <>
+    <Paper sx={{ background: () => colorSelector(type), m: 1 }}>
       <Tooltip
         followCursor
         title={
@@ -69,6 +116,23 @@ const DeviceColumnNoStar = (props: IProps) => {
         sx={{ fontSize: 10 }}
       >
         <Grid container justifyContent="center">
+          <Grid item xs={1}>
+            <CloseIcon
+              sx={{ color: "white" }}
+              onClick={handleDeleteClick}
+              style={{ cursor: "pointer" }}
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <Typography
+              align="center"
+              variant="h5"
+              component="div"
+              color="white"
+            >
+              {location}
+            </Typography>
+          </Grid>
           <Grid item xs={2.5}>
             <Avatar
               alt={device}
@@ -85,7 +149,7 @@ const DeviceColumnNoStar = (props: IProps) => {
           </Grid>
         </Grid>
       </Tooltip>
-    </>
+    </Paper>
   );
 };
 

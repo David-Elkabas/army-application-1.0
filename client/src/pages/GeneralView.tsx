@@ -44,80 +44,84 @@ const GeneralView = (props: IProps) => {
   return (
     <>
       <Paper sx={{ bgcolor: "#f3f3f3", px: 5, width: "95vw" }}>
-        <Box>
-          <Box sx={{ mx: "auto", width: 1 }}>
-            <PageHeader
-              username={username}
-              isAdmin={isAdmin}
-              selectedUnit={selectedUnit}
-              accessToken={accessToken}
-            />
-          </Box>
-          <Grid container justifyContent="space-between">
-            <Grid item xs={7}>
-              <Button variant="contained" onClick={handleClick} size="large">
-                חזור חזרה
-              </Button>
-            </Grid>
-            <Grid item xs={5}>
-              <TableOfContents />
-            </Grid>
-          </Grid>
-
-          <Grid container direction="row" sx={{ width: "90vw" }}>
-            <Grid item xs={10}>
-              <GeneralBlock
-                accessToken={accessToken}
-                selectedUnit={selectedUnit}
-                favoriteStations={favoriteStations}
-                setFavoriteStations={setFavoriteStations}
-              />
-            </Grid>
-            <Grid item xs={2} justifyContent="center">
-              <Box
-                sx={{
-                  marginTop: 15,
-                  borderColor: "red",
-                  border: 5,
-                }}
-              >
-                <Typography
-                  component="h4"
-                  variant="h4"
-                  sx={{
-                    mt: 2,
-                    fontWeight: 700,
-                    fontSize: 35,
-                    color: "#f5c71a",
-                  }}
-                >
-                  מועדפים
-                </Typography>
-                {favoriteStations &&
-                  favoriteStations.map((ele) => {
-                    return (
-                      <DeviceColumnNoStar
-                        device={ele.device}
-                        OK={ele.OK}
-                        ERROR={ele.ERROR}
-                        FAILED={ele.FAILED}
-                      />
-                    );
-                  })}
-              </Box>
-            </Grid>
-          </Grid>
-          <Stack direction="row" justifyContent="center">
-            <Button
-              variant="contained"
-              onClick={handleClick}
-              size="large"
-              sx={{ mb: 5 }}
-            >
+        <Box sx={{ mx: "auto", width: 1 }}>
+          <PageHeader
+            username={username}
+            isAdmin={isAdmin}
+            selectedUnit={selectedUnit}
+            accessToken={accessToken}
+          />
+        </Box>
+        <Grid container justifyContent="space-between">
+          <Grid item xs={7}>
+            <Button variant="contained" onClick={handleClick} size="large">
               חזור חזרה
             </Button>
-          </Stack>
-        </Box>
+          </Grid>
+          <Grid item xs={5}>
+            <TableOfContents />
+          </Grid>
+        </Grid>
+
+        <Grid container direction="row" sx={{ width: "90vw" }}>
+          <Grid item xs={10}>
+            <GeneralBlock
+              accessToken={accessToken}
+              selectedUnit={selectedUnit}
+              favoriteStations={favoriteStations}
+              setFavoriteStations={setFavoriteStations}
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <Box
+              sx={{
+                borderRadius: 3,
+                marginTop: 15,
+                border: 5,
+                pb: 5,
+              }}
+            >
+              <Typography
+                component="h4"
+                variant="h4"
+                align="center"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: 35,
+                  color: "#f5c71a",
+                }}
+              >
+                מועדפים
+              </Typography>
+
+              {favoriteStations &&
+                favoriteStations.map((ele) => {
+                  return (
+                    <DeviceColumnNoStar
+                      device={ele.device}
+                      OK={ele.OK}
+                      ERROR={ele.ERROR}
+                      FAILED={ele.FAILED}
+                      type={ele.type}
+                      location={ele.location}
+                      favoriteStations={favoriteStations}
+                      setFavoriteStations={setFavoriteStations}
+                    />
+                  );
+                })}
+            </Box>
+          </Grid>
+        </Grid>
+        <Stack direction="row" justifyContent="center">
+          <Button
+            variant="contained"
+            onClick={handleClick}
+            size="large"
+            sx={{ mb: 5 }}
+          >
+            חזור חזרה
+          </Button>
+        </Stack>
       </Paper>
       <ReactQueryDevtools initialIsOpen={false} />
     </>

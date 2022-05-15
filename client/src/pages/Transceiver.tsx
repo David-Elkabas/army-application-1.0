@@ -65,29 +65,13 @@ const Transceiver = (props: IProps) => {
             <InfoText name='מקמ"שים' />
 
             <Grid container direction="row">
-              <Grid item xs={7}>
+              <Grid item xs={12}>
                 <Box dir="ltr">
                   <MakmashTable
                     accessToken={accessToken}
                     selectedUnit={selectedUnit}
                   />
                 </Box>
-              </Grid>
-              <Grid item xs={5}>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <PieCharts
-                      accessToken={accessToken}
-                      selectedUnit={selectedUnit}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <NetworkChart
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  />
-                </Grid>
               </Grid>
             </Grid>
             <ReactQueryDevtools initialIsOpen={false} />

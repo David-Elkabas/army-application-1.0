@@ -17,16 +17,15 @@ interface IProps {
 const cardOptions = [
   {
     value: "transceiver",
-    header: "סנן לפי מקמ''שים",
+    header: " סנן לפי מקמ''שים",
     description:
       "הצגת ניטור עבור כלל המקמ''שים המחוברים ומוגדרים בקובץ הפק''ל כולל ניתוח סטאטוס",
     image: transceiver,
   },
   {
     value: "uvt",
-    header: "סנן לפי ידב''רים",
-    description:
-      "הצגת ניטור עבור כלל הידב''רים המחוברים ומוגדרים בקובץ הפק''ל כולל הרשתות והמקמ''שים המוקצים לידב''רים",
+    header: "הצגת גרפים",
+    description: "הצגת כלל הגרפים על שלל המקמ''שים, ידב''רים, וישל''קים",
     image: monitor,
   },
   {

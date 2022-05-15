@@ -98,19 +98,13 @@ const GeneralBlock = (props: IProps) => {
     fetchDataBlocks,
     {
       onSuccess: (data) => {
-        // setAllStations(data.WorkingStations);
-        // console.log(data.WorkingStations);
-
         let tempArr = [""];
         for (let i = 0; i < data.WorkingStations.length; i++) {
-          // console.log(data.WorkingStations[i].type);
           if (!tempArr.includes(data.WorkingStations[i].type)) {
             tempArr.push(data.WorkingStations[i].type);
           }
         }
         tempArr.shift();
-        // console.log(tempArr);
-        // setStationType(tempArr);
 
         setStationType((prevState: string[]) => {
           let tempAreaArray: string[] = [];
@@ -118,7 +112,6 @@ const GeneralBlock = (props: IProps) => {
             if (prevState?.find((loc: any) => loc === area)) {
               tempAreaArray.push(area);
             } else if (selectedStationType?.find((loc) => loc === area)) {
-              // console.log(selectedStationType);
             } else {
               tempAreaArray.push(area);
             }
@@ -290,6 +283,7 @@ const GeneralBlock = (props: IProps) => {
                   devices={data.devices}
                   color={() => colorSelector(data.type)}
                   favoriteStations={favoriteStations}
+                  deviceType={data.type}
                   setFavoriteStations={setFavoriteStations}
                 />
               </Grid>

@@ -8,6 +8,7 @@ interface IProps {
   devices: Array<oneDevice>;
   color: any;
   favoriteStations: Array<DevicePerems>;
+  deviceType: string;
   setFavoriteStations: React.Dispatch<React.SetStateAction<DevicePerems[]>>;
 }
 
@@ -28,8 +29,14 @@ type oneDevice = {
 };
 
 const OneBlock = (props: IProps) => {
-  const { location, devices, color, favoriteStations, setFavoriteStations } =
-    props;
+  const {
+    location,
+    devices,
+    color,
+    favoriteStations,
+    deviceType,
+    setFavoriteStations,
+  } = props;
 
   return (
     <Draggable>
@@ -58,6 +65,8 @@ const OneBlock = (props: IProps) => {
                       OK={device.OK}
                       ERROR={device.ERROR}
                       FAILED={device.FAILED}
+                      deviceType={deviceType}
+                      location={location}
                       favoriteStations={favoriteStations}
                       setFavoriteStations={setFavoriteStations}
                     />
