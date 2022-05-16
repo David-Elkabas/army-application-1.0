@@ -27,6 +27,10 @@ const DynamicSection = (props: IProps) => {
   const [locations, setLocations] = useState<Array<string>>([]);
   const [stationsData, setStationsData] = useState<Array<dataParam>>([]);
 
+  const [numberOfCharts, setNumberOfCharts] = useState<Array<Array<dataParam>>>(
+    []
+  );
+
   const fetchChartsData = async (): Promise<any> => {
     const res = await fetch(
       `${process.env.REACT_APP_SERVER_URL}/api/charts/rcgw-chart-data/${selectedUnit}`,
@@ -56,17 +60,9 @@ const DynamicSection = (props: IProps) => {
             } else return "";
           }
         );
-        // console.log(data);
-
         setStationsData(data?.LocationBasedChart);
-        // const numbersArray: Array<number> = data?.RcgwChartData.map(
-        //   (machine: dataParam) => {
-        //     if (data) {
-        //       return machine.number;
-        //     } else return 0;
-        //   }
-        // );
-        setLocations(locationsArray);
+        // setNumberOfCharts()
+        // setLocations(locationsArray);
       },
     }
   );
@@ -76,18 +72,28 @@ const DynamicSection = (props: IProps) => {
 
   return (
     <>
-      <Grid container>
-        <Grid item xs={12}>
-          {/* {stationsData &&
-            stationsData.map((ele) => {
-              return ele.location;
-            })} */}
-          <MultiCheckBoxSelect stationsData={stationsData} />
+      <Grid container direction="row">
+        {/* {numberOfCharts.map((ele,index)=>{
+              return(
+                   <MultiCheckBoxSelect stationsData={ele.stationsData}
+              )
+           })} */}
+        <Grid item xs={4.5}>
+          <MultiCheckBoxSelect stationsData={stationsData} title="גרף א" />
+        </Grid>
+        <Grid item xs={4.5}>
+          <MultiCheckBoxSelect stationsData={stationsData} title="גרף ב" />
+        </Grid>
+        <Grid item xs={4.5}>
+          <MultiCheckBoxSelect stationsData={stationsData} title="גרף ג" />
+        </Grid>
+        <Grid item xs={4.5}>
+          <MultiCheckBoxSelect stationsData={stationsData} title="גרף ד" />
         </Grid>
         <Grid item xs={12}>
-          <Button variant="contained" endIcon={<AddIcon />}>
+          {/* <Button variant="contained" endIcon={<AddIcon />}>
             הוסף
-          </Button>
+          </Button> */}
         </Grid>
       </Grid>
     </>

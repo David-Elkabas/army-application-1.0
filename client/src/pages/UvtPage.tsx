@@ -52,7 +52,7 @@ const UvtPage = (props: IProps) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
+        <Paper sx={{ bgcolor: "#f3f3f3", px: 5, mx: 5 }}>
           <Box>
             <Box>
               <PageHeader
@@ -71,13 +71,13 @@ const UvtPage = (props: IProps) => {
               חזור חזרה
             </Button>
             <Grid container direction="row">
-              <Grid item xs={7}>
+              <Grid item xs={6}>
                 <DynamicSection
                   selectedUnit={selectedUnit}
                   accessToken={accessToken}
                 />
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={6}>
                 <Grid item xs={12}>
                   <Grid container>
                     <PieCharts

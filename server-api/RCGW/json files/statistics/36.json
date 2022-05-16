@@ -449,7 +449,7 @@
       "id": 1,
       "location": "מזרע",
       "network": null,
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 0,
         "FAILED": 12
@@ -459,7 +459,7 @@
       "id": 2,
       "location": "חולון",
       "network": "פבל",
-      "satus": {
+      "status": {
         "OK": 7,
         "ERROR": 0,
         "FAILED": 2
@@ -469,7 +469,7 @@
       "id": 3,
       "location": "שלומי",
       "network": "פבל",
-      "satus": {
+      "status": {
         "OK": 1,
         "ERROR": 1,
         "FAILED": 1
@@ -479,7 +479,7 @@
       "id": 4,
       "location": "פבל",
       "network": "פבל",
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 2,
         "FAILED": 0
@@ -489,7 +489,7 @@
       "id": 5,
       "location": "חדרה",
       "network": "דיויד",
-      "satus": {
+      "status": {
         "OK": 2,
         "ERROR": 0,
         "FAILED": 2
@@ -499,7 +499,7 @@
       "id": 6,
       "location": "צריפין",
       "network": "דיויד",
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 0,
         "FAILED": 1
@@ -509,7 +509,7 @@
       "id": 7,
       "location": "ששש",
       "network": "דיויד",
-      "satus": {
+      "status": {
         "OK": 6,
         "ERROR": 0,
         "FAILED": 1
@@ -519,7 +519,7 @@
       "id": 8,
       "location": "ירון",
       "network": "דיויד",
-      "satus": {
+      "status": {
         "OK": 10,
         "ERROR": 0,
         "FAILED": 0
@@ -529,7 +529,7 @@
       "id": 9,
       "location": "ראשון לציון",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 4,
         "FAILED": 4
@@ -539,7 +539,7 @@
       "id": 10,
       "location": "רחובות",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 1,
         "ERROR": 3,
         "FAILED": 3
@@ -549,7 +549,7 @@
       "id": 11,
       "location": "עפולה",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 6,
         "ERROR": 0,
         "FAILED": 1
@@ -559,7 +559,7 @@
       "id": 12,
       "location": "קציר",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 1,
         "ERROR": 2,
         "FAILED": 2
@@ -569,7 +569,7 @@
       "id": 13,
       "location": "עלית",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 1,
         "FAILED": 0
