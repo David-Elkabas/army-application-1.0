@@ -17,6 +17,7 @@ import NetworkChart from "../components/NetworkChart";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PageHeader from "../components/PageHeader";
 import InfoText from "../components/InfoText";
+import DynamicSection from "../components/DynamicSection";
 
 const theme = createTheme({
   direction: "rtl", // Both here and <body dir="rtl">
@@ -64,7 +65,7 @@ const UvtPage = (props: IProps) => {
 
             <Grid container direction="row">
               <Grid item xs={7}>
-                <Box dir="ltr"></Box>
+                <DynamicSection />
               </Grid>
               <Grid item xs={5}>
                 <Grid item xs={12}>

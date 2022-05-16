@@ -101,7 +101,7 @@ const DeviceColumnNoStar = (props: IProps) => {
     );
   };
   return (
-    <Paper sx={{ background: () => colorSelector(type), m: 1 }}>
+    <Paper sx={{ background: () => colorSelector(type), p: 1, m: 1 }}>
       <Tooltip
         followCursor
         title={
@@ -133,19 +133,26 @@ const DeviceColumnNoStar = (props: IProps) => {
               {location}
             </Typography>
           </Grid>
-          <Grid item xs={2.5}>
-            <Avatar
-              alt={device}
-              src={deviceToIcon[device] ? deviceToIcon[device] : RCGWAvatar}
-              variant="rounded"
-            />
-          </Grid>
-
-          <Grid item xs={7} sx={{ mt: 1.5, mr: 1 }}>
-            <CustomProgressBar
-              percents={arrayOfPercents}
-              labels={arrayOfLabel}
-            />
+          <Grid item xs={12}>
+            <Paper sx={{ bgcolor: "#93B0B0" }}>
+              <Grid container justifyContent="center" direction="row">
+                <Grid item xs={2.5}>
+                  <Avatar
+                    alt={device}
+                    src={
+                      deviceToIcon[device] ? deviceToIcon[device] : RCGWAvatar
+                    }
+                    variant="rounded"
+                  />
+                </Grid>
+                <Grid item xs={7} sx={{ mt: 1.5, mr: 1 }}>
+                  <CustomProgressBar
+                    percents={arrayOfPercents}
+                    labels={arrayOfLabel}
+                  />
+                </Grid>
+              </Grid>
+            </Paper>
           </Grid>
         </Grid>
       </Tooltip>
