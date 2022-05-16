@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import React from "react";
 import { useState } from "react";
 import { useQuery, UseQueryResult } from "react-query";
 import PieChart from "./PieChart";

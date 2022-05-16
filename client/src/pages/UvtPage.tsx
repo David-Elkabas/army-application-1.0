@@ -62,10 +62,20 @@ const UvtPage = (props: IProps) => {
                 accessToken={accessToken}
               />
             </Box>
-
+            <Button
+              variant="contained"
+              onClick={handleClick}
+              size="large"
+              sx={{ mb: 1 }}
+            >
+              חזור חזרה
+            </Button>
             <Grid container direction="row">
               <Grid item xs={7}>
-                <DynamicSection />
+                <DynamicSection
+                  selectedUnit={selectedUnit}
+                  accessToken={accessToken}
+                />
               </Grid>
               <Grid item xs={5}>
                 <Grid item xs={12}>
