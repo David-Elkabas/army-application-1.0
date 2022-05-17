@@ -22,6 +22,8 @@ type RcgwDataObject = {
   chartTitle: string;
 };
 
+const labels = ["OK", "ERROR", "FAILED"];
+
 const PieCharts = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
   const [errorText, setErrorText] = useState(" ");
@@ -117,14 +119,14 @@ const PieCharts = (props: IProps) => {
     <>
       <Grid item xs={6} sx={{ width: "14vw" }}>
         <PieChart
-          labels={RcgwDataStateArray}
+          labels={labels}
           data={RcgwDataNumberArray}
           chartTitle={RcgwChartTitle}
         />
       </Grid>
       <Grid item xs={6} sx={{ width: "14vw" }}>
         <PieChart
-          labels={MakmashimDataArray}
+          labels={labels}
           data={MakmashimNumberArray}
           chartTitle={MakmashimChartTitle}
         />

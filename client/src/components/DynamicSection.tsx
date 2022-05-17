@@ -1,5 +1,5 @@
 import AddIcon from "@mui/icons-material/Add";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Paper } from "@mui/material";
 
 import { useState } from "react";
 import { useQuery } from "react-query";
@@ -24,7 +24,6 @@ const DynamicSection = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
 
   const [errorText, setErrorText] = useState(" ");
-  const [locations, setLocations] = useState<Array<string>>([]);
   const [stationsData, setStationsData] = useState<Array<dataParam>>([]);
 
   const [numberOfCharts, setNumberOfCharts] = useState<Array<Array<dataParam>>>(
@@ -53,49 +52,39 @@ const DynamicSection = (props: IProps) => {
     fetchChartsData,
     {
       onSuccess: (data) => {
-        const locationsArray: Array<string> = data?.LocationBasedChart.map(
-          (loc: dataParam) => {
-            if (data) {
-              return loc.location;
-            } else return "";
-          }
-        );
         setStationsData(data?.LocationBasedChart);
         // setNumberOfCharts()
-        // setLocations(locationsArray);
       },
     }
   );
+  // console.log("data", data);
   if (isLoading) return <>"Loading..."</>;
 
   if (isError) return <>"An error has occurred: " {errorText}</>;
 
   return (
     <>
-      <Grid container direction="row">
-        {/* {numberOfCharts.map((ele,index)=>{
-              return(
-                   <MultiCheckBoxSelect stationsData={ele.stationsData}
-              )
-           })} */}
-        <Grid item xs={4.5}>
-          <MultiCheckBoxSelect stationsData={stationsData} title="גרף א" />
-        </Grid>
-        <Grid item xs={4.5}>
-          <MultiCheckBoxSelect stationsData={stationsData} title="גרף ב" />
-        </Grid>
-        <Grid item xs={4.5}>
-          <MultiCheckBoxSelect stationsData={stationsData} title="גרף ג" />
-        </Grid>
-        <Grid item xs={4.5}>
-          <MultiCheckBoxSelect stationsData={stationsData} title="גרף ד" />
-        </Grid>
-        <Grid item xs={12}>
-          {/* <Button variant="contained" endIcon={<AddIcon />}>
+      <Paper sx={{ mr: 2 }}>
+        <Grid container direction="row" justifyContent="center">
+          <Grid item xs={4.5} sx={{ p: 1, m: 1 }}>
+            <MultiCheckBoxSelect stationsData={stationsData} title="גרף א" />
+          </Grid>
+          <Grid item xs={4.5} sx={{ p: 1, m: 1 }}>
+            <MultiCheckBoxSelect stationsData={stationsData} title="גרף ב" />
+          </Grid>
+          <Grid item xs={4.5} sx={{ p: 1, m: 1 }}>
+            <MultiCheckBoxSelect stationsData={stationsData} title="גרף ג" />
+          </Grid>
+          <Grid item xs={4.5} sx={{ p: 1, m: 1 }}>
+            <MultiCheckBoxSelect stationsData={stationsData} title="גרף ד" />
+          </Grid>
+          <Grid item xs={12}>
+            {/* <Button variant="contained" endIcon={<AddIcon />}>
             הוסף
           </Button> */}
+          </Grid>
         </Grid>
-      </Grid>
+      </Paper>
     </>
   );
 };
