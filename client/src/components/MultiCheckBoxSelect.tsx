@@ -51,8 +51,8 @@ const MultiCheckBoxSelect = (props: IProps) => {
 
   const handleAutocompleteChange = (event, value: Array<dataParam>) => {
     // setSelectedOptions(value);
-    // console.log(value);
-    setLastValue(value as any);
+    console.log(value);
+    // setLastValue(value as any);
     let totalOkTemp = 0;
     let totalErrorTemp = 0;
     let totalFailedTemp = 0;
@@ -68,8 +68,14 @@ const MultiCheckBoxSelect = (props: IProps) => {
     });
   };
 
-  useDeepCompareEffect(() => {
-    // console.log("useDeepCompareEffect", lastValue);
+  // useDeepCompareEffect(() => {
+  //   // console.log("useDeepCompareEffect", lastValue);
+  //   render();
+  //   // setTotalNumbers((prev) => stationsData.filter(s=>s.id==prev.));
+  //   // handleAutocompleteChange(undefined, lastValue as any);
+  // }, [stationsData]);
+  useEffect(() => {
+    // console.log("stationsData useEffect", stationsData);
     render();
     // setTotalNumbers((prev) => stationsData.filter(s=>s.id==prev.));
     // handleAutocompleteChange(undefined, lastValue as any);
@@ -77,8 +83,18 @@ const MultiCheckBoxSelect = (props: IProps) => {
 
   return (
     <>
-      <Grid container>
-        <Grid item xs={12}>
+      <Grid container justifyContent="center" alignItems="center">
+        <Grid item xs="auto">
+          <TextField
+            sx={{ input: { textAlign: "center" } }}
+            size="small"
+            required
+            id="outlined-required"
+            label={title}
+            defaultValue={title}
+          />
+        </Grid>
+        <Grid item xs={10} sx={{ mt: -4 }}>
           <PieChart
             labels={labels}
             data={[
@@ -86,22 +102,28 @@ const MultiCheckBoxSelect = (props: IProps) => {
               totalNumbers.totalERROR,
               totalNumbers.totalFAILED,
             ]}
-            chartTitle={title}
+            chartTitle=" "
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs="auto">
           <Autocomplete
             options={stationsData}
             onChange={handleAutocompleteChange}
             multiple
+            size="small"
             limitTags={2}
             id="checkboxes-tags-demo"
             disableCloseOnSelect
-            filterOptions={(options) =>
-              options.filter((option) => option.location !== "")
-            }
-            isOptionEqualToValue={(option, value) => option.id === value.id}
-            getOptionLabel={(option) => option.location}
+            filterOptions={() => stationsData}
+            // filterOptions={(options) =>
+            //   options.filter((option) => option.location !== "")
+            // }
+            isOptionEqualToValue={(option, value) => {
+              console.log("option", option);
+              console.log("value", value);
+              return option.id === value.id;
+            }}
+            getOptionLabel={(option) => option?.location}
             renderOption={(props, option, { selected }) => (
               <li {...props}>
                 <Checkbox

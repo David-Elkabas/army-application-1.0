@@ -15,14 +15,16 @@ type dataParam = {
 type arrayOfDataParam = {
   RcgwChartData: Array<dataParam>;
   MakmashimChartData: Array<dataParam>;
+  CCUChartData: Array<dataParam>;
+  CCTChartData: Array<dataParam>;
+  YadbarChartData: Array<dataParam>;
+  SoftwareDistributionServerChartData: Array<dataParam>;
 };
 type RcgwDataObject = {
   dataStateArray: Array<string>;
   dataNumberArray: Array<number>;
   chartTitle: string;
 };
-
-const labels = ["OK", "ERROR", "FAILED"];
 
 const PieCharts = (props: IProps) => {
   const { accessToken, selectedUnit } = props;
@@ -38,6 +40,29 @@ const PieCharts = (props: IProps) => {
       dataNumberArray: [],
       chartTitle: " ",
     });
+  const [CCUDataArrays, setCCUDataStateArray] = useState<RcgwDataObject>({
+    dataStateArray: [],
+    dataNumberArray: [],
+    chartTitle: " ",
+  });
+  const [CCTDataArrays, setCCTDataStateArray] = useState<RcgwDataObject>({
+    dataStateArray: [],
+    dataNumberArray: [],
+    chartTitle: " ",
+  });
+  const [YadbarDataArrays, setYadbarDataStateArray] = useState<RcgwDataObject>({
+    dataStateArray: [],
+    dataNumberArray: [],
+    chartTitle: " ",
+  });
+  const [
+    SoftwareDistributionServerDataArrays,
+    setSoftwareDistributionServerDataStateArray,
+  ] = useState<RcgwDataObject>({
+    dataStateArray: [],
+    dataNumberArray: [],
+    chartTitle: " ",
+  });
 
   const fetchChartsData = async (): Promise<arrayOfDataParam> => {
     const res = await fetch(
@@ -97,6 +122,84 @@ const PieCharts = (props: IProps) => {
           dataNumberArray: MakmashimNumbersArray,
           chartTitle: `מקמ"שים`,
         });
+        const CCUStatesArray: Array<string> = data?.CCUChartData.map(
+          (machine: dataParam) => {
+            if (data) {
+              return machine.state;
+            } else return "";
+          }
+        );
+        const CCUNumbersArray: Array<number> = data?.CCUChartData.map(
+          (machine: dataParam) => {
+            if (data) {
+              return machine.number;
+            } else return 0;
+          }
+        );
+        setCCUDataStateArray({
+          dataStateArray: CCUStatesArray,
+          dataNumberArray: CCUNumbersArray,
+          chartTitle: `CCU`,
+        });
+        const CCTStatesArray: Array<string> = data?.CCTChartData.map(
+          (machine: dataParam) => {
+            if (data) {
+              return machine.state;
+            } else return "";
+          }
+        );
+        const CCTNumbersArray: Array<number> = data?.CCTChartData.map(
+          (machine: dataParam) => {
+            if (data) {
+              return machine.number;
+            } else return 0;
+          }
+        );
+        setCCTDataStateArray({
+          dataStateArray: CCTStatesArray,
+          dataNumberArray: CCTNumbersArray,
+          chartTitle: `CCT`,
+        });
+        const YadbarStatesArray: Array<string> = data?.YadbarChartData.map(
+          (machine: dataParam) => {
+            if (data) {
+              return machine.state;
+            } else return "";
+          }
+        );
+        const YadbarNumbersArray: Array<number> = data?.YadbarChartData.map(
+          (machine: dataParam) => {
+            if (data) {
+              return machine.number;
+            } else return 0;
+          }
+        );
+        setYadbarDataStateArray({
+          dataStateArray: YadbarStatesArray,
+          dataNumberArray: YadbarNumbersArray,
+          chartTitle: `ידב"רים`,
+        });
+        const SoftwareDistributionServerStatesArray: Array<string> =
+          data?.SoftwareDistributionServerChartData.map(
+            (machine: dataParam) => {
+              if (data) {
+                return machine.state;
+              } else return "";
+            }
+          );
+        const SoftwareDistributionServerNumbersArray: Array<number> =
+          data?.SoftwareDistributionServerChartData.map(
+            (machine: dataParam) => {
+              if (data) {
+                return machine.number;
+              } else return 0;
+            }
+          );
+        setSoftwareDistributionServerDataStateArray({
+          dataStateArray: SoftwareDistributionServerStatesArray,
+          dataNumberArray: SoftwareDistributionServerNumbersArray,
+          chartTitle: `שרת הפצה`,
+        });
       },
     }
   );
@@ -110,6 +213,26 @@ const PieCharts = (props: IProps) => {
     dataNumberArray: MakmashimNumberArray,
     chartTitle: MakmashimChartTitle,
   } = MakmashimDataArrays;
+  const {
+    dataStateArray: CCUDataArray,
+    dataNumberArray: CCUNumberArray,
+    chartTitle: CCUChartTitle,
+  } = CCUDataArrays;
+  const {
+    dataStateArray: CCTDataArray,
+    dataNumberArray: CCTNumberArray,
+    chartTitle: CCTChartTitle,
+  } = CCTDataArrays;
+  const {
+    dataStateArray: YadbarDataArray,
+    dataNumberArray: YadbarNumberArray,
+    chartTitle: YadbarChartTitle,
+  } = YadbarDataArrays;
+  const {
+    dataStateArray: SoftwareDistributionServerDataArray,
+    dataNumberArray: SoftwareDistributionServerNumberArray,
+    chartTitle: SoftwareDistributionServerChartTitle,
+  } = SoftwareDistributionServerDataArrays;
 
   if (isLoading) return <>"Loading..."</>;
 
@@ -117,18 +240,46 @@ const PieCharts = (props: IProps) => {
 
   return (
     <>
-      <Grid item xs={6} sx={{ width: "14vw" }}>
+      <Grid item xs={4} sx={{ width: "14vw" }}>
         <PieChart
-          labels={labels}
+          labels={RcgwDataStateArray}
           data={RcgwDataNumberArray}
           chartTitle={RcgwChartTitle}
         />
       </Grid>
-      <Grid item xs={6} sx={{ width: "14vw" }}>
+      <Grid item xs={4} sx={{ width: "14vw" }}>
         <PieChart
-          labels={labels}
+          labels={MakmashimDataArray}
           data={MakmashimNumberArray}
           chartTitle={MakmashimChartTitle}
+        />
+      </Grid>
+      <Grid item xs={4} sx={{ width: "14vw" }}>
+        <PieChart
+          labels={CCUDataArray}
+          data={CCUNumberArray}
+          chartTitle={CCUChartTitle}
+        />
+      </Grid>
+      <Grid item xs={4} sx={{ width: "14vw" }}>
+        <PieChart
+          labels={CCTDataArray}
+          data={CCTNumberArray}
+          chartTitle={CCTChartTitle}
+        />
+      </Grid>
+      <Grid item xs={4} sx={{ width: "14vw" }}>
+        <PieChart
+          labels={YadbarDataArray}
+          data={YadbarNumberArray}
+          chartTitle={YadbarChartTitle}
+        />
+      </Grid>
+      <Grid item xs={4} sx={{ width: "14vw" }}>
+        <PieChart
+          labels={SoftwareDistributionServerDataArray}
+          data={SoftwareDistributionServerNumberArray}
+          chartTitle={SoftwareDistributionServerChartTitle}
         />
       </Grid>
     </>

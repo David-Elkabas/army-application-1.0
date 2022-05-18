@@ -33,6 +33,74 @@
       "number": 11
     }
   ],
+  "CCUChartData": [
+    {
+      "id": 1,
+      "state": "OK",
+      "number": 2
+    },
+    {
+      "id": 2,
+      "state": "FAILED",
+      "number": 15
+    },
+    {
+      "id": 3,
+      "state": "ERROR",
+      "number": 4
+    }
+  ],
+  "CCTChartData": [
+    {
+      "id": 1,
+      "state": "OK",
+      "number": 2
+    },
+    {
+      "id": 2,
+      "state": "FAILED",
+      "number": 1
+    },
+    {
+      "id": 3,
+      "state": "ERROR",
+      "number": 0
+    }
+  ],
+  "YadbarChartData": [
+    {
+      "id": 1,
+      "state": "OK",
+      "number": 16
+    },
+    {
+      "id": 2,
+      "state": "FAILED",
+      "number": 64
+    },
+    {
+      "id": 3,
+      "state": "ERROR",
+      "number": 3
+    }
+  ],
+  "SoftwareDistributionServerChartData": [
+    {
+      "id": 1,
+      "state": "OK",
+      "number": 1
+    },
+    {
+      "id": 2,
+      "state": "FAILED",
+      "number": 1
+    },
+    {
+      "id": 3,
+      "state": "ERROR",
+      "number": 1
+    }
+  ],
   "NetworkChartData": [
     { "id": 1, "network": "בלה בלה 1", "OK": 2, "ERROR": 1, "FAILED": 0 },
     { "id": 2, "network": "ראשון לציון", "OK": 1, "ERROR": 2, "FAILED": 1 },
@@ -445,16 +513,6 @@
     }
   ],
   "LocationBasedChart": [
-    {
-      "id": 1,
-      "location": "מזרע",
-      "network": null,
-      "status": {
-        "OK": 2,
-        "ERROR": 2,
-        "FAILED": 12
-      }
-    },
     {
       "id": 2,
       "location": "חולון",

@@ -31,6 +31,7 @@ const DynamicSection = (props: IProps) => {
   );
 
   const fetchChartsData = async (): Promise<any> => {
+    console.log("fetchChartsData");
     const res = await fetch(
       `${process.env.REACT_APP_SERVER_URL}/api/charts/rcgw-chart-data/${selectedUnit}`,
       {
@@ -66,16 +67,16 @@ const DynamicSection = (props: IProps) => {
     <>
       <Paper sx={{ mr: 2 }}>
         <Grid container direction="row" justifyContent="center">
-          <Grid item xs={4.5} sx={{ p: 1, m: 1 }}>
+          <Grid item xs={5} sx={{ p: 1, m: 1 }}>
             <MultiCheckBoxSelect stationsData={stationsData} title="גרף א" />
           </Grid>
-          <Grid item xs={4.5} sx={{ p: 1, m: 1 }}>
+          <Grid item xs={5} sx={{ p: 1, m: 1 }}>
             <MultiCheckBoxSelect stationsData={stationsData} title="גרף ב" />
           </Grid>
-          <Grid item xs={4.5} sx={{ p: 1, m: 1 }}>
+          <Grid item xs={5} sx={{ p: 1, m: 1 }}>
             <MultiCheckBoxSelect stationsData={stationsData} title="גרף ג" />
           </Grid>
-          <Grid item xs={4.5} sx={{ p: 1, m: 1 }}>
+          <Grid item xs={5} sx={{ p: 1, m: 1 }}>
             <MultiCheckBoxSelect stationsData={stationsData} title="גרף ד" />
           </Grid>
           <Grid item xs={12}>
