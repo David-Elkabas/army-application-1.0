@@ -36,7 +36,7 @@ type RadioParams = {
   עיר?: string;
   רחוב?: string;
   יחידה?: string;
-  ['מזהה מקמ"ש']: string;
+  ["שם רכיב"]: string;
   id: string;
   מאזינים?: string | string[];
 };
@@ -60,7 +60,7 @@ const PureTable = (props: IProps) => {
   const shortColumn = ["מושאל", "קוד הצפנה", "קידוד שמע", "תדר", "פורט", "adf"];
 
   const editRows = rows.map((row) =>
-    Object.assign(row, { id: row['מזהה מקמ"ש'] })
+    Object.assign(row, { id: row["deviceId"] })
   );
 
   const editColumns = columns.map((column) => ({

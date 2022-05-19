@@ -1,5 +1,4 @@
-import AddIcon from "@mui/icons-material/Add";
-import { Button, Grid, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 
 import { useState } from "react";
 import { useQuery } from "react-query";
@@ -25,10 +24,6 @@ const DynamicSection = (props: IProps) => {
 
   const [errorText, setErrorText] = useState(" ");
   const [stationsData, setStationsData] = useState<Array<dataParam>>([]);
-
-  const [numberOfCharts, setNumberOfCharts] = useState<Array<Array<dataParam>>>(
-    []
-  );
 
   const fetchChartsData = async (): Promise<any> => {
     console.log("fetchChartsData");

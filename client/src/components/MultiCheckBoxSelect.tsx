@@ -3,10 +3,9 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import PieChart from "./PieChart";
 import { Grid } from "@mui/material";
-import useDeepCompareEffect from "../hooks/useDeepCompareEffect";
 type IProps = {
   stationsData: Array<dataParam>;
   title: string;
@@ -47,7 +46,7 @@ const MultiCheckBoxSelect = (props: IProps) => {
 
   // useEffect(() => {}, [stationsData]);
 
-  const [lastValue, setLastValue] = useState(null);
+  // const [lastValue, setLastValue] = useState(null);
 
   const handleAutocompleteChange = (event, value: Array<dataParam>) => {
     // setSelectedOptions(value);
