@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, UseQueryResult } from "react-query";
 import PureComponent from "./PureTable";
 
 interface IProps {
@@ -107,35 +108,33 @@ const MakmashTable = (props: IProps) => {
         RCGW: [],
       };
 
-      const sortRCGWData = data[table].map((machine: RCGW) => {
-        if (table === "RCGW" && machine.state !== "FAILED") {
-          return machine.radioStates.map((device: RadioStatesIn) => {
-            if (device.state !== "FAILED") return device.params;
-            return {};
-          });
-        }
-        return {};
-      });
-      const sortData = data[table].map((machine: Other) => {
-        if (machine.state !== "FAILED") {
-          return machine.params;
-        }
-        return {};
-      });
-
       let oneArray = [];
-      if (table === "RCGW") {
-        // let oneArray: RadioParams[] = [];
+      if (table === "Makmash") {
+        const sortRCGWData = data.RCGW.map((machine: RCGW) => {
+          if (machine.state !== "FAILED") {
+            return machine.radioStates.map((device: RadioStatesIn) => {
+              if (device.state !== "FAILED") return device.params;
+              return {};
+            });
+          }
+          return {};
+        });
         sortRCGWData.map((array: any) => {
           return (oneArray = oneArray.concat(array));
         });
       } else {
-        // let oneArray: rcgwParams[] = [];
+        const sortData = data[table].map((machine: Other) => {
+          if (machine.state !== "FAILED") {
+            return machine.params;
+          }
+          return {};
+        });
         sortData.map((array: any) => {
           return (oneArray = oneArray.concat(array));
         });
       }
-      oneArray.pop();
+
+      // oneArray.pop();
 
       let newArray = oneArray.filter(
         (element) => Object.keys(element).length !== 0
@@ -151,7 +150,7 @@ const MakmashTable = (props: IProps) => {
           param_headers: [],
           radio_state_headers: [],
         };
-        if (table === "RCGW") {
+        if (table === "Makmash") {
           setTableHeader(radio_state_headers);
         } else {
           setTableHeader(param_headers);

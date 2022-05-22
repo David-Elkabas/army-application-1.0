@@ -60,7 +60,7 @@ const PureTable = (props: IProps) => {
   const shortColumn = ["מושאל", "קוד הצפנה", "קידוד שמע", "תדר", "פורט", "adf"];
 
   const editRows = rows.map((row) =>
-    Object.assign(row, { id: row["deviceId"] })
+    Object.assign(row, { id: row["שם רכיב"] })
   );
 
   const editColumns = columns.map((column) => ({

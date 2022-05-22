@@ -5,6 +5,7 @@ import {
   Paper,
   Stack,
   Typography,
+  CssBaseline,
   Tab,
   Tabs,
 } from "@mui/material";
@@ -12,7 +13,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MakmashTable from "../components/MakmashTable";
-
+import PieCharts from "../components/PieCharts";
+import NetworkChart from "../components/NetworkChart";
+import UserInfo from "../components/UserInfo";
+import LastModifiedDate from "../components/LastModifiedDate";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PageHeader from "../components/PageHeader";
 import InfoText from "../components/InfoText";
@@ -111,9 +115,12 @@ const Transceiver = (props: IProps) => {
                   aria-label="secondary tabs example"
                   dir="ltr"
                 >
-                  <Tab label="RCGW" {...a11yProps(0)} />
-                  <Tab label="CCU" {...a11yProps(1)} />
-                  <Tab label="CCT" {...a11yProps(2)} />
+                  <Tab label='מקמ"שים' {...a11yProps(0)} />
+                  <Tab label='ישל"קים' {...a11yProps(1)} />
+                  <Tab label="שרתי רדיו" {...a11yProps(2)} />
+                  <Tab label="CCT עמדות" {...a11yProps(3)} />
+                  <Tab label="ידברים" {...a11yProps(4)} />
+                  <Tab label="שרתי הפצה" {...a11yProps(5)} />
                 </Tabs>
               </Box>
               <TabPanel value={value} index={0}>
@@ -123,7 +130,7 @@ const Transceiver = (props: IProps) => {
                       <MakmashTable
                         accessToken={accessToken}
                         selectedUnit={selectedUnit}
-                        table="RCGW"
+                        table="Makmash"
                       />
                     </Box>
                   </Grid>
@@ -136,7 +143,7 @@ const Transceiver = (props: IProps) => {
                       <MakmashTable
                         accessToken={accessToken}
                         selectedUnit={selectedUnit}
-                        table="CCU"
+                        table="RCGW"
                       />
                     </Box>
                   </Grid>
@@ -149,7 +156,46 @@ const Transceiver = (props: IProps) => {
                       <MakmashTable
                         accessToken={accessToken}
                         selectedUnit={selectedUnit}
+                        table="CCU"
+                      />
+                    </Box>
+                  </Grid>
+                </Grid>
+              </TabPanel>
+              <TabPanel value={value} index={3}>
+                <Grid container direction="row">
+                  <Grid item xs={12}>
+                    <Box dir="ltr">
+                      <MakmashTable
+                        accessToken={accessToken}
+                        selectedUnit={selectedUnit}
                         table="CCT"
+                      />
+                    </Box>
+                  </Grid>
+                </Grid>
+              </TabPanel>
+              <TabPanel value={value} index={4}>
+                <Grid container direction="row">
+                  <Grid item xs={12}>
+                    <Box dir="ltr">
+                      <MakmashTable
+                        accessToken={accessToken}
+                        selectedUnit={selectedUnit}
+                        table="Yadbar"
+                      />
+                    </Box>
+                  </Grid>
+                </Grid>
+              </TabPanel>
+              <TabPanel value={value} index={5}>
+                <Grid container direction="row">
+                  <Grid item xs={12}>
+                    <Box dir="ltr">
+                      <MakmashTable
+                        accessToken={accessToken}
+                        selectedUnit={selectedUnit}
+                        table="SoftwareDistributionServer"
                       />
                     </Box>
                   </Grid>
