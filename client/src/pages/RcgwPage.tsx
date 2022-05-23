@@ -35,30 +35,7 @@ const RcgwPage = (props: IProps) => {
           <InfoText name='ישל"קים' />
 
           <Grid container direction="row">
-            <Grid item xs={7} sx={{ justifyContent: "center" }}>
-              <Box>
-                {/* <MakmashTable
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  /> */}
-              </Box>
-            </Grid>
-            {/* <Grid item xs={5}>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <PieCharts
-                      accessToken={accessToken}
-                      selectedUnit={selectedUnit}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <NetworkChart
-                    accessToken={accessToken}
-                    selectedUnit={selectedUnit}
-                  />
-                </Grid>
-              </Grid> */}
+            <Grid item xs={7} sx={{ justifyContent: "center" }}></Grid>
           </Grid>
           <ReactQueryDevtools initialIsOpen={false} />
           <Stack direction="row" spacing={5} justifyContent="center">
@@ -66,9 +43,9 @@ const RcgwPage = (props: IProps) => {
               variant="contained"
               onClick={handleClick}
               size="large"
-              sx={{ margin: 5 }}
+              sx={{ margin: 5, px: 7 }}
             >
-              חזור חזרה{" "}
+              חזור
             </Button>
           </Stack>
         </Box>

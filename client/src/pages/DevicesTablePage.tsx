@@ -76,7 +76,7 @@ function a11yProps(index: number) {
   };
 }
 
-const Transceiver = (props: IProps) => {
+const DevicesTablePage = (props: IProps) => {
   const { username, isAdmin, selectedUnit, accessToken } = props;
 
   const navigate = useNavigate();
@@ -208,9 +208,9 @@ const Transceiver = (props: IProps) => {
                 variant="contained"
                 onClick={handleClick}
                 size="large"
-                sx={{ margin: 5 }}
+                sx={{ margin: 5, px: 7 }}
               >
-                חזור חזרה{" "}
+                חזור
               </Button>
             </Stack>
           </Box>
@@ -220,4 +220,4 @@ const Transceiver = (props: IProps) => {
   );
 };
 
-export default Transceiver;
+export default DevicesTablePage;

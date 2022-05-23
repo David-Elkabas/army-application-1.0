@@ -54,8 +54,13 @@ const GeneralView = (props: IProps) => {
         </Box>
         <Grid container justifyContent="space-between">
           <Grid item xs={7}>
-            <Button variant="contained" onClick={handleClick} size="large">
-              חזור חזרה
+            <Button
+              variant="contained"
+              onClick={handleClick}
+              size="large"
+              sx={{ px: 7 }}
+            >
+              חזור
             </Button>
           </Grid>
           <Grid item xs={5}>
@@ -117,9 +122,9 @@ const GeneralView = (props: IProps) => {
             variant="contained"
             onClick={handleClick}
             size="large"
-            sx={{ mb: 5 }}
+            sx={{ mb: 5, px: 7 }}
           >
-            חזור חזרה
+            חזור
           </Button>
         </Stack>
       </Paper>

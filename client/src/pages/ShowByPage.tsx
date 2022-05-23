@@ -16,29 +16,30 @@ interface IProps {
 
 const cardOptions = [
   {
-    value: "transceiver",
-    header: " סנן לפי מקמ''שים",
+    value: "devices-table-page",
+    header: "סנן לפי שם רכיב",
     description:
-      "הצגת ניטור עבור כלל המקמ''שים המחוברים ומוגדרים בקובץ הפק''ל כולל ניתוח סטאטוס",
+      "הצגת טבלאות עם מידע רלוונטי עבור רכיבי המערכת -ישל''קים, מקמ''שים, ידב''רים, שרתי רדיו, שרתי הפצה ועמדת תכנון ובקרה",
     image: transceiver,
   },
   {
-    value: "uvt",
+    value: "graphs-page",
     header: "הצגת גרפים",
-    description: "הצגת כלל הגרפים על שלל המקמ''שים, ידב''רים, וישל''קים",
+
+    description:
+      "הצגת גרפים עבור רכיבי המערכת -ישל''קים, מקמ''שים, ידב''רים, שרתי רדיו, שרתי הפצה ועמדת תכנון ובקרה",
     image: monitor,
   },
   {
     value: "rcgw",
-    header: "סנן לפי ישל''קים",
-    description:
-      "הצגת ניטור עבור כלל הישל''קים המחוברים ומוגדרים בקובץ הפק''ל כולל סטאטוס הישל''קים ופירוט המאזינים בכל ישל'''ק",
+    header: "בשלבי פיתוח",
+    description: "בשלבי פיתוח על ידי צוות ויטלי מקמשים בעמ, פרטים בהמשך",
     image: radio,
   },
   {
     value: "general-view",
     header: "מבט על",
-    description: "הצגת מבט מלמעלה על כלל הכלים באוגדה",
+    description: "הצגת מבט מלמעלה על כלל הכלים המשוייכים בפק''ל",
     image: all,
   },
 ];
@@ -82,9 +83,9 @@ const ShowByPage: React.FC<IProps> = (props) => {
             variant="contained"
             onClick={handleClick}
             size="large"
-            sx={{ mt: 5 }}
+            sx={{ mt: 5, px: 7 }}
           >
-            חזור חזרה{" "}
+            חזור
           </Button>
         </Stack>
       </Box>

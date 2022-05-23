@@ -8,6 +8,8 @@ type IProps = {
   chartTitle: string;
 };
 
+const chartStatus = ["תקין", "תקול", "תקלה מינורית"];
+
 const StackedBarChart = (props: IProps) => {
   const { labels, dataOK, dataFAILED, dataERROR, chartTitle } = props;
 
@@ -15,19 +17,20 @@ const StackedBarChart = (props: IProps) => {
     labels,
     datasets: [
       {
-        label: "OK",
+        label: chartStatus[0],
         data: dataOK,
         backgroundColor: "rgba(75, 192, 192, 0.5)",
       },
+
       {
-        label: "FAILED",
-        data: dataFAILED,
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "ERROR",
+        label: chartStatus[2],
         data: dataERROR,
         backgroundColor: "rgba(255, 159, 64, 0.5)",
+      },
+      {
+        label: chartStatus[1],
+        data: dataFAILED,
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
   };

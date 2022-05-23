@@ -138,9 +138,9 @@ const UnitPage: React.FC<IProps> = (props) => {
             variant="contained"
             onClick={handleReturnButtonClick}
             size="large"
-            sx={{ mt: 15, mb: 5 }}
+            sx={{ mt: 15, mb: 5, px: 7 }}
           >
-            חזור חזרה
+            חזור
           </Button>
         </Grid>
       </Grid>

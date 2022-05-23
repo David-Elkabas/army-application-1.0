@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import rtlPlugin from "stylis-plugin-rtl";
-import createCache from "@emotion/cache";
+import "@fontsource/suez-one";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { useState } from "react";
+
 import UnitPage from "./pages/UnitPage";
+import GraphsPage from "./pages/GraphsPage";
+import DevicesTablePage from "./pages/DevicesTablePage";
+import LoginPage from "./pages/LoginPage";
+import ShowByPage from "./pages/ShowByPage";
+import RcgwPage from "./pages/RcgwPage";
+import GeneralView from "./pages/GeneralView";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Box, CssBaseline, Grid, Typography } from "@mui/material";
-import { prefixer } from "stylis";
-import { CacheProvider } from "@emotion/react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import "@fontsource/suez-one";
-import "./App.css";
-import LoginPage from "./pages/LoginPage";
-import ShowByPage from "./pages/ShowByPage";
-import Transceiver from "./pages/Transceiver";
+import { prefixer } from "stylis";
+import rtlPlugin from "stylis-plugin-rtl";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Particles from "react-tsparticles";
 import particlesConfig from "./config/configParticles";
-import RcgwPage from "./pages/RcgwPage";
-import UvtPage from "./pages/UvtPage";
-import GeneralView from "./pages/GeneralView";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/types/devtools";
-
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const theme = createTheme({
   palette: {
@@ -131,9 +131,9 @@ const App = () => {
                   }
                 />
                 <Route
-                  path="/transceiver"
+                  path="/devices-table-page"
                   element={
-                    <Transceiver
+                    <DevicesTablePage
                       username={username}
                       isAdmin={isAdmin}
                       accessToken={accessToken}
@@ -154,9 +154,9 @@ const App = () => {
                 />
 
                 <Route
-                  path="/uvt"
+                  path="/graphs-page"
                   element={
-                    <UvtPage
+                    <GraphsPage
                       username={username}
                       isAdmin={isAdmin}
                       selectedUnit={selectedUnit}
