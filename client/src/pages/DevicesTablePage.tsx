@@ -76,7 +76,7 @@ function a11yProps(index: number) {
   };
 }
 
-const Transceiver = (props: IProps) => {
+const DevicesTablePage = (props: IProps) => {
   const { username, isAdmin, selectedUnit, accessToken } = props;
 
   const navigate = useNavigate();
@@ -104,8 +104,16 @@ const Transceiver = (props: IProps) => {
                 accessToken={accessToken}
               />
             </Box>
-            <InfoText name='מקמ"שים' />
-            <Box sx={{ width: "100%" }}>
+            <Button
+              variant="contained"
+              onClick={handleClick}
+              size="large"
+              sx={{ mb: 1, px: 7 }}
+            >
+              חזור
+            </Button>
+            {/* <InfoText name='מקמ"שים' /> */}
+            <Box sx={{ width: "100%", border: 2, borderRadius: 4 }}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <Tabs
                   value={value}
@@ -208,9 +216,9 @@ const Transceiver = (props: IProps) => {
                 variant="contained"
                 onClick={handleClick}
                 size="large"
-                sx={{ margin: 5 }}
+                sx={{ margin: 5, px: 7 }}
               >
-                חזור חזרה{" "}
+                חזור
               </Button>
             </Stack>
           </Box>
@@ -220,4 +228,4 @@ const Transceiver = (props: IProps) => {
   );
 };
 
-export default Transceiver;
+export default DevicesTablePage;

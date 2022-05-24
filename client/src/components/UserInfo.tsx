@@ -11,7 +11,7 @@ const UserInfo: React.FC<IProps> = (props) => {
   const { username, isAdmin, selectedUnit } = props;
   return (
     <Box sx={{ justifyContent: "center", alignItems: "center" }}>
-      <Typography variant="h5" component="div" sx={{ padding: 3 }}>
+      <Typography variant="h5" component="div" sx={{ py: 3, pr: 3 }}>
         <Box display="inline"> שם משתמש: </Box>
         <Box sx={{ fontWeight: "bold" }} display="inline">
           {username}

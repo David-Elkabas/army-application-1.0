@@ -40,7 +40,7 @@ interface IProps {
   accessToken: string;
 }
 
-const UvtPage = (props: IProps) => {
+const GraphsPage = (props: IProps) => {
   const { username, isAdmin, selectedUnit, accessToken } = props;
 
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ const UvtPage = (props: IProps) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Paper sx={{ bgcolor: "#f3f3f3", px: 5 }}>
+        <Paper sx={{ bgcolor: "#f3f3f3", px: 5, mx: 5 }}>
           <Box>
             <Box>
               <PageHeader
@@ -66,18 +66,18 @@ const UvtPage = (props: IProps) => {
               variant="contained"
               onClick={handleClick}
               size="large"
-              sx={{ mb: 1 }}
+              sx={{ mb: 1, px: 7 }}
             >
-              חזור חזרה
+              חזור
             </Button>
             <Grid container direction="row">
-              <Grid item xs={7}>
+              <Grid item xs={6}>
                 <DynamicSection
                   selectedUnit={selectedUnit}
                   accessToken={accessToken}
                 />
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={6}>
                 <Grid item xs={12}>
                   <Grid container>
                     <PieCharts
@@ -100,9 +100,9 @@ const UvtPage = (props: IProps) => {
                 variant="contained"
                 onClick={handleClick}
                 size="large"
-                sx={{ margin: 5 }}
+                sx={{ margin: 5, px: 7 }}
               >
-                חזור חזרה{" "}
+                חזור
               </Button>
             </Stack>
           </Box>
@@ -112,4 +112,4 @@ const UvtPage = (props: IProps) => {
   );
 };
 
-export default UvtPage;
+export default GraphsPage;

@@ -1,7 +1,7 @@
 {
-  "param_headers": ["deviceId", "name", "last_name", "city", "street", "unit"],
+  "param_headers": ["ip", "בלבהבלה", "עכד", "סוללה", "street", "unit"],
   "radio_state_headers": [
-    "מזהה מקמ\"ש",
+    "שם רכיב",
     "מיקום",
     "שם ישל\"ק",
     "מספר ישל\"ק",

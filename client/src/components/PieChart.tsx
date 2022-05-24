@@ -7,10 +7,12 @@ type IProps = {
   chartTitle: string;
 };
 
+const chartStatus = ["תקין", "תקול", "תקלה מינורית"];
+
 const PieChart = (props: IProps) => {
   const { labels, data, chartTitle } = props;
   const allData = {
-    labels: labels,
+    labels: chartStatus,
     datasets: [
       {
         label: "RCGW",
@@ -19,6 +21,7 @@ const PieChart = (props: IProps) => {
           "rgba(75, 192, 192, 0.2)",
           "rgba(255, 99, 132, 0.2)",
           "rgba(255, 159, 64, 0.2)",
+
           "rgba(54, 162, 235, 0.2)",
           "rgba(255, 206, 86, 0.2)",
           "rgba(153, 102, 255, 0.2)",
@@ -27,6 +30,7 @@ const PieChart = (props: IProps) => {
           "rgba(75, 192, 192, 1)",
           "rgba(255, 99, 132, 1)",
           "rgba(255, 159, 64, 1)",
+
           "rgba(54, 162, 235, 1)",
           "rgba(255, 206, 86, 1)",
           "rgba(153, 102, 255, 1)",

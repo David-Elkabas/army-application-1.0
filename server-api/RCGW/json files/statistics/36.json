@@ -33,6 +33,74 @@
       "number": 11
     }
   ],
+  "CCUChartData": [
+    {
+      "id": 1,
+      "state": "OK",
+      "number": 2
+    },
+    {
+      "id": 2,
+      "state": "FAILED",
+      "number": 15
+    },
+    {
+      "id": 3,
+      "state": "ERROR",
+      "number": 4
+    }
+  ],
+  "CCTChartData": [
+    {
+      "id": 1,
+      "state": "OK",
+      "number": 2
+    },
+    {
+      "id": 2,
+      "state": "FAILED",
+      "number": 1
+    },
+    {
+      "id": 3,
+      "state": "ERROR",
+      "number": 0
+    }
+  ],
+  "YadbarChartData": [
+    {
+      "id": 1,
+      "state": "OK",
+      "number": 16
+    },
+    {
+      "id": 2,
+      "state": "FAILED",
+      "number": 64
+    },
+    {
+      "id": 3,
+      "state": "ERROR",
+      "number": 3
+    }
+  ],
+  "SoftwareDistributionServerChartData": [
+    {
+      "id": 1,
+      "state": "OK",
+      "number": 1
+    },
+    {
+      "id": 2,
+      "state": "FAILED",
+      "number": 1
+    },
+    {
+      "id": 3,
+      "state": "ERROR",
+      "number": 1
+    }
+  ],
   "NetworkChartData": [
     { "id": 1, "network": "בלה בלה 1", "OK": 2, "ERROR": 1, "FAILED": 0 },
     { "id": 2, "network": "ראשון לציון", "OK": 1, "ERROR": 2, "FAILED": 1 },
@@ -446,20 +514,10 @@
   ],
   "LocationBasedChart": [
     {
-      "id": 1,
-      "location": "מזרע",
-      "network": null,
-      "satus": {
-        "OK": 0,
-        "ERROR": 0,
-        "FAILED": 12
-      }
-    },
-    {
       "id": 2,
       "location": "חולון",
       "network": "פבל",
-      "satus": {
+      "status": {
         "OK": 7,
         "ERROR": 0,
         "FAILED": 2
@@ -469,7 +527,7 @@
       "id": 3,
       "location": "שלומי",
       "network": "פבל",
-      "satus": {
+      "status": {
         "OK": 1,
         "ERROR": 1,
         "FAILED": 1
@@ -479,7 +537,7 @@
       "id": 4,
       "location": "פבל",
       "network": "פבל",
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 2,
         "FAILED": 0
@@ -489,7 +547,7 @@
       "id": 5,
       "location": "חדרה",
       "network": "דיויד",
-      "satus": {
+      "status": {
         "OK": 2,
         "ERROR": 0,
         "FAILED": 2
@@ -499,7 +557,7 @@
       "id": 6,
       "location": "צריפין",
       "network": "דיויד",
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 0,
         "FAILED": 1
@@ -509,7 +567,7 @@
       "id": 7,
       "location": "ששש",
       "network": "דיויד",
-      "satus": {
+      "status": {
         "OK": 6,
         "ERROR": 0,
         "FAILED": 1
@@ -519,7 +577,7 @@
       "id": 8,
       "location": "ירון",
       "network": "דיויד",
-      "satus": {
+      "status": {
         "OK": 10,
         "ERROR": 0,
         "FAILED": 0
@@ -529,7 +587,7 @@
       "id": 9,
       "location": "ראשון לציון",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 4,
         "FAILED": 4
@@ -539,7 +597,7 @@
       "id": 10,
       "location": "רחובות",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 1,
         "ERROR": 3,
         "FAILED": 3
@@ -549,7 +607,7 @@
       "id": 11,
       "location": "עפולה",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 6,
         "ERROR": 0,
         "FAILED": 1
@@ -559,7 +617,7 @@
       "id": 12,
       "location": "קציר",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 1,
         "ERROR": 2,
         "FAILED": 2
@@ -569,7 +627,7 @@
       "id": 13,
       "location": "עלית",
       "network": "מנחם",
-      "satus": {
+      "status": {
         "OK": 0,
         "ERROR": 1,
         "FAILED": 0

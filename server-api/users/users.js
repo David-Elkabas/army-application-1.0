@@ -1,24 +1,31 @@
 const users = [
   {
     id: "1",
-    username: "sapir",
+    username: "אוגדה36",
     password: "12345",
     isAdmin: false,
     unitAccess: ["36"],
   },
   {
     id: "2",
-    username: "mayan",
+    username: "אוגדה162",
     password: "12345",
     isAdmin: false,
-    unitAccess: ["lomar", "36"],
+    unitAccess: ["162"],
   },
   {
     id: "3",
-    username: "david",
+    username: "אוגדה98",
     password: "12345",
+    isAdmin: false,
+    unitAccess: ["98"],
+  },
+  {
+    id: "4",
+    username: "david",
+    password: "david123",
     isAdmin: true,
-    unitAccess: ["lomar", "36", "98"],
+    unitAccess: ["36", "98", "777"],
   },
 ];
 

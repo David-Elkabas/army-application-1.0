@@ -61,9 +61,9 @@ const RcgwPage = (props: IProps) => {
               variant="contained"
               onClick={handleClick}
               size="large"
-              sx={{ margin: 5 }}
+              sx={{ margin: 5, px: 7 }}
             >
-              חזור חזרה{" "}
+              חזור
             </Button>
           </Stack>
         </Box>

@@ -2,12 +2,11 @@ import { Box, Checkbox, Tooltip } from "@mui/material";
 import {
   DataGrid,
   GridToolbarContainer,
-  GridToolbarColumnsButton,
   GridToolbarFilterButton,
   GridToolbarDensitySelector,
   GridToolbarExport,
-  GridSlotsComponentsProps,
 } from "@mui/x-data-grid";
+import { useState } from "react";
 
 function CustomToolbar() {
   return (
@@ -56,7 +55,7 @@ const EliavColumnsPanel = () => {
 
 const PureTable = (props: IProps) => {
   const { rows, columns } = props;
-  // console.log(rows);
+  const [pageSize, setPageSize] = useState<number>(25);
   const shortColumn = ["מושאל", "קוד הצפנה", "קידוד שמע", "תדר", "פורט", "adf"];
 
   const editRows = rows.map((row) =>
@@ -81,24 +80,21 @@ const PureTable = (props: IProps) => {
     // <div>
     <Box sx={{ height: 700 }}>
       <DataGrid
-        sx={{ borderRadius: "12px", boxShadow: 1 }}
+        density="compact"
+        pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        rowsPerPageOptions={[10, 25, 50, 100, 200]}
         rows={editRows}
         columns={editColumns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
         disableSelectionOnClick
         components={{
           Toolbar: CustomToolbar,
-          // ColumnMenu: () => <></>,
-          // ColumnFilteredIcon: () => <></>,
-          // ColumnsPanel: (props) => {
-          //   console.log(props);
-          //   return <EliavColumnsPanel />;
-          // },
-          // FilterPanel: () => <></>,
-          // FilterPanelColumns: () => <></>,
         }}
         componentsProps={{ columnsPanel: {} }}
+        sx={{
+          borderRadius: "12px",
+          boxShadow: 1,
+        }}
         localeText={{
           //for change titles for Hebrew
           // columns panel

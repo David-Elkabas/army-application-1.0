@@ -19,7 +19,9 @@ interface IProps {
 const unitListWithServers = [
   { name: "36", value: "36", servers: "תק''שי שרתים 178,179" },
   { name: "98", value: "98", servers: "תק''שי שרתים 183,184" },
-  { name: "שדב לומר", value: "lomar", servers: "תק''שי שרתים 158,159" },
+  { name: "99", value: "99", servers: "תק''שי שרתים 180,181" },
+  { name: "162", value: "162", servers: "תק''שי שרתים 190,189" },
+  { name: "שדב לומר", value: "777", servers: "תק''שי שרתים 158,159" },
 ];
 
 const UnitPage: React.FC<IProps> = (props) => {
@@ -136,9 +138,9 @@ const UnitPage: React.FC<IProps> = (props) => {
             variant="contained"
             onClick={handleReturnButtonClick}
             size="large"
-            sx={{ mt: 15, mb: 5 }}
+            sx={{ mt: 15, mb: 5, px: 7 }}
           >
-            חזור חזרה
+            חזור
           </Button>
         </Grid>
       </Grid>
