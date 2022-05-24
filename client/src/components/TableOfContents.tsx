@@ -34,11 +34,7 @@ const TableOfContents = (props: Props) => {
       sx={{
         borderRadius: 3,
         backgroundColor: "#93B0B0",
-        width: "33vw",
-        justifyContent: "center",
-        display: "flex",
-        position: "fixed",
-        zIndex: 1000,
+        width: "300px",
       }}
     >
       <CardContent>
@@ -49,12 +45,7 @@ const TableOfContents = (props: Props) => {
                 <Grid item>
                   <Grid container direction="row">
                     <Grid item xs={6}>
-                      <Box
-                        sx={{
-                          justifyContent: "center",
-                          display: "flex",
-                        }}
-                      >
+                      <Box>
                         <Avatar
                           sx={{ mx: 2 }}
                           alt={element[0]}

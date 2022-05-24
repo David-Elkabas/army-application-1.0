@@ -3,7 +3,9 @@ import React from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useNavigate } from "react-router-dom";
 import InfoText from "../components/InfoText";
+import NetWorkChart from "../components/NetworkChart";
 import PageHeader from "../components/PageHeader";
+import PieCharts from "../components/PieCharts";
 
 interface IProps {
   username: string;
@@ -35,7 +37,23 @@ const RcgwPage = (props: IProps) => {
           <InfoText name='ישל"קים' />
 
           <Grid container direction="row">
-            <Grid item xs={7} sx={{ justifyContent: "center" }}></Grid>
+            <Grid item xs={7}></Grid>
+            <Grid item xs={5} sx={{ justifyContent: "center" }}>
+              <Grid item xs={12}>
+                <Grid container>
+                  <PieCharts
+                    accessToken={accessToken}
+                    selectedUnit={selectedUnit}
+                  />
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <NetWorkChart
+                  accessToken={accessToken}
+                  selectedUnit={selectedUnit}
+                />
+              </Grid>
+            </Grid>
           </Grid>
           <ReactQueryDevtools initialIsOpen={false} />
           <Stack direction="row" spacing={5} justifyContent="center">
