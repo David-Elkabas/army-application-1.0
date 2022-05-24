@@ -104,8 +104,16 @@ const DevicesTablePage = (props: IProps) => {
                 accessToken={accessToken}
               />
             </Box>
-            <InfoText name='מקמ"שים' />
-            <Box sx={{ width: "100%" }}>
+            <Button
+              variant="contained"
+              onClick={handleClick}
+              size="large"
+              sx={{ mb: 1, px: 7 }}
+            >
+              חזור
+            </Button>
+            {/* <InfoText name='מקמ"שים' /> */}
+            <Box sx={{ width: "100%", border: 2, borderRadius: 4 }}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <Tabs
                   value={value}
