@@ -87,6 +87,15 @@ const DevicesColumn = (props: IProps) => {
     if (e.target.checked) {
       setFavoriteStations([DeviceData, ...favoriteStations]);
     }
+    if (!e.target.checked) {
+      setFavoriteStations(
+        favoriteStations.filter(
+          (favoriteStation) =>
+            favoriteStation.location != DeviceData.location &&
+            favoriteStation.device != DeviceData.device
+        )
+      );
+    }
   };
   return (
     <>

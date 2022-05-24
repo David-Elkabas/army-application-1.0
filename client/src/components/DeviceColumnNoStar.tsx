@@ -101,7 +101,13 @@ const DeviceColumnNoStar = (props: IProps) => {
     );
   };
   return (
-    <Paper sx={{ background: () => colorSelector(type), p: 1, m: 1 }}>
+    <Paper
+      sx={{
+        background: () => colorSelector(type),
+        p: 1,
+        m: 1,
+      }}
+    >
       <Tooltip
         followCursor
         title={

@@ -1,3 +1,4 @@
+import { YardOutlined } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -58,9 +59,6 @@ const GeneralView = (props: IProps) => {
               חזור חזרה
             </Button>
           </Grid>
-          <Grid item xs={5}>
-            <TableOfContents />
-          </Grid>
         </Grid>
 
         <Grid container direction="row" sx={{ width: "90vw" }}>
@@ -73,42 +71,51 @@ const GeneralView = (props: IProps) => {
             />
           </Grid>
           <Grid item xs={2}>
-            <Box
-              sx={{
-                borderRadius: 3,
-                marginTop: 15,
-                border: 5,
-                pb: 5,
-              }}
-            >
-              <Typography
-                component="h4"
-                variant="h4"
-                align="center"
+            <Box sx={{ position: "fixed ", overflow: "hidden" }}>
+              <Box
+                height="450px"
+                width="300px"
                 sx={{
-                  fontWeight: 700,
-                  fontSize: 35,
-                  color: "#f5c71a",
+                  overflowY: "scroll",
+                  "&::-webkit-scrollbar": { display: "none" },
+                  borderRadius: 3,
+                  marginTop: 15,
+                  border: 5,
+                  pb: 5,
                 }}
               >
-                מועדפים
-              </Typography>
+                <Typography
+                  component="h4"
+                  variant="h4"
+                  align="center"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 35,
+                    color: "#f5c71a",
+                  }}
+                >
+                  מועדפים
+                </Typography>
 
-              {favoriteStations &&
-                favoriteStations.map((ele) => {
-                  return (
-                    <DeviceColumnNoStar
-                      device={ele.device}
-                      OK={ele.OK}
-                      ERROR={ele.ERROR}
-                      FAILED={ele.FAILED}
-                      type={ele.type}
-                      location={ele.location}
-                      favoriteStations={favoriteStations}
-                      setFavoriteStations={setFavoriteStations}
-                    />
-                  );
-                })}
+                {favoriteStations &&
+                  favoriteStations.map((ele) => {
+                    return (
+                      <DeviceColumnNoStar
+                        device={ele.device}
+                        OK={ele.OK}
+                        ERROR={ele.ERROR}
+                        FAILED={ele.FAILED}
+                        type={ele.type}
+                        location={ele.location}
+                        favoriteStations={favoriteStations}
+                        setFavoriteStations={setFavoriteStations}
+                      />
+                    );
+                  })}
+              </Box>
+              <Grid item xs={2}>
+                <TableOfContents />
+              </Grid>
             </Box>
           </Grid>
         </Grid>
