@@ -9,6 +9,7 @@ interface IProps {
   accessToken: string;
   selectedUnit: string;
   table: string;
+  headerName: string;
 }
 
 type Headers = {
@@ -54,7 +55,7 @@ type Other = {
 type Data = any;
 
 const MakmashTable = (props: IProps) => {
-  const { accessToken, selectedUnit, table } = props;
+  const { accessToken, selectedUnit, table, headerName } = props;
   const [tableData, setTableData] = useState<RadioParams[]>([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
   const [errorText, setErrorText] = useState(" ");
@@ -134,8 +135,6 @@ const MakmashTable = (props: IProps) => {
         });
       }
 
-      // oneArray.pop();
-
       let newArray = oneArray.filter(
         (element) => Object.keys(element).length !== 0
       );
@@ -146,15 +145,15 @@ const MakmashTable = (props: IProps) => {
   const { isLoading: isLoadingHeader, isError: isErrorHeader } =
     useQuery<Headers>("FileHeader", fetchHeaderList, {
       onSuccess: (headerData) => {
-        const { param_headers, radio_state_headers } = headerData ?? {
-          param_headers: [],
-          radio_state_headers: [],
-        };
-        if (table === "Makmash") {
-          setTableHeader(radio_state_headers);
-        } else {
-          setTableHeader(param_headers);
-        }
+        // const { param_headers, radio_state_headers } = headerData ?? {
+        //   param_headers: [],
+        //   radio_state_headers: [],
+        // };
+        // if (table === "Makmash") {
+        setTableHeader(headerData[headerName]);
+        // } else {
+        //   setTableHeader(param_headers);
+        // }
       },
     });
 
