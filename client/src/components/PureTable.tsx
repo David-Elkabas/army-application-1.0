@@ -53,6 +53,13 @@ const EliavColumnsPanel = () => {
   );
 };
 
+const ColumnWidthCalc = (string: string) => {
+  let stringLength: number = string.length;
+  if (stringLength < 8) return 80;
+  else if (stringLength > 14) return stringLength * 8;
+  else return stringLength * 10;
+};
+
 const PureTable = (props: IProps) => {
   const { rows, columns } = props;
   const [pageSize, setPageSize] = useState<number>(25);
@@ -62,13 +69,12 @@ const PureTable = (props: IProps) => {
     Object.assign(row, { id: row["שם רכיב"] })
   );
 
-  const editColumns = columns.map((column) => ({
+  const editColumns = columns.map((column: string) => ({
     field: column,
     headerName: column,
     headerAlign: "center" as const,
     align: "center" as const,
-    width: shortColumn.includes(column) ? 50 : 100,
-    // flex: 1,
+    width: shortColumn.includes(column) ? 50 : ColumnWidthCalc(column),
     renderCell: (params: any) => (
       <Tooltip title={params.value ? params.value : "temp"}>
         <span>{params.value}</span>

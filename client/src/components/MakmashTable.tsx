@@ -61,7 +61,6 @@ const MakmashTable = (props: IProps) => {
   const [errorText, setErrorText] = useState(" ");
 
   const fetchRadioStates = async (): Promise<Data> => {
-    // console.log(accessToken);
     try {
       const res = await fetch(
         `${process.env.REACT_APP_SERVER_URL}/radioStates/${selectedUnit}`,
