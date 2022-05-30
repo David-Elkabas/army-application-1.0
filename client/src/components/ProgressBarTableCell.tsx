@@ -13,7 +13,6 @@ const selectColor = (number) => {
 
 const ProgressBar = React.memo(function ProgressBar(props: ProgressBarProps) {
   const { value } = props;
-  // console.log(value);
   const onlyValue = Number(value.toString().replace("%", ""));
 
   return (
@@ -25,7 +24,7 @@ const ProgressBar = React.memo(function ProgressBar(props: ProgressBarProps) {
         overflow: "hidden",
         width: "100%",
         height: 26,
-        borderRadius: 5,
+        borderRadius: 3,
         margin: 0,
       }}
     >
@@ -33,7 +32,7 @@ const ProgressBar = React.memo(function ProgressBar(props: ProgressBarProps) {
         item
         style={{
           position: "absolute",
-          lineHeight: "24px",
+          lineHeight: "26px",
           width: "100%",
           display: "flex",
           justifyContent: "center",
@@ -45,9 +44,7 @@ const ProgressBar = React.memo(function ProgressBar(props: ProgressBarProps) {
       <Grid
         item
         style={{
-          // maxWidth: `${value.toLocaleString()}`,
           width: `${value.toLocaleString()}`,
-          // height: 26,
           borderRadius: "0px 5px 5px 0px",
           backgroundColor: selectColor(onlyValue),
         }}
