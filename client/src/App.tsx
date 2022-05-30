@@ -37,10 +37,10 @@ const theme = createTheme({
   direction: "rtl", // Both here and <body dir="rtl">
 });
 // Create rtl cache
-const cacheRtl = createCache({
-  key: "muirtl",
-  stylisPlugins: [prefixer, rtlPlugin],
-});
+// const cacheRtl = createCache({
+//   key: "muirtl",
+//   stylisPlugins: [prefixer, rtlPlugin],
+// });
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -53,12 +53,12 @@ const queryClient = new QueryClient({
 const AppWrapper = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <CacheProvider value={cacheRtl}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
-      </CacheProvider>
+      {/* <CacheProvider value={cacheRtl}> */}
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+      {/* </CacheProvider> */}
     </QueryClientProvider>
   );
 };

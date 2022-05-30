@@ -7,6 +7,7 @@ import {
   GridToolbarExport,
 } from "@mui/x-data-grid";
 import { useState } from "react";
+import { renderProgress } from "./ProgressBarTableCell";
 
 function CustomToolbar() {
   return (
@@ -53,17 +54,35 @@ const EliavColumnsPanel = () => {
   );
 };
 
-const ColumnWidthCalc = (string: string) => {
-  let stringLength: number = string.length;
+const shortColumn = ["מושאל", "קוד הצפנה", "קידוד שמע", "תדר", "פורט", "adf"];
+const NeedToBeNumberList = [
+  "תפוסת דיסק",
+  "צריכת זיכרון",
+  "צריכת מעבד",
+  "מספר פורט",
+  "תדר",
+];
+const customProgressbar = ["תפוסת דיסק", "צריכת זיכרון", "צריכת מעבד"];
+
+const ColumnWidthCalc = (title: string) => {
+  let stringLength: number = title.length;
   if (stringLength < 8) return 80;
   else if (stringLength > 14) return stringLength * 8;
   else return stringLength * 10;
 };
 
+const ColumnTypeDecider = (title: string) => {
+  if (NeedToBeNumberList.includes(title)) return "number";
+  else return "string";
+};
+
+const ShowData = (data: any) => {
+  console.log(data);
+};
+
 const PureTable = (props: IProps) => {
   const { rows, columns } = props;
   const [pageSize, setPageSize] = useState<number>(25);
-  const shortColumn = ["מושאל", "קוד הצפנה", "קידוד שמע", "תדר", "פורט", "adf"];
 
   const editRows = rows.map((row) =>
     Object.assign(row, { id: row["שם רכיב"] })
@@ -75,9 +94,14 @@ const PureTable = (props: IProps) => {
     headerAlign: "center" as const,
     align: "center" as const,
     width: shortColumn.includes(column) ? 50 : ColumnWidthCalc(column),
+    type: ColumnTypeDecider(column),
     renderCell: (params: any) => (
       <Tooltip title={params.value ? params.value : "temp"}>
-        <span>{params.value}</span>
+        {customProgressbar.includes(column) ? (
+          renderProgress(params)
+        ) : (
+          <span>{params.value}</span>
+        )}
       </Tooltip>
     ),
   }));

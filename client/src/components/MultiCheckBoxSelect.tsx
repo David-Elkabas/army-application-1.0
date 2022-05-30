@@ -118,8 +118,8 @@ const MultiCheckBoxSelect = (props: IProps) => {
             //   options.filter((option) => option.location !== "")
             // }
             isOptionEqualToValue={(option, value) => {
-              console.log("option", option);
-              console.log("value", value);
+              // console.log("option", option);
+              // console.log("value", value);
               return option.id === value.id;
             }}
             getOptionLabel={(option) => option?.location}
