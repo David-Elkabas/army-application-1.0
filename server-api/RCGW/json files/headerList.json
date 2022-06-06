@@ -1,6 +1,5 @@
 {
-
-  "RCGWHeaderList": [
+  "RCGW_headers": [
     "שם רכיב",
     "IP",
     "גרסת רויפ",
@@ -15,7 +14,7 @@
     "גרסת פק\"ל",
     "סוג ישל\"ל"
   ],
-  "CCUHeaderList": [
+  "CCU_headers": [
     "שם רכיב",
     "IP",
     "גרסת רויפ",
@@ -26,7 +25,7 @@
     "גרסת פק\"ל",
     "סטטוס שרת"
   ],
-  "CCTHeaderList": [
+  "CCT_headers": [
     "שם רכיב",
     "IP",
     "גרסת רויפ",
@@ -36,7 +35,7 @@
     "צריכת מעבד",
     "גרסת פק\"ל"
   ],
-  "YadbarHeaderList": [
+  "Yadbar_headers": [
     "שם רכיב",
     "IP",
     "גרסת רויפ",
@@ -48,7 +47,7 @@
     "כרטיס קול נכשל?"
   ],
 
-  "SoftwareDistributionServerHeaderList": [
+  "SoftwareDistributionServer_headers": [
     "שם רכיב",
     "IP",
     "גרסת רויפ",

@@ -29,7 +29,6 @@ interface TabPanelProps {
   value: number;
 }
 
-
 const deviceTableNameList = [
   "Makmash",
   "RCGW",
@@ -41,12 +40,11 @@ const deviceTableNameList = [
 
 const deviceHeaderNameList = [
   "radio_state_headers",
-  "RCGWHeaderList",
-  "CCUHeaderList",
-  "CCTHeaderList",
-  "YadbarHeaderList",
-  "SoftwareDistributionServerHeaderList",
-
+  "RCGW_headers",
+  "CCU_headers",
+  "CCT_headers",
+  "Yadbar_headers",
+  "SoftwareDistributionServer_headers",
 ];
 
 const theme = createTheme({
@@ -166,7 +164,6 @@ const DevicesTablePage = (props: IProps) => {
                     </TabPanel>
                   );
                 })}
-
             </Box>
             <ReactQueryDevtools initialIsOpen={false} />
             <Stack direction="row" spacing={5} justifyContent="center">
