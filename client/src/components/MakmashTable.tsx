@@ -13,7 +13,11 @@ interface IProps {
 }
 
 type Headers = {
-  param_headers: Array<string>;
+  RCGW_headers: Array<string>;
+  CCU_headers: Array<string>;
+  CCT_headers: Array<string>;
+  Yadbar_headers: Array<string>;
+  SoftwareDistributionServer_headers: Array<string>;
   radio_state_headers: Array<string>;
 };
 type rcgwParams = {
@@ -144,6 +148,7 @@ const MakmashTable = (props: IProps) => {
   const { isLoading: isLoadingHeader, isError: isErrorHeader } =
     useQuery<Headers>("FileHeader", fetchHeaderList, {
       onSuccess: (headerData) => {
+
         // const { param_headers, radio_state_headers } = headerData ?? {
         //   param_headers: [],
         //   radio_state_headers: [],
@@ -153,6 +158,7 @@ const MakmashTable = (props: IProps) => {
         // } else {
         //   setTableHeader(param_headers);
         // }
+
       },
     });
 

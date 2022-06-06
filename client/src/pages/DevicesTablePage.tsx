@@ -29,6 +29,7 @@ interface TabPanelProps {
   value: number;
 }
 
+
 const deviceTableNameList = [
   "Makmash",
   "RCGW",
@@ -45,6 +46,7 @@ const deviceHeaderNameList = [
   "CCTHeaderList",
   "YadbarHeaderList",
   "SoftwareDistributionServerHeaderList",
+
 ];
 
 const theme = createTheme({
@@ -144,6 +146,7 @@ const DevicesTablePage = (props: IProps) => {
                   <Tab label="שרתי הפצה" {...a11yProps(5)} />
                 </Tabs>
               </Box>
+
               {deviceTableNameList &&
                 deviceTableNameList.map((deviceName, index) => {
                   return (
@@ -163,6 +166,7 @@ const DevicesTablePage = (props: IProps) => {
                     </TabPanel>
                   );
                 })}
+
             </Box>
             <ReactQueryDevtools initialIsOpen={false} />
             <Stack direction="row" spacing={5} justifyContent="center">
