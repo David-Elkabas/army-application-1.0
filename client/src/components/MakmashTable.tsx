@@ -12,7 +12,11 @@ interface IProps {
 }
 
 type Headers = {
-  param_headers: Array<string>;
+  RCGW_headers: Array<string>;
+  CCU_headers: Array<string>;
+  CCT_headers: Array<string>;
+  Yadbar_headers: Array<string>;
+  SoftwareDistributionServer_headers: Array<string>;
   radio_state_headers: Array<string>;
 };
 type rcgwParams = {
@@ -146,14 +150,33 @@ const MakmashTable = (props: IProps) => {
   const { isLoading: isLoadingHeader, isError: isErrorHeader } =
     useQuery<Headers>("FileHeader", fetchHeaderList, {
       onSuccess: (headerData) => {
-        const { param_headers, radio_state_headers } = headerData ?? {
-          param_headers: [],
+        const {
+          RCGW_headers,
+          CCU_headers,
+          CCT_headers,
+          Yadbar_headers,
+          SoftwareDistributionServer_headers,
+          radio_state_headers,
+        } = headerData ?? {
+          RCGW_headers: [],
+          CCU_headers: [],
+          CCT_headers: [],
+          Yadbar_headers: [],
+          SoftwareDistributionServer_headers: [],
           radio_state_headers: [],
         };
         if (table === "Makmash") {
           setTableHeader(radio_state_headers);
-        } else {
-          setTableHeader(param_headers);
+        } else if (table === "RCGW") {
+          setTableHeader(RCGW_headers);
+        } else if (table === "CCU") {
+          setTableHeader(CCU_headers);
+        } else if (table === "CCT") {
+          setTableHeader(CCT_headers);
+        } else if (table === "Yadbar") {
+          setTableHeader(Yadbar_headers);
+        } else if (table === "SoftwareDistributionServer") {
+          setTableHeader(SoftwareDistributionServer_headers);
         }
       },
     });

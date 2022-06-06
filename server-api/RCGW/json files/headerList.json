@@ -1,5 +1,9 @@
 {
-  "param_headers": ["ip", "בלבהבלה", "עכד", "סוללה", "street", "unit"],
+  "RCGW_headers": ["ip", "בלבהבלה", "עכד", "סוללה", "street", "unit"],
+  "CCU_headers": ["ip", "בלבהבלה", "עכד", "סוללה", "unit"],
+  "CCT_headers": ["ip", "בלבהבלה", "עכד", "סוללה", "street"],
+  "Yadbar_headers": ["ip", "street", "unit"],
+  "SoftwareDistributionServer_headers": ["ip", "בלבהבלה", "עכד", "סוללה", "unit"],
   "radio_state_headers": [
     "שם רכיב",
     "מיקום",

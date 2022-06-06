@@ -27,6 +27,15 @@ interface TabPanelProps {
   value: number;
 }
 
+const tableTabs = [
+  { table: "Makmash", index: 0 },
+  { table: "RCGW", index: 1 },
+  { table: "CCU", index: 2 },
+  { table: "CCT", index: 3 },
+  { table: "Yadbar", index: 4 },
+  { table: "SoftwareDistributionServer", index: 5 },
+];
+
 const theme = createTheme({
   direction: "rtl", // Both here and <body dir="rtl">
   palette: {
@@ -131,84 +140,23 @@ const DevicesTablePage = (props: IProps) => {
                   <Tab label="שרתי הפצה" {...a11yProps(5)} />
                 </Tabs>
               </Box>
-              <TabPanel value={value} index={0}>
-                <Grid container direction="row">
-                  <Grid item xs={12}>
-                    <Box dir="ltr">
-                      <MakmashTable
-                        accessToken={accessToken}
-                        selectedUnit={selectedUnit}
-                        table="Makmash"
-                      />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                <Grid container direction="row">
-                  <Grid item xs={12}>
-                    <Box dir="ltr">
-                      <MakmashTable
-                        accessToken={accessToken}
-                        selectedUnit={selectedUnit}
-                        table="RCGW"
-                      />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </TabPanel>
-              <TabPanel value={value} index={2}>
-                <Grid container direction="row">
-                  <Grid item xs={12}>
-                    <Box dir="ltr">
-                      <MakmashTable
-                        accessToken={accessToken}
-                        selectedUnit={selectedUnit}
-                        table="CCU"
-                      />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </TabPanel>
-              <TabPanel value={value} index={3}>
-                <Grid container direction="row">
-                  <Grid item xs={12}>
-                    <Box dir="ltr">
-                      <MakmashTable
-                        accessToken={accessToken}
-                        selectedUnit={selectedUnit}
-                        table="CCT"
-                      />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </TabPanel>
-              <TabPanel value={value} index={4}>
-                <Grid container direction="row">
-                  <Grid item xs={12}>
-                    <Box dir="ltr">
-                      <MakmashTable
-                        accessToken={accessToken}
-                        selectedUnit={selectedUnit}
-                        table="Yadbar"
-                      />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </TabPanel>
-              <TabPanel value={value} index={5}>
-                <Grid container direction="row">
-                  <Grid item xs={12}>
-                    <Box dir="ltr">
-                      <MakmashTable
-                        accessToken={accessToken}
-                        selectedUnit={selectedUnit}
-                        table="SoftwareDistributionServer"
-                      />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </TabPanel>
+              {tableTabs.map((tab) => {
+                return (
+                  <TabPanel value={value} index={tab.index}>
+                    <Grid container direction="row">
+                      <Grid item xs={12}>
+                        <Box dir="ltr">
+                          <MakmashTable
+                            accessToken={accessToken}
+                            selectedUnit={selectedUnit}
+                            table={tab.table}
+                          />
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </TabPanel>
+                );
+              })}
             </Box>
             <ReactQueryDevtools initialIsOpen={false} />
             <Stack direction="row" spacing={5} justifyContent="center">
