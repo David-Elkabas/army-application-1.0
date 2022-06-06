@@ -9,6 +9,7 @@ interface IProps {
   accessToken: string;
   selectedUnit: string;
   table: string;
+  headerName: string;
 }
 
 type Headers = {
@@ -58,13 +59,12 @@ type Other = {
 type Data = any;
 
 const MakmashTable = (props: IProps) => {
-  const { accessToken, selectedUnit, table } = props;
+  const { accessToken, selectedUnit, table, headerName } = props;
   const [tableData, setTableData] = useState<RadioParams[]>([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
   const [errorText, setErrorText] = useState(" ");
 
   const fetchRadioStates = async (): Promise<Data> => {
-    // console.log(accessToken);
     try {
       const res = await fetch(
         `${process.env.REACT_APP_SERVER_URL}/radioStates/${selectedUnit}`,
@@ -138,8 +138,6 @@ const MakmashTable = (props: IProps) => {
         });
       }
 
-      // oneArray.pop();
-
       let newArray = oneArray.filter(
         (element) => Object.keys(element).length !== 0
       );
@@ -150,34 +148,17 @@ const MakmashTable = (props: IProps) => {
   const { isLoading: isLoadingHeader, isError: isErrorHeader } =
     useQuery<Headers>("FileHeader", fetchHeaderList, {
       onSuccess: (headerData) => {
-        const {
-          RCGW_headers,
-          CCU_headers,
-          CCT_headers,
-          Yadbar_headers,
-          SoftwareDistributionServer_headers,
-          radio_state_headers,
-        } = headerData ?? {
-          RCGW_headers: [],
-          CCU_headers: [],
-          CCT_headers: [],
-          Yadbar_headers: [],
-          SoftwareDistributionServer_headers: [],
-          radio_state_headers: [],
-        };
-        if (table === "Makmash") {
-          setTableHeader(radio_state_headers);
-        } else if (table === "RCGW") {
-          setTableHeader(RCGW_headers);
-        } else if (table === "CCU") {
-          setTableHeader(CCU_headers);
-        } else if (table === "CCT") {
-          setTableHeader(CCT_headers);
-        } else if (table === "Yadbar") {
-          setTableHeader(Yadbar_headers);
-        } else if (table === "SoftwareDistributionServer") {
-          setTableHeader(SoftwareDistributionServer_headers);
-        }
+
+        // const { param_headers, radio_state_headers } = headerData ?? {
+        //   param_headers: [],
+        //   radio_state_headers: [],
+        // };
+        // if (table === "Makmash") {
+        setTableHeader(headerData[headerName]);
+        // } else {
+        //   setTableHeader(param_headers);
+        // }
+
       },
     });
 

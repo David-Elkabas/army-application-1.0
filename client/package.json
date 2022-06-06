@@ -33,7 +33,7 @@
     "react-scripts": "5.0.0",
     "react-tsparticles": "^1.41.6",
     "stylis": "^4.0.13",
-    "stylis-plugin-rtl": "^2.1.1",
+    "stylis-plugin-rtl": "^2.0.2",
     "typescript": "^4.5.5",
     "web-vitals": "^2.1.4"
   },

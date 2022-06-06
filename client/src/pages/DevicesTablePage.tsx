@@ -5,7 +5,6 @@ import {
   Paper,
   Stack,
   Typography,
-  CssBaseline,
   Tab,
   Tabs,
 } from "@mui/material";
@@ -13,27 +12,41 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MakmashTable from "../components/MakmashTable";
-import PieCharts from "../components/PieCharts";
-import NetworkChart from "../components/NetworkChart";
-import UserInfo from "../components/UserInfo";
-import LastModifiedDate from "../components/LastModifiedDate";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PageHeader from "../components/PageHeader";
 import InfoText from "../components/InfoText";
 
+interface IProps {
+  username: string;
+  isAdmin: boolean;
+  selectedUnit: string;
+  accessToken: string;
+}
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
 
-const tableTabs = [
-  { table: "Makmash", index: 0 },
-  { table: "RCGW", index: 1 },
-  { table: "CCU", index: 2 },
-  { table: "CCT", index: 3 },
-  { table: "Yadbar", index: 4 },
-  { table: "SoftwareDistributionServer", index: 5 },
+
+const deviceTableNameList = [
+  "Makmash",
+  "RCGW",
+  "CCU",
+  "CCT",
+  "Yadbar",
+  "SoftwareDistributionServer",
+];
+
+const deviceHeaderNameList = [
+  "radio_state_headers",
+  "RCGWHeaderList",
+  "CCUHeaderList",
+  "CCTHeaderList",
+  "YadbarHeaderList",
+  "SoftwareDistributionServerHeaderList",
+
 ];
 
 const theme = createTheme({
@@ -50,13 +63,6 @@ const theme = createTheme({
     },
   },
 });
-
-interface IProps {
-  username: string;
-  isAdmin: boolean;
-  selectedUnit: string;
-  accessToken: string;
-}
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -140,23 +146,27 @@ const DevicesTablePage = (props: IProps) => {
                   <Tab label="שרתי הפצה" {...a11yProps(5)} />
                 </Tabs>
               </Box>
-              {tableTabs.map((tab) => {
-                return (
-                  <TabPanel value={value} index={tab.index}>
-                    <Grid container direction="row">
-                      <Grid item xs={12}>
-                        <Box dir="ltr">
-                          <MakmashTable
-                            accessToken={accessToken}
-                            selectedUnit={selectedUnit}
-                            table={tab.table}
-                          />
-                        </Box>
+
+              {deviceTableNameList &&
+                deviceTableNameList.map((deviceName, index) => {
+                  return (
+                    <TabPanel value={value} index={index}>
+                      <Grid container direction="row">
+                        <Grid item xs={12}>
+                          <Box dir="ltr">
+                            <MakmashTable
+                              accessToken={accessToken}
+                              selectedUnit={selectedUnit}
+                              table={deviceName}
+                              headerName={deviceHeaderNameList[value]}
+                            />
+                          </Box>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </TabPanel>
-                );
-              })}
+                    </TabPanel>
+                  );
+                })}
+
             </Box>
             <ReactQueryDevtools initialIsOpen={false} />
             <Stack direction="row" spacing={5} justifyContent="center">
